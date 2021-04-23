@@ -1,9 +1,30 @@
+<h1 align="center">
+  <br>
+  <a href="http://r-earthengine.github.io/"><img src="https://user-images.githubusercontent.com/16768318/115897667-f340f880-a45c-11eb-9f82-096e4ec99818.png" alt="Markdownify" width="200"></a>
+  <br>
+  <h3 align="center">
+    A R package that extends Google Earth Engine
+  </h3>
+  <br>
+</h1>
 
-# rgeeExtra
+<p align="center">  
+  • 
+  <a href="#installation">Installation</a> &nbsp;•    
+  <a href="#how-does-it-work">How does it work?</a> &nbsp;•
+  <a href="#example">Example</a> &nbsp;•
+  <a href="#credits">Credits</a>  
+</p>
+  
+## Installation
 
-A R package that extends Google Earth Engine. Similar to [eemont](https://github.com/davemlz/eemont)
+You can install rgeeExtra from [GitHub](https://github.com/r-earthengine/rgeeExtra) with:
 
-# How does it work?
+``` r
+remotes::install_github("r-earthengine/rgeeExtra")
+```
+
+## How does it work?
 
 The rgeeExtra extends the following Earth Engine classes:
 
@@ -22,14 +43,6 @@ The main user-relevant R functions are:
 The main user-relevant server-side methods are:
 
   - under dev
-  
-## Installation
-
-You can install rgeeExtra from [GitHub](https://github.com/r-earthengine/rgeeExtra) with:
-
-``` r
-remotes::install_github("r-earthengine/rgeeExtra")
-```
 
 ## Example
 
@@ -65,3 +78,9 @@ names(ndvi) <- "pow_ndvi"
 Map$centerObject(img,zoom=12)
 Map$addLayer(img)
 ```
+
+## Credits
+
+We would like to mention the following third-party R/Python packages for contributing indirectly to the improvement of rgeeExtra:
+  
+-   [**eemont - David Montero Loaiza**](https://github.com/davemlz/eemont)
