@@ -1,20 +1,30 @@
 Package: rgeeExtra
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: An R package that extends Google Earth Engine
+Version: 0.0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    c(person(given = "Cesar",
+           family = "Aybar",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "csaybar@gmail.com",
+           comment = c(ORCID = "0000-0003-2745-9535")),
+      person(given = "David",
+             family = " Montero",
+	         role = c("ctb"),
+	         email = "dml.mont@gmail.com",
+	         comment = c(ORCID = "0000-0002-9010-3286"))        
+    )
+Description: Extra functionality for rgee. An R package that extends Google Earth Engine API.
 License: Apache License (>= 2)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
-    rgee
+    rgee,
+    magrittr,
+    reticulate,
+    crayon,
+    utils
 Suggests: 
+    magick,
     testthat (>= 3.0.0)
-Config/testthat/edition: 3

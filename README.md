@@ -3,7 +3,7 @@
   <a href="http://r-earthengine.github.io/"><img src="https://user-images.githubusercontent.com/16768318/115897667-f340f880-a45c-11eb-9f82-096e4ec99818.png" alt="Markdownify" width="200"></a>
   <br>
   <h3 align="center">
-    A R package that extends Google Earth Engine
+    An R package that extends Google Earth Engine
   </h3>
   <br>
 </h1>
