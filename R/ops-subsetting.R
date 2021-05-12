@@ -232,12 +232,34 @@ ee_get <- function(ee_c, index = 0) {
   }
 }
 
+#' @name ee_subsetting
+#' @export
+'[<-.ee.image.Image' <- function(x, index, value) {
+  # 1. check if value is a ee.Image
+  if (!inherits(index, "ee.image.Image")) {
+    stop(sprintf("index must be a ee.Image not a %s.", class(value)))
+  }
+
+  seed_mask <- x %>% ee$Image$pow(0)
+  image_masked <- x %>%
+    ee$Image$updateMask(index$Not()) %>%
+    ee$Image$unmask(0)
+
+  if (is.numeric(value)) {
+    value <- ee$Image(value) %>%
+      ee$Image$updateMask(index) %>%
+      ee$Image$unmask(0, sameFootprint = TRUE)
+  }
+
+  (image_masked + value)*seed_mask
+
+}
 
 #' @name ee_subsetting
 #' @export
 '[[<-.ee.image.Image' <- function(x, index, value) {
-  # 1. Get band names
-  if (!any(class(value) %in% "ee.image.Image")) {
+  # 1. check if value is a ee.Image
+  if (!inherits(value, "ee.image.Image")) {
     stop(sprintf("value must be a ee.Image not a %s.", class(value)))
   }
 
@@ -262,10 +284,12 @@ ee_get <- function(ee_c, index = 0) {
     } else {
       stop("Index does not match with any band in the ee$Image.")
     }
-  } else {
+  } else if (is.numeric(index)) {
     # 3. Replace value
     x_ic[[index]] <- value
     x_ic$toBands()
+  } else {
+    stop("index is not supported")
   }
 }
 
