@@ -54,54 +54,65 @@ Ops.ee.image.Image <- function(e1, e2) {
       e2 <- as.numeric(e2)
     }
   }
+
   if (is.logical(e1)) {
     e1 <- as.numeric(e1)
   }
 
+  # Operators
+  # If e2 is numeric the results persit the initial name oterwise it is
+  # replaced by "layer"
   if (.Generic == "+") {
     if (missing(e2)) {
-      e1
+      ops_r <- e1
     } else {
-      rgee::ee$Image(e1)$add(rgee::ee$Image(e2))
+      ops_r <- rgee::ee$Image(e1)$add(rgee::ee$Image(e2))
     }
   } else if(.Generic == "-") {
     if (missing(e2)) {
-      e1$multiply(-1L)
+      ops_r <- e1$multiply(-1L)
     } else {
-      rgee::ee$Image(e1)$subtract(rgee::ee$Image(e2))
+      ops_r <- rgee::ee$Image(e1)$subtract(rgee::ee$Image(e2))
     }
   } else if(.Generic == "*") {
-    rgee::ee$Image(e1)$multiply(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$multiply(rgee::ee$Image(e2))
   } else if(.Generic == "^") {
-    rgee::ee$Image(e1)$pow(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$pow(rgee::ee$Image(e2))
   } else if(.Generic == "%%") {
-    rgee::ee$Image(e1)$mod(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$mod(rgee::ee$Image(e2))
   } else if(.Generic == "%/%") {
-    rgee::ee$Image(e1)$divide(rgee::ee$Image(e2))$toInt64()
+    ops_r <- rgee::ee$Image(e1)$divide(rgee::ee$Image(e2))$toInt64()
   } else if(.Generic == "/") {
-    rgee::ee$Image(e1)$divide(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$divide(rgee::ee$Image(e2))
   } else if (.Generic == "!") {
     if (missing(e2)) {
-      rgee::ee$Image(e1)$Not()
+      ops_r <- rgee::ee$Image(e1)$Not()
     } else {
       stop("Unexpected use of !")
     }
   } else if(.Generic == "&") {
-    rgee::ee$Image(e1)$And(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$And(rgee::ee$Image(e2))
   } else if(.Generic == "|") {
-    rgee::ee$Image(e1)$Or(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$Or(rgee::ee$Image(e2))
   } else if(.Generic == "==") {
-    rgee::ee$Image(e1)$eq(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$eq(rgee::ee$Image(e2))
   } else if(.Generic == "!=") {
-    rgee::ee$Image(e1)$neq(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$neq(rgee::ee$Image(e2))
   } else if(.Generic == "<") {
-    rgee::ee$Image(e1)$lt(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$lt(rgee::ee$Image(e2))
   } else if(.Generic == "<=") {
-    rgee::ee$Image(e1)$lte(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$lte(rgee::ee$Image(e2))
   } else if(.Generic == ">") {
-    rgee::ee$Image(e1)$gt(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$gt(rgee::ee$Image(e2))
   }  else if(.Generic == ">=") {
-    rgee::ee$Image(e1)$gte(rgee::ee$Image(e2))
+    ops_r <- rgee::ee$Image(e1)$gte(rgee::ee$Image(e2))
+  }
+
+  # Export results
+  if (is.numeric(e2)) {
+    ops_r
+  } else {
+    ops_r$rename("layer")
   }
 }
 
