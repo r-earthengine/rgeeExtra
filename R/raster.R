@@ -25,7 +25,7 @@
 maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
   if (mode == "Rectangle") {
     # Create a clean geometry i.e. geodesic = FALSE
-    ee_geom <- ee_as_sf(image$geometry()) %>% sf_as_ee()
+    ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee()
 
     # get max values
     rgee::ee$Image$reduceRegion(
@@ -34,12 +34,12 @@ maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
       geometry = ee_geom$geometry(),
       scale = image$projection()$nominalScale()$getInfo(),
       bestEffort = TRUE
-    ) %>% ee$Dictionary$getInfo() %>% unlist()
+    ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else if (mode == "Points") {
     # Create random points
-    local_geom <- ee_as_sf(image$geometry())
+    local_geom <- rgee::ee_as_sf(image$geometry())
     ee_random_points <- suppressMessages(
-      sf::st_sample(local_geom, sample_size) %>% sf_as_ee()
+      sf::st_sample(local_geom, sample_size) %>% rgee::sf_as_ee()
     )
     rgee::ee$Image$reduceRegion(
       image = image,
@@ -47,7 +47,7 @@ maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
       geometry = ee_random_points$geometry(),
       scale = image$projection()$nominalScale()$getInfo(),
       bestEffort = TRUE
-    ) %>% ee$Dictionary$getInfo() %>% unlist()
+    ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else {
     stop("mode does not supported")
   }
@@ -58,7 +58,7 @@ maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
 minValue <- function(image, mode = "Rectangle", sample_size = 1000) {
   if (mode == "Rectangle") {
     # Create a clean geometry i.e. geodesic = FALSE
-    ee_geom <- ee_as_sf(image$geometry()) %>% sf_as_ee()
+    ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee()
 
     # get max values
     rgee::ee$Image$reduceRegion(
@@ -67,12 +67,12 @@ minValue <- function(image, mode = "Rectangle", sample_size = 1000) {
       geometry = ee_geom$geometry(),
       scale = image$projection()$nominalScale()$getInfo(),
       bestEffort = TRUE
-    ) %>% ee$Dictionary$getInfo() %>% unlist()
+    ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else if (mode == "Points") {
     # Create random points
-    local_geom <- ee_as_sf(image$geometry())
+    local_geom <- rgee::ee_as_sf(image$geometry())
     ee_random_points <- suppressMessages(
-      sf::st_sample(local_geom, sample_size) %>% sf_as_ee()
+      sf::st_sample(local_geom, sample_size) %>% rgee::sf_as_ee()
     )
     rgee::ee$Image$reduceRegion(
       image = image,
@@ -80,7 +80,7 @@ minValue <- function(image, mode = "Rectangle", sample_size = 1000) {
       geometry = ee_random_points$geometry(),
       scale = image$projection()$nominalScale()$getInfo(),
       bestEffort = TRUE
-    ) %>% ee$Dictionary$getInfo() %>% unlist()
+    ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else {
     stop("mode does not supported")
   }

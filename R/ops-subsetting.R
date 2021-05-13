@@ -240,15 +240,15 @@ ee_get <- function(ee_c, index = 0) {
     stop(sprintf("index must be a ee.Image not a %s.", class(value)))
   }
 
-  seed_mask <- x %>% ee$Image$pow(0)
+  seed_mask <- x %>% rgee::ee$Image$pow(0)
   image_masked <- x %>%
-    ee$Image$updateMask(index$Not()) %>%
-    ee$Image$unmask(0)
+    rgee::ee$Image$updateMask(index$Not()) %>%
+    rgee::ee$Image$unmask(0)
 
   if (is.numeric(value)) {
-    value <- ee$Image(value) %>%
-      ee$Image$updateMask(index) %>%
-      ee$Image$unmask(0, sameFootprint = TRUE)
+    value <- rgee::ee$Image(value) %>%
+      rgee::ee$Image$updateMask(index) %>%
+      rgee::ee$Image$unmask(0, sameFootprint = TRUE)
   }
 
   (image_masked + value)*seed_mask

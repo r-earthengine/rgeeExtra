@@ -65,12 +65,14 @@ Ops.ee.image.Image <- function(e1, e2) {
   if (.Generic == "+") {
     if (missing(e2)) {
       ops_r <- e1
+      return(ops_r)
     } else {
       ops_r <- rgee::ee$Image(e1)$add(rgee::ee$Image(e2))
     }
   } else if(.Generic == "-") {
     if (missing(e2)) {
       ops_r <- e1$multiply(-1L)
+      return(ops_r)
     } else {
       ops_r <- rgee::ee$Image(e1)$subtract(rgee::ee$Image(e2))
     }
@@ -87,6 +89,7 @@ Ops.ee.image.Image <- function(e1, e2) {
   } else if (.Generic == "!") {
     if (missing(e2)) {
       ops_r <- rgee::ee$Image(e1)$Not()
+      return(ops_r)
     } else {
       stop("Unexpected use of !")
     }
@@ -109,7 +112,7 @@ Ops.ee.image.Image <- function(e1, e2) {
   }
 
   # Export results
-  if (is.numeric(e2)) {
+  if (is.numeric(e2) | is.numeric(e1)) {
     ops_r
   } else {
     ops_r$rename("layer")
@@ -147,17 +150,19 @@ Math.ee.image.Image <- function(x, ...) {
   } else if(.Generic == "log") {
     args <- list(...)
     if (length(args) == 0) {
-      rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image$exp(1))
+      ops_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image$exp(1))
     } else {
       if (is.null(args$base)) {
         stop("Unused argument.")
       }
-      rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image(args$base))
+      ops_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image(args$base))
     }
+    ops_r$rename(rgee::ee$Image$bandNames(x))
   } else if(.Generic == "log10") {
     rgee::ee$Image$log10(x)
   } else if(.Generic == "log2") {
-    rgee::ee$Image$log(x) / rgee::ee$Image$log(2)
+    ops_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(2)
+    ops_r$rename(rgee::ee$Image$bandNames(x))
   } else if(.Generic == "log1p") {
     rgee::ee$Image$log(x + 1)
   } else if(.Generic == "exp") {
@@ -215,24 +220,25 @@ Summary.ee.image.Image <- function(..., na.rm = TRUE) {
   img <- rgee::ee$ImageCollection(list(...))$toBands()
 
   if (.Generic == "max") {
-    img$reduce(rgee::ee$Reducer$max())
+    summ_r <- img$reduce(rgee::ee$Reducer$max())
   } else if (.Generic == "min") {
-    img$reduce(rgee::ee$Reducer$min())
+    summ_r <- img$reduce(rgee::ee$Reducer$min())
   } else if (.Generic == "range") {
-    img$reduce(rgee::ee$Reducer$minMax())
+    summ_r <- img$reduce(rgee::ee$Reducer$minMax())
   } else if (.Generic == "sum") {
-    img$reduce(rgee::ee$Reducer$sum())
+    summ_r <- img$reduce(rgee::ee$Reducer$sum())
   } else if (.Generic == "prod") {
-    img$reduce(rgee::ee$Reducer$product())
+    summ_r <- img$reduce(rgee::ee$Reducer$product())
   } else {
     stop(sprintf("rgee does not support %s yet.", .Generic))
   }
+  summ_r$rename("layer")
 }
 
 #' @name Summary-methods
 #' @export
 mean.ee.image.Image <- function(..., na.rm = TRUE) {
   img <- rgee::ee$ImageCollection(list(...))$toBands()
-  img$reduce(rgee::ee$Reducer$mean())
+  img$reduce(rgee::ee$Reducer$mean())$rename("layer")
 }
 

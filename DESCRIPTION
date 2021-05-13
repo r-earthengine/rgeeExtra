@@ -22,9 +22,15 @@ RoxygenNote: 7.1.1
 Imports: 
     rgee,
     magrittr,
-    reticulate,
-    crayon,
-    utils
+    utils,
+    crayon
 Suggests: 
+    testthat (>= 3.0.0),
+    googledrive,
+    googleCloudStorageR,
+    reticulate,
+    geojsonio,
     magick,
-    testthat (>= 3.0.0)
+    raster,
+    stars,
+    sf
