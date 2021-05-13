@@ -1,7 +1,8 @@
 library(testthat)
 library(raster)
-library(stars)
 library(rgee)
+library(rgeeExtra)
+library(stars)
 library(sf)
 
 # Pre-checking ------------------------------------------------------

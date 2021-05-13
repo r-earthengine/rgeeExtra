@@ -192,15 +192,15 @@ test_that("Summary functions", {
 
   # mean Image
   mean_img <- mean(ee$Image(0), ee$Image(1), ee$Image(2), ee$Image(3))
-  expect_equal(ee_extract(mean_img, ee_geom)$mean, 1.5)
+  expect_equal(ee_extract(mean_img, ee_geom)$layer, 1.5)
 
   # max Image
   max_img <- max(ee$Image(0), ee$Image(1), ee$Image(2), ee$Image(3))
-  expect_equal(ee_extract(max_img, ee_geom)$max, 3)
+  expect_equal(ee_extract(max_img, ee_geom)$layer, 3)
 
   # min Image
   min_img <- min(ee$Image(0), ee$Image(1), ee$Image(2), ee$Image(3))
-  expect_equal(ee_extract(min_img, ee_geom)$min, 0)
+  expect_equal(ee_extract(min_img, ee_geom)$layer, 0)
 
   # range Image
   range_img <- range(ee$Image(0), ee$Image(1), ee$Image(2), ee$Image(3))
@@ -208,10 +208,10 @@ test_that("Summary functions", {
 
   # sum Image
   sum_img <- sum(ee$Image(0), ee$Image(1), ee$Image(2), ee$Image(3))
-  expect_equal(ee_extract(sum_img, ee_geom)$sum, 6)
+  expect_equal(ee_extract(sum_img, ee_geom)$layer, 6)
 
   prod_img <- prod(ee$Image(0), ee$Image(1), ee$Image(2), ee$Image(3))
-  expect_equal(ee_extract(prod_img, ee_geom)$product, 0)
+  expect_equal(ee_extract(prod_img, ee_geom)$layer, 0)
 }
 )
 

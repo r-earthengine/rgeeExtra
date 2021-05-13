@@ -224,7 +224,8 @@ Summary.ee.image.Image <- function(..., na.rm = TRUE) {
   } else if (.Generic == "min") {
     summ_r <- img$reduce(rgee::ee$Reducer$min())
   } else if (.Generic == "range") {
-    summ_r <- img$reduce(rgee::ee$Reducer$minMax())
+    summ_r <- img$reduce(rgee::ee$Reducer$minMax())$rename(c("range_min", "range_max"))
+    return(summ_r)
   } else if (.Generic == "sum") {
     summ_r <- img$reduce(rgee::ee$Reducer$sum())
   } else if (.Generic == "prod") {
