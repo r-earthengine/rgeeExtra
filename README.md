@@ -8,6 +8,12 @@
   <br>
 </h1>
 
+<p align="center">
+  <a href="https://codecov.io/gh/r-earthengine/rgeeExtra">
+    <img src="https://codecov.io/gh/r-earthengine/rgeeExtra/branch/master/graph/badge.svg?token=Q1SNZZU62W"/>
+  </a>
+</p>
+
 <p align="center">  
   • 
   <a href="#installation">Installation</a> &nbsp;•    
