@@ -25,27 +25,32 @@
 maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
   if (mode == "Rectangle") {
     # Create a clean geometry i.e. geodesic = FALSE
-    ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee()
+    ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee(geodesic = FALSE)
 
     # get max values
-    rgee::ee$Image$reduceRegion(
+    rect_result <- rgee::ee$Image$reduceRegion(
       image = image,
       reducer = rgee::ee$Reducer$max(),
       geometry = ee_geom$geometry(),
-      scale = image$projection()$nominalScale()$getInfo(),
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
+    if (is.null(rect_result)) {
+      message("The image footprint is too large ... Running maxValue(..., mode = \"Point\")")
+      maxValue(image = image, mode = "Rectangle", sample_size = sample_size)
+    }
+    rect_result
   } else if (mode == "Points") {
     # Create random points
-    local_geom <- rgee::ee_as_sf(image$geometry())
-    ee_random_points <- suppressMessages(
-      sf::st_sample(local_geom, sample_size) %>% rgee::sf_as_ee()
-    )
+    sample_points <- image$geometry() %>%
+      rgee::ee_as_sf() %>%
+      sf::st_sample(sample_size) %>%
+      st_cast("MULTIPOINT", ids = 1) %>%
+      sf_as_ee()
+
     rgee::ee$Image$reduceRegion(
       image = image,
       reducer = rgee::ee$Reducer$max(),
-      geometry = ee_random_points$geometry(),
-      scale = image$projection()$nominalScale()$getInfo(),
+      geometry = sample_points,
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else {
@@ -58,27 +63,32 @@ maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
 minValue <- function(image, mode = "Rectangle", sample_size = 1000) {
   if (mode == "Rectangle") {
     # Create a clean geometry i.e. geodesic = FALSE
-    ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee()
+    ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee(geodesic = FALSE)
 
     # get max values
-    rgee::ee$Image$reduceRegion(
+    rect_result <- rgee::ee$Image$reduceRegion(
       image = image,
       reducer = rgee::ee$Reducer$min(),
       geometry = ee_geom$geometry(),
-      scale = image$projection()$nominalScale()$getInfo(),
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
+    if (is.null(rect_result)) {
+      message("The image footprint is too large ... Running maxValue(..., mode = \"Point\")")
+      maxValue(image = image, mode = "Rectangle", sample_size = sample_size)
+    }
+    rect_result
   } else if (mode == "Points") {
     # Create random points
-    local_geom <- rgee::ee_as_sf(image$geometry())
-    ee_random_points <- suppressMessages(
-      sf::st_sample(local_geom, sample_size) %>% rgee::sf_as_ee()
-    )
+    sample_points <- image$geometry() %>%
+      rgee::ee_as_sf() %>%
+      sf::st_sample(sample_size) %>%
+      st_cast("MULTIPOINT", ids = 1) %>%
+      sf_as_ee()
+
     rgee::ee$Image$reduceRegion(
       image = image,
       reducer = rgee::ee$Reducer$min(),
-      geometry = ee_random_points$geometry(),
-      scale = image$projection()$nominalScale()$getInfo(),
+      geometry = sample_points,
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else {
