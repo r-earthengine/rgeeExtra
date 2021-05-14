@@ -236,5 +236,38 @@ test_that("Summary functions", {
 
 
 test_that("Extra functions", {
+  img <- ee$Image(0)
 
+  # e1 is.logical?
+  ee_geom <- ee$Geometry$Point(0, 0)
+  expect_equal(ee_extract(TRUE + img, ee_geom)$layer, 1)
+
+  # e2 missing (+)
+  expect_equal(ee_extract(+img + TRUE, ee_geom)$layer, 1)
+
+  # e2 missing (!)
+  expect_equal(ee_extract(!img, ee_geom)$layer, 1)
+
+  # sqrt
+  expect_equal(ee_extract(sqrt(img), ee_geom)$layer, 0)
+
+  # log
+  expect_equal(
+    object = ee_extract(log(ee$Image(8)), ee_geom)$layer,
+    expected = log(8),
+    tolerance = 10**-7
+  )
+
+  # round
+  expect_equal(
+    object = ee_extract(round(ee$Image(2.14),0), ee_geom)$layer,
+    expected = 2,
+    tolerance = 10**-7
+  )
+
+  # operators not supported
+  expect_error(cummax(img))
+
+  # summary
+  sd(ee$Image(0))
 })

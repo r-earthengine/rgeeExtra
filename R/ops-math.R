@@ -85,11 +85,7 @@ Ops.ee.image.Image <- function(e1, e2) {
   } else if(.Generic == "/") {
     ops_r <- rgee::ee$Image(e1)$divide(rgee::ee$Image(e2))
   } else if (.Generic == "!") {
-    if (missing(e2)) {
-      ops_r <- rgee::ee$Image(e1)$Not()
-    } else {
-      stop("Unexpected use of !")
-    }
+    ops_r <- rgee::ee$Image(e1)$Not()
   } else if(.Generic == "&") {
     ops_r <- rgee::ee$Image(e1)$And(rgee::ee$Image(e2))
   } else if(.Generic == "|") {
@@ -146,9 +142,6 @@ Math.ee.image.Image <- function(x, ...) {
     if (length(args) == 0) {
       math_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image$exp(1))
     } else {
-      if (is.null(args$base)) {
-        stop("Unused argument.")
-      }
       math_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image(args$base))
     }
   } else if(.Generic == "log10") {
