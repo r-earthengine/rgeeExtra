@@ -21,3 +21,25 @@ ee_check_packages <- function(fn_name, packages) {
     stop(error_msg)
   }
 }
+
+
+#' Change name
+#' @noRd
+ee_new_list_name <- function(ee_list, names = "layer") {
+  ee_list_length <- rgee::ee$List$length(ee_list)
+  ee_list_seq <- rgee::ee$List$sequence(1, ee_list_length)
+  ee_list_string <- rgee::ee$List$'repeat'(names, ee_list_length)
+  rgee::ee$Algorithms$If(
+    ee_list_length$eq(1),
+    rgee::ee$List(list(rgee::ee$String(names))),
+    rgee::ee$List$zip(ee_list_string, ee_list_seq)$map(
+      rgee::ee_utils_pyfunc(
+        function(x) {
+          string <- x %>% rgee::ee$List$get(0)
+          number <- x %>% rgee::ee$List$get(1) %>% rgee::ee$Number$format("_%04d")
+          rgee::ee$String$cat(string, number)
+        }
+      )
+    )
+  )
+}

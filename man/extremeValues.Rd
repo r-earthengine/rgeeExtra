@@ -2,13 +2,13 @@
 % Please edit documentation in R/raster.R
 \name{extremeValues}
 \alias{extremeValues}
-\alias{maxValue}
-\alias{minValue}
+\alias{ee_maxValue}
+\alias{ee_minValue}
 \title{Minimum and maximum values}
 \usage{
-maxValue(image, mode = "Rectangle", sample_size = 1000)
+ee_maxValue(image, mode = "Rectangle", sample_size = 1000)
 
-minValue(image, mode = "Rectangle", sample_size = 1000)
+ee_minValue(image, mode = "Rectangle", sample_size = 1000)
 }
 \arguments{
 \item{image}{ee.Image}
@@ -24,7 +24,9 @@ sampled over the Image system:footprint.}
 A number
 }
 \description{
-Returns the minimum or maximum value of an ee.Image.
+Returns the minimum or maximum value of an ee.Image. The return value will
+be an \strong{approximation} if the polygon (are of the ee.Image) contains
+too many pixels at the native scale.
 }
 \examples{
 \dontrun{
@@ -34,8 +36,13 @@ library(rgeeExtra)
 ee_Initialize()
 
 image <- ee$Image$random()
+# max values
 maxValue(image)
 maxValue(image, mode = "Points")
+
+# min values
+minValue(image)
+minValue(image, mode = "Points")
 }
 }
 \concept{extremeValues}

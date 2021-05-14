@@ -65,14 +65,12 @@ Ops.ee.image.Image <- function(e1, e2) {
   if (.Generic == "+") {
     if (missing(e2)) {
       ops_r <- e1
-      return(ops_r)
     } else {
       ops_r <- rgee::ee$Image(e1)$add(rgee::ee$Image(e2))
     }
   } else if(.Generic == "-") {
     if (missing(e2)) {
       ops_r <- e1$multiply(-1L)
-      return(ops_r)
     } else {
       ops_r <- rgee::ee$Image(e1)$subtract(rgee::ee$Image(e2))
     }
@@ -89,7 +87,6 @@ Ops.ee.image.Image <- function(e1, e2) {
   } else if (.Generic == "!") {
     if (missing(e2)) {
       ops_r <- rgee::ee$Image(e1)$Not()
-      return(ops_r)
     } else {
       stop("Unexpected use of !")
     }
@@ -112,11 +109,8 @@ Ops.ee.image.Image <- function(e1, e2) {
   }
 
   # Export results
-  if (is.numeric(e2) | is.numeric(e1)) {
-    ops_r
-  } else {
-    ops_r$rename("layer")
-  }
+  new_names <- ee_new_list_name(ops_r$bandNames())
+  ops_r$rename(new_names)
 }
 
 
@@ -136,57 +130,55 @@ Ops.ee.image.Image <- function(e1, e2) {
 #' @export
 Math.ee.image.Image <- function(x, ...) {
   if (.Generic == "abs") {
-    rgee::ee$Image$abs(x)
+    math_r <- rgee::ee$Image$abs(x)
   } else if(.Generic == "sign") {
-    rgee::ee$Image$signum(x$float())
+    math_r <- rgee::ee$Image$signum(x$float())
   } else if(.Generic == "sqrt") {
-    rgee::ee$Image$sqrt(x)
+    math_r <- rgee::ee$Image$sqrt(x)
   } else if(.Generic == "floor") {
-    rgee::ee$Image$floor(x)
+    math_r <- rgee::ee$Image$floor(x)
   } else if(.Generic == "ceiling") {
-    rgee::ee$Image$ceil(x)
+    math_r <- rgee::ee$Image$ceil(x)
   } else if(.Generic == "round") {
-    rgee::ee$Image$round(x)
+    math_r <- rgee::ee$Image$round(x)
   } else if(.Generic == "log") {
     args <- list(...)
     if (length(args) == 0) {
-      ops_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image$exp(1))
+      math_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image$exp(1))
     } else {
       if (is.null(args$base)) {
         stop("Unused argument.")
       }
-      ops_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image(args$base))
+      math_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(rgee::ee$Image(args$base))
     }
-    ops_r$rename(rgee::ee$Image$bandNames(x))
   } else if(.Generic == "log10") {
-    rgee::ee$Image$log10(x)
+    math_r <- rgee::ee$Image$log10(x)
   } else if(.Generic == "log2") {
-    ops_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(2)
-    ops_r$rename(rgee::ee$Image$bandNames(x))
+    math_r <- rgee::ee$Image$log(x) / rgee::ee$Image$log(2)
   } else if(.Generic == "log1p") {
-    rgee::ee$Image$log(x + 1)
+    math_r <- rgee::ee$Image$log(x + 1)
   } else if(.Generic == "exp") {
-    rgee::ee$Image$exp(x)
+    math_r <- rgee::ee$Image$exp(x)
   } else if(.Generic == "expm1") {
-    rgee::ee$Image$exp(x) - 1
+    math_r <- rgee::ee$Image$exp(x) - 1
   } else if(.Generic == "sin") {
-    rgee::ee$Image$sin(x)
+    math_r <- rgee::ee$Image$sin(x)
   } else if(.Generic == "cos") {
-    rgee::ee$Image$cos(x)
+    math_r <- rgee::ee$Image$cos(x)
   } else if(.Generic == "tan") {
-    rgee::ee$Image$tan(x)
+    math_r <- rgee::ee$Image$tan(x)
   } else if(.Generic == "asin") {
-    rgee::ee$Image$asin(x)
+    math_r <- rgee::ee$Image$asin(x)
   } else if(.Generic == "acos") {
-    rgee::ee$Image$acos(x)
+    math_r <- rgee::ee$Image$acos(x)
   } else if(.Generic == "atan") {
-    rgee::ee$Image$atan(x)
+    math_r <- rgee::ee$Image$atan(x)
   } else if(.Generic == "cosh") {
-    rgee::ee$Image$cosh(x)
+    math_r <- rgee::ee$Image$cosh(x)
   } else if(.Generic == "sinh") {
-    rgee::ee$Image$sinh(x)
+    math_r <- rgee::ee$Image$sinh(x)
   } else if(.Generic == "tanh") {
-    rgee::ee$Image$tanh(x)
+    math_r <- rgee::ee$Image$tanh(x)
   } else if(.Generic == "cumsum") {
     total <- 0
     x_list <- list() # List to save.
@@ -195,7 +187,7 @@ Math.ee.image.Image <- function(x, ...) {
       total <- total + x[[x_bandnames[[index]]]]
       x_list[[index]] <- total
     }
-    rgee::ee$ImageCollection(x_list)$toBands()
+    math_r <- rgee::ee$ImageCollection(x_list)$toBands()
   } else if(.Generic == "cumprod") {
     total <- 1
     x_list <- list() # List to save.
@@ -204,10 +196,12 @@ Math.ee.image.Image <- function(x, ...) {
       total <- total * x[[x_bandnames[[index]]]]
       x_list[[index]] <- total
     }
-    rgee::ee$ImageCollection(x_list)$toBands()
+    math_r <- rgee::ee$ImageCollection(x_list)$toBands()
   } else {
     stop(sprintf("rgee does not support %s yet.", .Generic))
   }
+  new_names <- ee_new_list_name(math_r$bandNames())
+  math_r$rename(new_names)
 }
 
 #' Summary Methods
