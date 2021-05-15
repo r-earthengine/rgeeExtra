@@ -52,7 +52,7 @@ ee_get <- function(ee_c, index = 0) {
             rgee::ee$ImageCollection$first()
           counter <- counter + 1
         }
-        ee$ImageCollection(ee_c_r)
+        rgee::ee$ImageCollection(ee_c_r)
       }
     }
   } else  if (any(class(ee_c) %in%  c("ee.featurecollection.FeatureCollection"))) {
@@ -77,7 +77,7 @@ ee_get <- function(ee_c, index = 0) {
             rgee::ee$FeatureCollection$first()
           counter <- counter + 1
         }
-        ee$FeatureCollection(ee_c_r)
+        rgee::ee$FeatureCollection(ee_c_r)
       }
     }
   } else {

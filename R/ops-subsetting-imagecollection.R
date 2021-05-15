@@ -56,7 +56,7 @@
   } else if (is.character(index)) {
       x %>%
         rgee::ee$ImageCollection$get(index) %>%
-        ee$ComputedObject$getInfo()
+        rgee::ee$ComputedObject$getInfo()
   } else {
     stop(
       sprintf("index must be a numeric or a character not a %s.", class(index))

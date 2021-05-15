@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^tester\.R$
+^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
+^README.md
+^\.github$

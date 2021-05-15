@@ -28,6 +28,7 @@ The package implements and supports:
 Other contributors:
 \itemize{
   \item David  Montero \email{dml.mont@gmail.com} (\href{https://orcid.org/0000-0002-9010-3286}{ORCID}) [contributor]
+  \item Lesly  Bautista \email{leslyarcelly.213@gmail.com} (\href{https://orcid.org/0000-0003-3523-8687}{ORCID}) [contributor]
 }
 
 }
