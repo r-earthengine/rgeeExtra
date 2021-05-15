@@ -1,10 +1,10 @@
 <h1 align="center">
   <br>
-  <a href="http://r-earthengine.github.io/"><img src="https://user-images.githubusercontent.com/16768318/115897667-f340f880-a45c-11eb-9f82-096e4ec99818.png" alt="Markdownify" width="200"></a>
+  <a href="https://r-spatial.github.io/rgee/"><img src="https://user-images.githubusercontent.com/16768318/118376965-5f7dca80-b5cb-11eb-9a82-47876680a3e6.png" alt="Markdownify" width="200"></a>
+  <a href="http://r-earthengine.github.io/rgeeExtra/"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="Markdownify" width="200"></a>
+  <a href="https://rgeebook.netlify.app/"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="Markdownify" width="200"></a>  
   <br>
-  <h3 align="center">
-    An R package that extends Google Earth Engine
-  </h3>
+  Extension for 'rgee' Package
   <br>
 </h1>
 
