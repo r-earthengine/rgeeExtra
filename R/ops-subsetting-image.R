@@ -31,7 +31,7 @@
 '[<-.ee.image.Image' <- function(x, index, value) {
   # 1. check if value is a ee.Image
   if (!inherits(index, "ee.image.Image")) {
-    stop(sprintf("index must be a ee.Image not a %s.", class(value)))
+    stop(sprintf("index must be a ee.Image not a %s.", class(index)[1]))
   }
 
   seed_mask <- x %>% rgee::ee$Image$pow(0)
@@ -39,11 +39,9 @@
     rgee::ee$Image$updateMask(index$Not()) %>%
     rgee::ee$Image$unmask(0)
 
-  if (is.numeric(value)) {
-    value <- rgee::ee$Image(value) %>%
-      rgee::ee$Image$updateMask(index) %>%
-      rgee::ee$Image$unmask(0, sameFootprint = TRUE)
-  }
+  value <- rgee::ee$Image(value) %>%
+    rgee::ee$Image$updateMask(index) %>%
+    rgee::ee$Image$unmask(0, sameFootprint = TRUE)
 
   (image_masked + value)*seed_mask
 
@@ -54,7 +52,7 @@
 '[[<-.ee.image.Image' <- function(x, index, value) {
   # 1. check if value is a ee.Image
   if (!inherits(value, "ee.image.Image")) {
-    stop(sprintf("value must be a ee.Image not a %s.", class(value)))
+    stop(sprintf("value must be a ee.Image not a %s.", class(value)[1]))
   }
 
   # 2. From multiband Image to single-band ImageCollection
@@ -73,21 +71,22 @@
     if (any(bdn %in% index)) {
       # 3.1. Send to '[['.ImageCollection operator the numerical index and the
       # length of the ImageCollection (to avoid estimate it again!)
-      x_ic[[c(which(bdn %in% index), length(bdn))]] <- value
-      x_ic$toBands()
+      params <- list(index = which(bdn %in% index), length = length(bdn))
+      x_ic[[params]] <- value
+      x_ic$toBands()$rename(rgee::ee$Image$bandNames(x))
     } else {
       stop("Index does not match with any band in the ee$Image.")
     }
   } else if (is.numeric(index)) {
     # 3. Replace value
     x_ic[[index]] <- value
-    x_ic$toBands()
+    x_ic$toBands()$rename(rgee::ee$Image$bandNames(x))
   } else {
     stop("index is not supported")
   }
 }
 
-#' Names of Earth Engine Images Layers
+#' Names of Earth Engine Images layers (bands)
 #'
 #' Get or set the names of the layers of an Earth Engine Image object.
 #' @param x an EE Image object.

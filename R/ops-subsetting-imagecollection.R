@@ -35,22 +35,32 @@
 #' }
 #' @export
 '[[.ee.imagecollection.ImageCollection' <- function(x, index) {
-  # 1. Deal with negative and zero index
-  if (index < 1) {
-    if (index == 0) {
-      stop(
-        "rgee respect the one-based index. Therefore if you want to obtain the ",
-        "first ee$Image you must use 1 rather than 0."
-      )
-    } else {
-      stop("Negative index are not supported.")
+  if (is.numeric(index)) {
+    # 1. Deal with negative and zero index
+    if (any(index < 1)) {
+      if (index == 0) {
+        stop(
+          "rgee respect the one-based index. Therefore if you want to obtain the ",
+          "first ee$Image you must use 1 rather than 0."
+        )
+      } else {
+        stop("Negative index are not supported.")
+      }
     }
-  }
 
-  if (length(index) > 1) {
-    x %>% ee_get((index) - 1)
+    if (length(index) > 1) {
+      x %>% ee_get((index) - 1)
+    } else {
+      x %>% ee_get((index) - 1) %>% rgee::ee$ImageCollection$first()
+    }
+  } else if (is.character(index)) {
+      x %>%
+        rgee::ee$ImageCollection$get(index) %>%
+        ee$ComputedObject$getInfo()
   } else {
-    x %>% ee_get((index) - 1) %>% rgee::ee$ImageCollection$first()
+    stop(
+      sprintf("index must be a numeric or a character not a %s.", class(index))
+    )
   }
 }
 
@@ -69,14 +79,19 @@
     }
   }
 
-  if (length(index) == 2) {
-    ee_ic_size <- index[2]
-    index <- index[1]
-  } else {
+  # special trick for internal use (in [[<- ee.Image) ... please just ignore it :)
+  if (is.list(index)) {
+    if (all(names(index) %in% c("index", "length"))) {
+      ee_ic_size <- index$length
+      index <- index$index
+    }
+  } else if(is.numeric(index)) {
     # 2. Length of the ImageCollection
     ee_ic_size <- x %>%
       rgee::ee$ImageCollection$size() %>%
       rgee::ee$Number$getInfo()
+  } else {
+    stop("Index must be a numeric vector.")
   }
 
   # 3. From ImageCollection to list of images
@@ -85,11 +100,11 @@
     function(index) x %>% ee_get(index) %>% rgee::ee$ImageCollection$first()
   )
 
-  # 4. Convert value from ee.Image, ee.ImageCollection or list of ee.Image to
+  # 4. Convert "value" from ee.Image, ee.ImageCollection or list of ee.Image to
   #    list of ee.Image.
-  if (any(class(value) %in% "ee.image.Image")) {
+  if (inherits(value, "ee.image.Image")) {
     list_value <- list(value)
-  } else if(any(class(value) %in% "ee.imagecollection.ImageCollection")) {
+  } else if(inherits(value, "ee.imagecollection.ImageCollection")) {
     # 4.1. Length of the ImageCollection
     ee_value_size <- value %>%
       rgee::ee$ImageCollection$size() %>%
@@ -98,10 +113,10 @@
     # 4.2. From ImageCollection to list of images
     value_list <- lapply(
       (seq_len(ee_value_size) - 1),
-      function(index) x %>% ee_get(index) %>% rgee::ee$ImageCollection$first()
+      function(index) value %>% ee_get(index) %>% rgee::ee$ImageCollection$first()
     )
     list_value <- value_list
-  } else if(any(class(value) %in% "list")) {
+  } else if(is.list(value)) {
     list_value <- value
   } else {
     stop(
@@ -118,11 +133,12 @@
   }
 
   # 6. Condition: Index is outside of ic
-  if (!any(seq_len(ee_ic_size) %in% seq_along(list_value))) {
-    stop("Not a valid subset")
-  }
+  # if (!any(seq_len(ee_ic_size) %in% seq_along(list_value))) {
+  #   stop("Not a valid subset")
+  # }
 
   # 7. Condition: Index is outside of ic
+
   counter <- 1
   for (list_value_index in seq_along(list_value)) {
     ic_list[[index[counter]]] <- list_value[[list_value_index]]
@@ -142,4 +158,15 @@
   x %>%
     rgee::ee$ImageCollection$size() %>%
     rgee::ee$Number$getInfo()
+}
+
+
+#' Names of Earth Engine ImagesCollection properties
+#'
+#' Get the names of the properties of an Earth Engine ImageCollection object.
+#' @param x an EE ImageCollection object.
+#' @name ee_name_ic
+#' @export
+'names.ee.imagecollection.ImageCollection' <-function(x) {
+  x %>% rgee::ee$ImageCollection$propertyNames() %>% rgee::ee$List$getInfo()
 }

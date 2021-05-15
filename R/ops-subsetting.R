@@ -43,7 +43,16 @@ ee_get <- function(ee_c, index = 0) {
           rgee::ee$ImageCollection$toList(count = length(index), offset = min(index)) %>%
           rgee::ee$ImageCollection()
       } else {
-        stop("ee_get only support ascending index order")
+        ee_c_r <- list()
+        counter <- 1
+        for (i in index) {
+          ee_c_r[[counter]] <- ee_c %>%
+            rgee::ee$ImageCollection$toList(count = 1, offset = i) %>%
+            rgee::ee$ImageCollection() %>%
+            rgee::ee$ImageCollection$first()
+          counter <- counter + 1
+        }
+        ee$ImageCollection(ee_c_r)
       }
     }
   } else  if (any(class(ee_c) %in%  c("ee.featurecollection.FeatureCollection"))) {
@@ -59,7 +68,16 @@ ee_get <- function(ee_c, index = 0) {
           rgee::ee$FeatureCollection$toList(count = length(index), offset = min(index)) %>%
           rgee::ee$FeatureCollection()
       } else {
-        stop("ee_get only support ascending index order")
+        ee_c_r <- list()
+        counter <- 1
+        for (i in index) {
+          ee_c_r[[counter]] <- ee_c %>%
+            rgee::ee$FeatureCollection$toList(count = 1, offset = i) %>%
+            rgee::ee$FeatureCollection() %>%
+            rgee::ee$FeatureCollection$first()
+          counter <- counter + 1
+        }
+        ee$FeatureCollection(ee_c_r)
       }
     }
   } else {

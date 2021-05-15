@@ -267,7 +267,4 @@ test_that("Extra functions", {
 
   # operators not supported
   expect_error(cummax(img))
-
-  # summary
-  sd(ee$Image(0))
 })

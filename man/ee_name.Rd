@@ -4,7 +4,7 @@
 \alias{ee_name}
 \alias{names<-.ee.image.Image}
 \alias{names.ee.image.Image}
-\title{Names of Earth Engine Images Layers}
+\title{Names of Earth Engine Images layers (bands)}
 \usage{
 \method{names}{ee.image.Image}(x) <- value
 

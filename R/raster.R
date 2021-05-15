@@ -31,22 +31,20 @@
 #' @name extremeValues
 #' @export
 ee_maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
+  # Check the package
+  ee_check_packages("ee_maxValue", "sf")
+
   if (mode == "Rectangle") {
     # Create a clean geometry i.e. geodesic = FALSE
     ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee(geodesic = FALSE)
 
     # get max values
-    rect_result <- rgee::ee$Image$reduceRegion(
+    rgee::ee$Image$reduceRegion(
       image = image,
       reducer = rgee::ee$Reducer$max(),
       geometry = ee_geom$geometry(),
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
-    if (is.null(rect_result)) {
-      message("The image footprint is too large ... Running maxValue(..., mode = \"Points\")")
-      ee_maxValue(image = image, mode = "Points", sample_size = sample_size)
-    }
-    rect_result
   } else if (mode == "Points") {
     # Create random points
     sample_points <- image$geometry() %>%
@@ -69,22 +67,21 @@ ee_maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
 #' @rdname extremeValues
 #' @export
 ee_minValue <- function(image, mode = "Rectangle", sample_size = 1000) {
+  # Check the package
+  ee_check_packages("ee_minValue", "sf")
+
+
   if (mode == "Rectangle") {
     # Create a clean geometry i.e. geodesic = FALSE
     ee_geom <- rgee::ee_as_sf(image$geometry()) %>% rgee::sf_as_ee(geodesic = FALSE)
 
     # get max values
-    rect_result <- rgee::ee$Image$reduceRegion(
+    rgee::ee$Image$reduceRegion(
       image = image,
       reducer = rgee::ee$Reducer$min(),
       geometry = ee_geom$geometry(),
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
-    if (is.null(rect_result)) {
-      message("The image footprint is too large ... Running maxValue(..., mode = \"Points\")")
-      ee_minValue(image = image, mode = "Points", sample_size = sample_size)
-    }
-    rect_result
   } else if (mode == "Points") {
     # Create random points
     sample_points <- image$geometry() %>%
