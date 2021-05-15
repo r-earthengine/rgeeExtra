@@ -8,7 +8,7 @@
   <br>
 </h1>
 
-<h4 align="center">High-level functions to post-process raster data, vector data and simple Earth Engine objects (i.e. ee.Array, ee.List, ee.Dictionary, etc.). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.</h4>
+<h4 align="center">High-level functions to process raster, vector and simple Earth Engine objects (i.e. ee.Array, ee.List, ee.Dictionary, etc.). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.</h4>
 
 
 <p align="center">
