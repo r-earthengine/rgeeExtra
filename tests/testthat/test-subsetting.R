@@ -14,6 +14,10 @@ test_that("ee_get ImageCollection", {
 
 test_that("ee_get FeatureCollection", {
   expect_error(rgeeExtra::ee_get(fc, -1))
+  expect_is(rgeeExtra::ee_get(fc, 0), "ee.featurecollection.FeatureCollection")
   expect_equal(fc$first()$getInfo(), rgeeExtra::ee_get(fc, 0:1)$first()$getInfo())
   expect_equal(fc$first()$getInfo(), rgeeExtra::ee_get(fc, c(0, 2))$first()$getInfo())
 })
+
+
+

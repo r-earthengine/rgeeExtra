@@ -103,7 +103,7 @@ ee_utils_gif_creator <- function(ic, parameters, quiet = FALSE, ...) {
   utils::download.file(
     url = animation_url,
     destfile = temp_gif,
-    quiet = quiet,
+    quiet = TRUE,
     ...)
   magick::image_read(path = temp_gif)
 }
@@ -321,6 +321,7 @@ ee_utils_gif_save <- function(image,
   magick::image_write(image = image, path = path, format = format,
                       quality = quality, depth = depth, density = density,
                       comment = comment, flatten = flatten)
+  return(TRUE)
 }
 
 
