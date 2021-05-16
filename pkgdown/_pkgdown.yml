@@ -1,0 +1,31 @@
+title: rgee
+url: https://r-earthengine.github.io/rgeeExtra/
+template:
+  params:
+      bootswatch: flatly
+
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+  right:
+    - text: "Articles"
+      icon: fas fa-book
+      menu:
+      -  text: Introduction
+         href: articles/rgeeExtra01.html
+      -  text: Consideration
+         href: articles/rgeeExtra02.html
+      -  text: Best Practices
+         href: articles/rgeeExtra03.html
+      -  text: rgee examples
+         href: https://r-earthengine.github.io/
+    - icon: fa fa-newspaper-o
+      text: "news"
+      href: news/index.html
+    - icon: fa fa-file-code-o
+      text: "functions"
+      href: reference/index.html
+    - icon: fa fa-github fa-lg
+      text: "github"
+      href: https://github.com/r-spatial/rgee/
