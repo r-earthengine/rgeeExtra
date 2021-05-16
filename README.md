@@ -4,11 +4,11 @@
   <a href="http://r-earthengine.github.io/rgeeExtra/"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="Markdownify" width="200"></a>
   <a href="https://rgeebook.netlify.app/"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="Markdownify" width="200"></a>  
   <br>
-  Extension for 'rgee'  
+  RgeeExtra: An Extension for rgee
   <br>
 </h1>
 
-<h4 align="center">High-level functions to process raster, vector and simple Earth Engine objects (i.e. ee.Array, ee.List, ee.Dictionary, etc.). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.</h4>
+<h4 align="center">High-level functions to process spatial and simple Earth Engine objects. Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.</h4>
 
 
 <p align="center">
