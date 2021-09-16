@@ -5,6 +5,8 @@ library(rgeeExtra)
 library(stars)
 library(sf)
 
+# ee_Initialize(drive = TRUE, gcs = TRUE)
+
 # Pre-checking ------------------------------------------------------
 # Google credentials were loaded in the system?
 skip_if_no_credentials <- function() {

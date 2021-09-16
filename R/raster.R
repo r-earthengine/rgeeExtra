@@ -43,6 +43,7 @@ ee_maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
       image = image,
       reducer = rgee::ee$Reducer$max(),
       geometry = ee_geom$geometry(),
+      scale = 1000,
       bestEffort = TRUE
     ) %>% rgee::ee$Dictionary$getInfo() %>% unlist()
   } else if (mode == "Points") {
