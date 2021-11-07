@@ -9,10 +9,47 @@ module(x, upgrade = FALSE, quiet = FALSE)
 \arguments{
 \item{x}{Character. Javascript module path.}
 
-\item{upgrade}{Upgrade the js module}
+\item{upgrade}{Upgrade the Js module}
 
 \item{quiet}{Logical. Suppress info messages.}
 }
 \description{
-Load Javascript modules
+Import a specified Earth Engin Javascript  module,
+making it available for use from R.
+}
+\examples{
+\dontrun{
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize("csaybar")
+
+# 1. load Javascript module
+x <- "users/sofiaermida/landsat_smw_lst:modules/Landsat_LST.js"
+LandsatLST <- module(x)
+# module_uninstall(x)
+
+# 2. Set hyperparameters
+geometry <- ee$Geometry$Rectangle(c(-8.91, 40.0, -8.3, 40.4))
+satellite <- "L8"
+date_start <- "2018-05-15"
+date_end <- "2018-05-31"
+use_ndvi <- TRUE
+
+# 3. Use Javascript module
+LandsatColl <- LandsatLST$collection(
+  landsat = satellite,
+  date_start = date_start,
+  date_end = date_end,
+  geometry = geometry,
+  use_ndvi = use_ndvi
+)
+exImage <- LandsatColl$first()
+
+# 4. Display results
+cmap <- c('blue', 'cyan', 'green', 'yellow', 'red')
+lmod <- list(min = 290, max = 320, palette = cmap)
+Map$centerObject(geometry)
+Map$addLayer(exImage$select('LST'), lmod, 'LST')
+}
 }

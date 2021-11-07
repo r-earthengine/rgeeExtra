@@ -18,3 +18,20 @@
 #' @keywords package
 #'
 "_PACKAGE"
+
+
+#' Extra Earth Engine module
+#'
+#' Interface to extent the Earth Engine package. Provides access to the
+#' top level classes and functions.
+#'
+#' @format Earth Engine module
+#'
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#' ee_Initialize()
+#' }
+#' @export
+EEextra_PYTHON_PACKAGE <- NULL

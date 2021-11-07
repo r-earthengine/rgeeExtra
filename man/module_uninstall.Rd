@@ -12,3 +12,15 @@ module_uninstall(x)
 \description{
 Delete a Js module from your local repository
 }
+\examples{
+\dontrun{
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize("csaybar")
+
+x <- "users/sofiaermida/landsat_smw_lst:modules/Landsat_LST.js"
+LandsatLST <- module(x)
+module_uninstall(x)
+}
+}
