@@ -1,6 +1,6 @@
 #' Get the temporal nearest image
 #'
-#' Gets the closest ee$Image to the specified date.
+#' Gets the closest ee$Image to a specified date.
 #'
 #' @param x ee$ImageCollection. Image Collection from which to get
 #' the closest image to the specified date.
@@ -24,12 +24,13 @@
 #'
 #' roi <- ee$Geometry$Point(c(-79, -12))
 #' ee$ImageCollection$Dataset$MODIS_006_MCD12Q1 %>%
-#'   ee_ImageCollection_closest("2020-10-15") %>%
+#'   ee_ImageCollection_closest("2020-10-15",  2, "year") %>%
 #'   ee$ImageCollection$first() %>%
 #'   Map$addLayer()
 #' }
 #' @export
 ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
+  # check if there is an image
   EEextra_PYTHON_PACKAGE$closest(
     x = x,
     date = date,
@@ -38,7 +39,7 @@ ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
   )
 }
 
-#' Citing ee$ImageCollection objects in publications
+#' Citing EE ImageCollection objects in publications
 #'
 #' If it exists, retrieve the citation of an ee$ImageCollection object.
 #'
@@ -56,12 +57,13 @@ ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
 #'   ee_ImageCollection_getCitation()
 #' }
+#' @export
 ee_ImageCollection_getCitation <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)
 }
 
 
-#' Get the Digital Object Identifier (DOI) of a ee$ImageCollection
+#' Get the Digital Object Identifier (DOI) of an EE ImageCollection object
 #'
 #' If it exists, retrieve the DOI of an ee$ImageCollection object.
 #'
@@ -79,14 +81,15 @@ ee_ImageCollection_getCitation <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
 #'   ee_ImageCollection_getDOI()
 #' }
+#' @export
 ee_ImageCollection_getDOI <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getDOI(x = x)
 }
 
 
-#' Retrieve offset parameter from ee$ImageCollection objects
+#' Retrieve offset parameter from EE ImageCollection objects
 #'
-#' Earth Engine apply a simply lossy compression technique: IMG_Float_Values =
+#' Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
 #' scale * IMG_Integer_Values + offset. ee_ImageCollection_getOffsetParams
 #' retrieve the offset parameter for each band of an ee$ImageCollection.
 #'
@@ -104,14 +107,15 @@ ee_ImageCollection_getDOI <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
 #'   ee_ImageCollection_getOffsetParams()
 #' }
+#' @export
 ee_ImageCollection_getOffsetParams <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getOffsetParams(x = x)
 }
 
 
-#' Retrieve scale parameter from ee$ImageCollection objects.
+#' Retrieve scale parameter from EE ImageCollection objects.
 #'
-#' Earth Engine apply a simply lossy compression technique: IMG_Float_Values =
+#' Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
 #' scale * IMG_Integer_Values + offset. ee_ImageCollection_getScaleParams
 #' retrieve the scale parameter for each band of an ee$ImageCollection.
 #'
@@ -128,12 +132,13 @@ ee_ImageCollection_getOffsetParams <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
 #'   ee_ImageCollection_getScaleParams()
 #' }
+#' @export
 ee_ImageCollection_getScaleParams <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getScaleParams(x = x)
 }
 
 
-#' Retrieve ee$ImageCollection STAC metadata
+#' Retrieve EE ImageCollection STAC metadata
 #'
 #' Get the STAC of an ee$ImageCollection object.
 #'
@@ -149,6 +154,7 @@ ee_ImageCollection_getScaleParams <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
 #'   ee_ImageCollection_getSTAC()
 #' }
+#' @export
 ee_ImageCollection_getSTAC <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getSTAC(x = x)
 }
@@ -239,13 +245,14 @@ ee_ImageCollection_getSTAC <- function(x) {
 #'
 #' ee_Initialize()
 #'
-#' s2 <- ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
-#'   ee$ImageCollection$first() %>%
-#'   ee_ImageCollection_preprocess()
-#'
-#' green_indices <- ee_ImageCollection_spectralIndex(s2, c("NDVI", "SAVI"))
-#' names(green_indices)
+#'s2_indices <- ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
+#'  ee$ImageCollection$first() %>%
+#'  ee_ImageCollection_preprocess() %>%
+#'  ee_ImageCollection_spectralIndex(c("NDVI", "SAVI"))
+#' names(s2_indices)
+#' # "NDVI" "SAVI"
 #' }
+#' @export
 ee_ImageCollection_spectralIndex <- function(
   x,
   index = "NDVI",
@@ -270,16 +277,15 @@ ee_ImageCollection_spectralIndex <- function(
     x = x, index = index, G = G, C1 = C1, C2 = C2, L = L,
     cexp = cexp, nexp = nexp, alpha = alpha, slope = slope,
     intercept = intercept, gamma = gamma, kernel = kernel, sigma = sigma,
-    p = p, c = c, online = online
+    p = p, c = c, online = online, drop = drop
   )
 }
 
 
-#' Automated ee$ImageCollection preprocessing
+#' Automated EE ImageCollection preprocessing
 #'
 #' Preprocessing of ee$ImageCollection objects. This function performs the
 #' following tasks:
-#'
 #' \itemize{
 #'  \item \strong{Cloud Masking}: Remove cloud and cloud shadow pixels.
 #'  See ee_model_cloudmask.
@@ -299,17 +305,18 @@ ee_ImageCollection_spectralIndex <- function(
 #'   ee$ImageCollection$first() %>%
 #'   ee_ImageCollection_preprocess()
 #' }
+#' @return  An ee$ImageCollection object
 #' @export
 ee_ImageCollection_preprocess <- function(x, ...) {
   EEextra_PYTHON_PACKAGE$QA$pipelines$preprocess(x, ...)
 }
 
 
-#' Retrieve real values from ee$ImageCollection objects
+#' Automatic decompression of EE ImageCollection objects
 #'
-#' Earth Engine apply a simply lossy compression technique: IMG_Float_Values =
+#' Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
 #' scale * IMG_Integer_Values + offset. ee_ImageCollection_scaleAndOffset backs
-#' the integer ee$Image pixel values to float point number.
+#' the integer pixel values to float point number.
 #'
 #' @param x : ee$ImageCollection.
 #'

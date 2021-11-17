@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_getScaleParams}
 \alias{ee_ImageCollection_getScaleParams}
-\title{Retrieve scale parameter from ee$ImageCollection objects.}
+\title{Retrieve scale parameter from EE ImageCollection objects.}
 \usage{
 ee_ImageCollection_getScaleParams(x)
 }
@@ -13,7 +13,7 @@ ee_ImageCollection_getScaleParams(x)
 A list with the scale parameters for each band.
 }
 \description{
-Earth Engine apply a simply lossy compression technique: IMG_Float_Values =
+Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
 scale * IMG_Integer_Values + offset. ee_ImageCollection_getScaleParams
 retrieve the scale parameter for each band of an ee$ImageCollection.
 }

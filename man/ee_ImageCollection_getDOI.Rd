@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_getDOI}
 \alias{ee_ImageCollection_getDOI}
-\title{Get the Digital Object Identifier (DOI) of a ee$ImageCollection}
+\title{Get the Digital Object Identifier (DOI) of an EE ImageCollection object}
 \usage{
 ee_ImageCollection_getDOI(x)
 }

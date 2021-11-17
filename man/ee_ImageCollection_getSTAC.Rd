@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_getSTAC}
 \alias{ee_ImageCollection_getSTAC}
-\title{Retrieve ee$ImageCollection STAC metadata}
+\title{Retrieve EE ImageCollection STAC metadata}
 \usage{
 ee_ImageCollection_getSTAC(x)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_scaleAndOffset}
 \alias{ee_ImageCollection_scaleAndOffset}
-\title{Retrieve real values from ee$ImageCollection objects}
+\title{Automatic decompression of EE ImageCollection objects}
 \usage{
 ee_ImageCollection_scaleAndOffset(x)
 }
@@ -13,9 +13,9 @@ ee_ImageCollection_scaleAndOffset(x)
 An ee$ImageCollection with float pixel values.
 }
 \description{
-Earth Engine apply a simply lossy compression technique: IMG_Float_Values =
+Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
 scale * IMG_Integer_Values + offset. ee_ImageCollection_scaleAndOffset backs
-the integer ee$Image pixel values to float point number.
+the integer pixel values to float point number.
 }
 \examples{
 \dontrun{

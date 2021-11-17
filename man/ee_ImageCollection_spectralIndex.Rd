@@ -111,11 +111,11 @@ library(rgeeExtra)
 
 ee_Initialize()
 
-s2 <- ee$ImageCollection$Dataset$COPERNICUS_S2_SR \%>\%
-  ee$ImageCollection$first() \%>\%
-  ee_ImageCollection_preprocess()
-
-green_indices <- ee_ImageCollection_spectralIndex(s2, c("NDVI", "SAVI"))
-names(green_indices)
+s2_indices <- ee$ImageCollection$Dataset$COPERNICUS_S2_SR \%>\%
+ ee$ImageCollection$first() \%>\%
+ ee_ImageCollection_preprocess() \%>\%
+ ee_ImageCollection_spectralIndex(c("NDVI", "SAVI"))
+names(s2_indices)
+# "NDVI" "SAVI"
 }
 }

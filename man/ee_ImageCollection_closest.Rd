@@ -25,7 +25,7 @@ high temporal resolution.}
 An ee$Image closest to the specified date.
 }
 \description{
-Gets the closest ee$Image to the specified date.
+Gets the closest ee$Image to a specified date.
 }
 \examples{
 \dontrun{
@@ -36,7 +36,7 @@ ee_Initialize()
 
 roi <- ee$Geometry$Point(c(-79, -12))
 ee$ImageCollection$Dataset$MODIS_006_MCD12Q1 \%>\%
-  ee_ImageCollection_closest("2020-10-15") \%>\%
+  ee_ImageCollection_closest("2020-10-15",  2, "year") \%>\%
   ee$ImageCollection$first() \%>\%
   Map$addLayer()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_getOffsetParams}
 \alias{ee_ImageCollection_getOffsetParams}
-\title{Retrieve offset parameter from ee$ImageCollection objects}
+\title{Retrieve offset parameter from EE ImageCollection objects}
 \usage{
 ee_ImageCollection_getOffsetParams(x)
 }
@@ -13,7 +13,7 @@ ee_ImageCollection_getOffsetParams(x)
 A list with the offset parameters for each band.
 }
 \description{
-Earth Engine apply a simply lossy compression technique: IMG_Float_Values =
+Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
 scale * IMG_Integer_Values + offset. ee_ImageCollection_getOffsetParams
 retrieve the offset parameter for each band of an ee$ImageCollection.
 }

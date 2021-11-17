@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_getCitation}
 \alias{ee_ImageCollection_getCitation}
-\title{Citing ee$ImageCollection objects in publications}
+\title{Citing EE ImageCollection objects in publications}
 \usage{
 ee_ImageCollection_getCitation(x)
 }

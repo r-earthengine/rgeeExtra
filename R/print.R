@@ -5,7 +5,7 @@
 #' @aliases print
 #' @noRd
 print.python.builtin.dict <- function(x, ...) {
-  if (inherits(Extra, "Extra_EE_module")) {
+  if (inherits(EEextra_PYTHON_PACKAGE, "Extra_EE_module")) {
     cat(ee_get_gogle_color(x))
   } else {
     print(x, ...)

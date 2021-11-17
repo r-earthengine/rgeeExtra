@@ -54,9 +54,11 @@ maximumTemperatureVis <- list(
 )
 
 Map$setCenter(71.72, 52.48, 2)
+tnames <- names(terraclimate[[2]])
 m1 <- Map$addLayer(terraclimate[[2]][["tmmx"]], maximumTemperatureVis)
 
 terraclimate[[2]] <- terraclimate[[2]]*1.4
+names(terraclimate[[2]]) <- tnames
 m2 <- Map$addLayer(terraclimate[[2]][["tmmx"]], maximumTemperatureVis)
 m1 | m2
 }

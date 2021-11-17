@@ -2,7 +2,7 @@
 % Please edit documentation in R/ee_ImageColletion.R
 \name{ee_ImageCollection_preprocess}
 \alias{ee_ImageCollection_preprocess}
-\title{Automated ee$ImageCollection preprocessing}
+\title{Automated EE ImageCollection preprocessing}
 \usage{
 ee_ImageCollection_preprocess(x, ...)
 }
@@ -11,11 +11,12 @@ ee_ImageCollection_preprocess(x, ...)
 
 \item{...}{Arguments to pass to ee_model_cloudmask.}
 }
+\value{
+An ee$ImageCollection object
+}
 \description{
 Preprocessing of ee$ImageCollection objects. This function performs the
 following tasks:
-}
-\details{
 \itemize{
 \item \strong{Cloud Masking}: Remove cloud and cloud shadow pixels.
 See ee_model_cloudmask.

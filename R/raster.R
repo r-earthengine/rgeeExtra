@@ -18,14 +18,14 @@
 #'
 #' ee_Initialize()
 #'
-#' image <- ee$Image$random()
+#' image <- ee$ImageCollection$Dataset$LANDSAT_LC08_C01_T1$first()[["B1"]]
 #' # max values
-#' maxValue(image)
-#' maxValue(image, mode = "Points")
+#' ee_maxValue(image)
+#' ee_maxValue(image, mode = "Points", sample_size = 2)
 #'
 #' # min values
-#' minValue(image)
-#' minValue(image, mode = "Points")
+#' ee_minValue(image)
+#' ee_minValue(image, mode = "Points")
 #' }
 #' @family extremeValues
 #' @name extremeValues
