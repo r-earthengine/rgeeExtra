@@ -29,3 +29,11 @@ ee$ImageCollection$Dataset$COPERNICUS_S2_SR \%>\%
   ee_ImageCollection_scaleAndOffset()
 }
 }
+\seealso{
+Other calibration: 
+\code{\link{ee_ImageCollection_getOffsetParams}()},
+\code{\link{ee_ImageCollection_getScaleParams}()},
+\code{\link{ee_Image_getOffsetParams}()},
+\code{\link{ee_Image_getScaleParams}()}
+}
+\concept{calibration}

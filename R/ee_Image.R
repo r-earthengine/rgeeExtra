@@ -1,49 +1,8 @@
-#' Get the temporal nearest image
+#' Citing EE Image objects in publications
 #'
-#' Gets the closest ee$Image to a specified date.
+#' If it exists, retrieve the citation of an ee$Image object.
 #'
-#' @param x ee$ImageCollection. Image Collection from which to get
-#' the closest image to the specified date.
-#' @param date ee$Date or R date object. Date of interest. The function will
-#' look for image closest to this date.
-#' @param tolerance Numeric. Default 1. Filter the collection between
-#' (date - tolerance: date + tolerance) before searching the closest
-#' image. This speeds up the searching process for collections with a
-#' high temporal resolution.
-#' @param unit Character. Units for tolerance. Available units: "year",
-#' "month", "week", "day", "hour", "minute" or "second". Default "month".
-#'
-#' @returns An ee$Image closest to the specified date.
-#'
-#' @examples
-#' \dontrun{
-#' library(rgee)
-#' library(rgeeExtra)
-#'
-#' ee_Initialize()
-#'
-#' roi <- ee$Geometry$Point(c(-79, -12))
-#' ee$ImageCollection$Dataset$MODIS_006_MCD12Q1 %>%
-#'   ee_ImageCollection_closest("2020-10-15",  2, "year") %>%
-#'   ee$ImageCollection$first() %>%
-#'   Map$addLayer()
-#' }
-#' @export
-ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
-  # check if there is an image
-  EEextra_PYTHON_PACKAGE$closest(
-    x = x,
-    date = date,
-    tolerance = tolerance,
-    unit = unit
-  )
-}
-
-#' Citing EE ImageCollection objects in publications
-#'
-#' If it exists, retrieve the citation of an ee$ImageCollection object.
-#'
-#' @param x Image Collection to get the citation from.
+#' @param x Image to get the citation from.
 #'
 #' @family citation
 #' @returns A character with citation information.
@@ -55,11 +14,11 @@ ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
 #'
 #' ee_Initialize()
 #'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
-#'   ee_ImageCollection_getCitation()
+#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
+#'   ee_Image_getCitation()
 #' }
 #' @export
-ee_ImageCollection_getCitation <- function(x) {
+ee_Image_getCitation <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)
 }
 
@@ -89,13 +48,13 @@ ee_ImageCollection_getDOI <- function(x) {
 }
 
 
-#' Retrieve offset parameter from EE ImageCollection objects
+#' Retrieve offset parameter from EE Image objects
 #'
 #' Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
-#' scale * IMG_Integer_Values + offset. ee_ImageCollection_getOffsetParams
-#' retrieve the offset parameter for each band of an ee$ImageCollection.
+#' scale * IMG_Integer_Values + offset. ee_Image_getOffsetParams
+#' retrieve the offset parameter for each band of an ee$Image.
 #'
-#' @param x ee$ImageCollection
+#' @param x ee$Image
 #'
 #' @family calibration
 #' @returns A list with the offset parameters for each band.
@@ -107,22 +66,22 @@ ee_ImageCollection_getDOI <- function(x) {
 #'
 #' ee_Initialize()
 #'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
-#'   ee_ImageCollection_getOffsetParams()
+#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
+#'   ee_Image_getOffsetParams()
 #' }
 #' @export
-ee_ImageCollection_getOffsetParams <- function(x) {
+ee_Image_getOffsetParams <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getOffsetParams(x = x)
 }
 
 
-#' Retrieve scale parameter from EE ImageCollection objects.
+#' Retrieve scale parameter from EE Image objects.
 #'
 #' Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
-#' scale * IMG_Integer_Values + offset. ee_ImageCollection_getScaleParams
-#' retrieve the scale parameter for each band of an ee$ImageCollection.
+#' scale * IMG_Integer_Values + offset. ee_Image_getScaleParams
+#' retrieve the scale parameter for each band of an ee$Image.
 #'
-#' @param x ee$ImageCollection.
+#' @param x ee$Image.
 #'
 #' @family calibration
 #' @returns A list with the scale parameters for each band.
@@ -133,21 +92,21 @@ ee_ImageCollection_getOffsetParams <- function(x) {
 #'
 #' ee_Initialize()
 #'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
-#'   ee_ImageCollection_getScaleParams()
+#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
+#'   ee_Image_getScaleParams()
 #' }
 #' @export
-ee_ImageCollection_getScaleParams <- function(x) {
+ee_Image_getScaleParams <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getScaleParams(x = x)
 }
 
 
-#' Retrieve EE ImageCollection STAC metadata
+#' Retrieve EE Image STAC metadata
 #'
-#' Get the STAC of an ee$ImageCollection object.
+#' Get the STAC of an ee$Image object.
 #'
 #' @family STAC
-#' @param x ee$ImageCollection.
+#' @param x ee$Image.
 #' @returns Return STAC metadata for each band.
 #' @examples
 #' \dontrun{
@@ -156,18 +115,79 @@ ee_ImageCollection_getScaleParams <- function(x) {
 #'
 #' ee_Initialize()
 #'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
-#'   ee_ImageCollection_getSTAC()
+#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
+#'   ee_Image_getSTAC()
 #' }
 #' @export
-ee_ImageCollection_getSTAC <- function(x) {
+ee_Image_getSTAC <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getSTAC(x = x)
 }
 
 
+#' Adjust the image's histogram to match a target image
+#'
+#' @param x ee$Image to adjust.
+#' @param target ee$Image image to match.
+#' @param bands A dictionary of band names to match, with
+#' source bands as keys and target bands as values.
+#' @param geometry ee$Geometry. The region to match histograms in that
+#' overlaps both images. If none is provided, the geometry of the source
+#' image will be used.  Defaults is NULL.
+#' @param maxBuckets Integer. The maximum number of buckets to use when building
+#' histograms. Will be rounded to the nearest power of 2.  Default to 256.
+#'
+#' @returns The adjusted image containing the matched source bands.
+#'
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#'
+#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
+#'   ee_Image_getSTAC()
+#' }
+ee_Image_matchHistogram <- function(x, target, bands, geometry=NULL, maxBuckets=256) {
+  #_matchHistogram(self, target, bands, geometry, maxBuckets)
+  FALSE
+}
+
+
+#' Automated EE Image preprocessing
+#'
+#' Preprocessing of ee$Image objects. This function performs the
+#' following tasks:
+#' \itemize{
+#'  \item \strong{Cloud Masking}: Remove cloud and cloud shadow pixels.
+#'  See ee_model_cloudmask.
+#'  \item \strong{Decompress}: Convert integer pixels to float point numbers.
+#' }
+#'
+#' @param x ee$Image.
+#' @param ... Arguments to pass to ee_Image_preprocess.
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#'
+#' ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
+#'   ee$ImageCollection$first() %>%
+#'   ee_Image_preprocess()
+#' }
+#' @return  An ee$Image object
+#' @export
+ee_Image_preprocess <- function(x, ...) {
+  EEextra_PYTHON_PACKAGE$QA$pipelines$preprocess(x, ...)
+}
+
+
+
 #' Spectral Indices Computation
 #'
-#' Computes one or more spectral indices for an ee$ImageCollection object.
+#' Computes one or more spectral indices for an ee$Image object.
 #'
 #' @param x ee$ImageCollection to compute indices on.
 #'
@@ -240,8 +260,7 @@ ee_ImageCollection_getSTAC <- function(x) {
 #'
 #' @param drop Logical. If TRUE, drop the image bands. Default TRUE.
 #'
-#' @returns ee$ImageCollection with the computed spectral index, or indices,
-#' as new bands.
+#' @returns ee$Image with the computed spectral index, or indices, as new bands.
 #'
 #' @examples
 #' \dontrun{
@@ -252,13 +271,13 @@ ee_ImageCollection_getSTAC <- function(x) {
 #'
 #'s2_indices <- ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
 #'  ee$ImageCollection$first() %>%
-#'  ee_ImageCollection_preprocess() %>%
-#'  ee_ImageCollection_spectralIndex(c("NDVI", "SAVI"))
+#'  ee_Image_preprocess() %>%
+#'  ee_Image_spectralIndex(c("NDVI", "SAVI"))
 #' names(s2_indices)
 #' # "NDVI" "SAVI"
 #' }
 #' @export
-ee_ImageCollection_spectralIndex <- function(
+ee_Image_spectralIndex <- function(
   x,
   index = "NDVI",
   G = 2.5,
@@ -283,65 +302,5 @@ ee_ImageCollection_spectralIndex <- function(
     cexp = cexp, nexp = nexp, alpha = alpha, slope = slope,
     intercept = intercept, gamma = gamma, kernel = kernel, sigma = sigma,
     p = p, c = c, online = online, drop = drop
-  )
-}
-
-
-#' Automated EE ImageCollection preprocessing
-#'
-#' Preprocessing of ee$ImageCollection objects. This function performs the
-#' following tasks:
-#' \itemize{
-#'  \item \strong{Cloud Masking}: Remove cloud and cloud shadow pixels.
-#'  See ee_model_cloudmask.
-#'  \item \strong{Decompress}: Convert integer pixels to float point numbers.
-#' }
-#'
-#' @param x ee$ImageCollection.
-#' @param ... Arguments to pass to ee_model_cloudmask.
-#' @examples
-#' \dontrun{
-#' library(rgee)
-#' library(rgeeExtra)
-#'
-#' ee_Initialize()
-#'
-#' ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
-#'   ee$ImageCollection$first() %>%
-#'   ee_ImageCollection_preprocess()
-#' }
-#' @return  An ee$ImageCollection object
-#' @export
-ee_ImageCollection_preprocess <- function(x, ...) {
-  EEextra_PYTHON_PACKAGE$QA$pipelines$preprocess(x, ...)
-}
-
-
-#' Automatic decompression of EE ImageCollection objects
-#'
-#' Earth Engine apply a simply lossless compression technique: IMG_Float_Values =
-#' scale * IMG_Integer_Values + offset. ee_ImageCollection_scaleAndOffset backs
-#' the integer pixel values to float point number.
-#'
-#' @family calibration
-#' @param x : ee$ImageCollection.
-#'
-#' @return An ee$ImageCollection with float pixel values.
-#'
-#' @examples
-#' \dontrun{
-#' library(rgee)
-#' library(rgeeExtra)
-#'
-#' ee_Initialize()
-#'
-#' ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
-#'   ee$ImageCollection$first() %>%
-#'   ee_ImageCollection_scaleAndOffset()
-#' }
-#' @export
-ee_ImageCollection_scaleAndOffset <- function(x) {
-  EEextra_PYTHON_PACKAGE$QA$pipelines$scaleAndOffset(
-    x = x
   )
 }

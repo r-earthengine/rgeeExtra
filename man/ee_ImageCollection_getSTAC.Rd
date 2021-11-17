@@ -26,3 +26,8 @@ ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 \%>\%
   ee_ImageCollection_getSTAC()
 }
 }
+\seealso{
+Other STAC: 
+\code{\link{ee_Image_getSTAC}()}
+}
+\concept{STAC}

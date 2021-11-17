@@ -28,3 +28,11 @@ ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 \%>\%
   ee_ImageCollection_getScaleParams()
 }
 }
+\seealso{
+Other calibration: 
+\code{\link{ee_ImageCollection_getOffsetParams}()},
+\code{\link{ee_ImageCollection_scaleAndOffset}()},
+\code{\link{ee_Image_getOffsetParams}()},
+\code{\link{ee_Image_getScaleParams}()}
+}
+\concept{calibration}

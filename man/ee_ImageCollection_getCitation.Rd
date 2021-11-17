@@ -26,3 +26,9 @@ ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 \%>\%
   ee_ImageCollection_getCitation()
 }
 }
+\seealso{
+Other citation: 
+\code{\link{ee_ImageCollection_getDOI}()},
+\code{\link{ee_Image_getCitation}()}
+}
+\concept{citation}
