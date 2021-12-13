@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^tester\.R$
+^\.gitmodules$
 ^CODE_OF_CONDUCT\.md$
 ^CONTRIBUTING\.md$
 ^README.md
