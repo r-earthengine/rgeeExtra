@@ -1,3 +1,0 @@
-[submodule "inst/ee_extra"]
-	path = inst/ee_extra
-	url = https://github.com/r-earthengine/ee_extra
