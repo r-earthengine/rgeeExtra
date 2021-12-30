@@ -2,11 +2,13 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^tester\.R$
-^\.gitmodules$
 ^CODE_OF_CONDUCT\.md$
 ^CONTRIBUTING\.md$
 ^README.md
 ^\.github$
+^\.gitmodules
+^\.Rhistory
 ^inst/ee_extra/\.git
 ^inst/ee_extra/\.github
+^inst/ee_extra/\.gitignore
 ^pkgdown

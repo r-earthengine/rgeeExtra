@@ -24,12 +24,13 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: 
+Imports:
+    reticulate (>= 1.23),
     rgee,
     magrittr,
     utils,
     crayon
-Suggests: 
+Suggests:
     testthat (>= 3.0.0),
     googledrive,
     googleCloudStorageR,
