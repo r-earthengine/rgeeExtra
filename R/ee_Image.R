@@ -1,49 +1,47 @@
-#' Citing EE Image objects in publications
+#' Citing EE objects in publications
 #'
-#' If it exists, retrieve the citation of an ee$Image object.
+#' If it exists, retrieve the citation of an EE object.
 #'
-#' @param x Image to get the citation from.
+#' @param x An EE object to get the citation from.
 #'
-#' @family citation
+#' @name ee-citation
 #' @returns A character with citation information.
 #'
 #' @examples
 #' \dontrun{
-#' library(rgee)
 #' library(rgeeExtra)
 #'
 #' ee_Initialize()
 #'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
-#'   ee_Image_getCitation()
+#' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
+#'   ee$ImageCollection$first() %>%
+#'   ee$Image$getCitation()
 #' }
-#' @export
-ee_Image_getCitation <- function(x) {
+ee_image_getCitation <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)
 }
 
 
-#' Get the Digital Object Identifier (DOI) of an EE ImageCollection object
+#' Get the Digital Object Identifier (DOI) of an EE object
 #'
-#' If it exists, retrieve the DOI of an ee$ImageCollection object.
+#' If it exists, retrieve the DOI of an EE object.
 #'
-#' @param x ee$ImageCollection.
+#' @name ee-citation
+#' @param x An EE object.
 #'
-#' @family citation
 #' @returns A character with DOI information.
 #'
 #' @examples
 #' \dontrun{
-#' library(rgee)
 #' library(rgeeExtra)
 #'
 #' ee_Initialize()
 #'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
-#'   ee_ImageCollection_getDOI()
+#' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
+#'   ee$ImageCollection$first() %>%
+#'   ee$Image$getDOI()
 #' }
-#' @export
-ee_ImageCollection_getDOI <- function(x) {
+ee_image_getDOI <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getDOI(x = x)
 }
 
@@ -61,7 +59,6 @@ ee_ImageCollection_getDOI <- function(x) {
 #'
 #' @examples
 #' \dontrun{
-#' library(rgee)
 #' library(rgeeExtra)
 #'
 #' ee_Initialize()
@@ -69,7 +66,6 @@ ee_ImageCollection_getDOI <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
 #'   ee_Image_getOffsetParams()
 #' }
-#' @export
 ee_Image_getOffsetParams <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getOffsetParams(x = x)
 }
@@ -95,7 +91,6 @@ ee_Image_getOffsetParams <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
 #'   ee_Image_getScaleParams()
 #' }
-#' @export
 ee_Image_getScaleParams <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getScaleParams(x = x)
 }
@@ -118,7 +113,6 @@ ee_Image_getScaleParams <- function(x) {
 #' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06$first() %>%
 #'   ee_Image_getSTAC()
 #' }
-#' @export
 ee_Image_getSTAC <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getSTAC(x = x)
 }
@@ -178,7 +172,6 @@ ee_Image_matchHistogram <- function(x, target, bands, geometry=NULL, maxBuckets=
 #'   ee_Image_preprocess()
 #' }
 #' @return  An ee$Image object
-#' @export
 ee_Image_preprocess <- function(x, ...) {
   EEextra_PYTHON_PACKAGE$QA$pipelines$preprocess(x, ...)
 }
@@ -276,7 +269,6 @@ ee_Image_preprocess <- function(x, ...) {
 #' names(s2_indices)
 #' # "NDVI" "SAVI"
 #' }
-#' @export
 ee_Image_spectralIndex <- function(
   x,
   index = "NDVI",

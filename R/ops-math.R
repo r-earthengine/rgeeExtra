@@ -229,24 +229,3 @@ mean.ee.image.Image <- function(..., na.rm = TRUE) {
   img <- rgee::ee$ImageCollection(list(...))$toBands()
   img$reduce(rgee::ee$Reducer$mean())$rename("layer")
 }
-
-
-#' @name Ops-methods
-#' @export
-'%in%' <- function(x, table) {
-  if (inherits(x, "ee.image.Image")) {
-    counter <- 0
-    for (index in table) {
-      if (counter == 0) {
-        x_agg = x == index
-      } else {
-        new_x <- x == index
-        x_agg <- x_agg + new_x
-      }
-      counter <- counter + 1
-    }
-    x_agg
-  } else {
-    match(x, table, nomatch = 0) > 0
-  }
-}

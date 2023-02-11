@@ -19,7 +19,6 @@ retrieve the offset parameter for each band of an ee$Image.
 }
 \examples{
 \dontrun{
-library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()

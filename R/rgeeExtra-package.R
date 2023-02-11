@@ -35,3 +35,38 @@
 #' }
 #' @export
 EEextra_PYTHON_PACKAGE <- NULL
+
+
+.onAttach <- function(libname, pkgname) {
+  options(rgee.print.option = "simply")
+}
+
+
+.onLoad <- function(libname, pkgname) {
+  # Check other packages in CRAN that depends
+  library(rgee)
+
+  # Load Python package available in inst/ folder.
+  ee_extra_location <- sprintf("%s/ee_extra", system.file(package = "rgeeExtra"))
+  EEextra_PYTHON_PACKAGE <<- reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = TRUE)
+
+  # ee.Image
+  ee$Image$getCitation <- ee_image_getCitation
+  ee$Image$getDOI <- ee_image_getDOI
+  ee$Image$getOffsetParams <- ee_Image_getOffsetParams
+  ee$Image$getScaleParams <- ee_Image_getScaleParams
+  ee$Image$getSTAC <- ee_Image_getSTAC
+  ee$Image$getSTAC <- ee_Image_preprocess
+  ee$Image$spectralIndex <- ee_Image_spectralIndex
+
+  # ee.ImageCollection
+  ee$ImageCollection$closest <- ee_ImageCollection_closest
+  ee$ImageCollection$getCitation <- ee_ImageCollection_getCitation
+  ee$ImageCollection$getDOI <- ee_ImageCollection_getDOI
+  ee$ImageCollection$getOffsetParams <- ee_ImageCollection_getOffsetParams
+  ee$ImageCollection$getScaleParams <- ee_ImageCollection_getScaleParams
+  ee$ImageCollection$getSTAC <- ee_ImageCollection_getSTAC
+  ee$ImageCollection$spectralIndex <- ee_ImageCollection_spectralIndex
+  ee$ImageCollection$preprocess <- ee_ImageCollection_preprocess
+  ee$ImageCollection$scaleAndOffset <- ee_ImageCollection_scaleAndOffset
+}

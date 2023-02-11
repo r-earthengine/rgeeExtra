@@ -39,25 +39,7 @@ ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
   )
 }
 
-#' Citing EE ImageCollection objects in publications
-#'
-#' If it exists, retrieve the citation of an ee$ImageCollection object.
-#'
-#' @param x Image Collection to get the citation from.
-#'
-#' @family citation
-#' @returns A character with citation information.
-#'
-#' @examples
-#' \dontrun{
-#' library(rgee)
-#' library(rgeeExtra)
-#'
-#' ee_Initialize()
-#'
-#' ee$ImageCollection$Dataset$NASA_GPM_L3_IMERG_V06 %>%
-#'   ee_ImageCollection_getCitation()
-#' }
+#' @name ee-citation
 #' @export
 ee_ImageCollection_getCitation <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)

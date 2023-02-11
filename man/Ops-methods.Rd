@@ -3,12 +3,9 @@
 \name{Ops-methods}
 \alias{Ops-methods}
 \alias{Ops.ee.image.Image}
-\alias{\%in\%}
 \title{Earth Engine arithmetic, logic and compare generic functions}
 \usage{
 \method{Ops}{ee.image.Image}(e1, e2)
-
-x \%in\% table
 }
 \arguments{
 \item{e1}{Numeric or ee$Image.}
