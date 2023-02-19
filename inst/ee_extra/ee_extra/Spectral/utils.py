@@ -23,6 +23,20 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
         Map dictionary for the ee.Image.expression() method.
     """
 
+    def lookupPALSAR(img):
+        return {
+            "HH": img.select("HH"),
+            "HV": img.select("HV"),
+        }
+
+    def lookupS1(img):
+        return {
+            "HH": img.select("HH"),
+            "HV": img.select("HV"),
+            "VV": img.select("VV"),
+            "VH": img.select("VH"),
+        }
+
     def lookupS2(img):
         return {
             "A": img.select("B1"),
@@ -33,10 +47,13 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "RE2": img.select("B6"),
             "RE3": img.select("B7"),
             "N": img.select("B8"),
-            "RE4": img.select("B8A"),
+            "N2": img.select("B8A"),
             "WV": img.select("B9"),
             "S1": img.select("B11"),
             "S2": img.select("B12"),
+            "lambdaG": 559.8,
+            "lambdaR": 664.6,
+            "lambdaN": 832.8,
         }
 
     def lookupL8(img):
@@ -50,6 +67,9 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "S2": img.select("B7"),
             "T1": img.select("B10"),
             "T2": img.select("B11"),
+            "lambdaG": 560.0,
+            "lambdaR": 655.0,
+            "lambdaN": 865.0,
         }
 
     def lookupL8C2(img):
@@ -62,9 +82,12 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "S1": img.select("SR_B6"),
             "S2": img.select("SR_B7"),
             "T1": img.select("ST_B10"),
+            "lambdaG": 560.0,
+            "lambdaR": 655.0,
+            "lambdaN": 865.0,
         }
 
-    def lookupL457(img):
+    def lookupL45(img):
         return {
             "B": img.select("B1"),
             "G": img.select("B2"),
@@ -73,9 +96,12 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "S1": img.select("B5"),
             "T1": img.select("B6"),
             "S2": img.select("B7"),
+            "lambdaG": 560.0,
+            "lambdaR": 660.0,
+            "lambdaN": 830.0,
         }
 
-    def lookupL457C2(img):
+    def lookupL45C2(img):
         return {
             "B": img.select("SR_B1"),
             "G": img.select("SR_B2"),
@@ -84,10 +110,46 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "S1": img.select("SR_B5"),
             "T1": img.select("ST_B6"),
             "S2": img.select("SR_B7"),
+            "lambdaG": 560.0,
+            "lambdaR": 660.0,
+            "lambdaN": 830.0,
+        }
+
+    def lookupL7(img):
+        return {
+            "B": img.select("B1"),
+            "G": img.select("B2"),
+            "R": img.select("B3"),
+            "N": img.select("B4"),
+            "S1": img.select("B5"),
+            "T1": img.select("B6"),
+            "S2": img.select("B7"),
+            "lambdaG": 560.0,
+            "lambdaR": 660.0,
+            "lambdaN": 835.0,
+        }
+
+    def lookupL7C2(img):
+        return {
+            "B": img.select("SR_B1"),
+            "G": img.select("SR_B2"),
+            "R": img.select("SR_B3"),
+            "N": img.select("SR_B4"),
+            "S1": img.select("SR_B5"),
+            "T1": img.select("ST_B6"),
+            "S2": img.select("SR_B7"),
+            "lambdaG": 560.0,
+            "lambdaR": 660.0,
+            "lambdaN": 835.0,
         }
 
     def lookupMOD09GQ(img):
-        return {"R": img.select("sur_refl_b01"), "N": img.select("sur_refl_b02")}
+        return {
+            "R": img.select("sur_refl_b01"),
+            "N": img.select("sur_refl_b02"),
+            "lambdaR": 645.0,
+            "lambdaN": 858.5,
+        }
 
     def lookupMOD09GA(img):
         return {
@@ -97,6 +159,9 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "N": img.select("sur_refl_b02"),
             "S1": img.select("sur_refl_b06"),
             "S2": img.select("sur_refl_b07"),
+            "lambdaG": 555.0,
+            "lambdaR": 645.0,
+            "lambdaN": 858.5,
         }
 
     def lookupMCD43A4(img):
@@ -107,23 +172,36 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
             "N": img.select("Nadir_Reflectance_Band2"),
             "S1": img.select("Nadir_Reflectance_Band6"),
             "S2": img.select("Nadir_Reflectance_Band7"),
+            "lambdaG": 555.0,
+            "lambdaR": 645.0,
+            "lambdaN": 858.5,
         }
 
     lookupPlatform = {
+        "JAXA/ALOS/PALSAR-2/Level2_2/ScanSAR": lookupPALSAR,
+        "COPERNICUS/S1_GRD": lookupS1,
         "COPERNICUS/S2": lookupS2,
+        "COPERNICUS/S2_HARMONIZED": lookupS2,
         "COPERNICUS/S2_SR": lookupS2,
+        "COPERNICUS/S2_SR_HARMONIZED": lookupS2,
         "LANDSAT/LC08/C01/T1_SR": lookupL8,
         "LANDSAT/LC08/C01/T2_SR": lookupL8,
         "LANDSAT/LC08/C02/T1_L2": lookupL8C2,
-        "LANDSAT/LE07/C01/T1_SR": lookupL457,
-        "LANDSAT/LE07/C01/T2_SR": lookupL457,
-        "LANDSAT/LE07/C02/T1_L2": lookupL457C2,
-        "LANDSAT/LT05/C01/T1_SR": lookupL457,
-        "LANDSAT/LT05/C01/T2_SR": lookupL457,
-        "LANDSAT/LT05/C02/T1_L2": lookupL457C2,
-        "LANDSAT/LT04/C01/T1_SR": lookupL457,
-        "LANDSAT/LT04/C01/T2_SR": lookupL457,
-        "LANDSAT/LT04/C02/T1_L2": lookupL457C2,
+        "LANDSAT/LC08/C02/T2_L2": lookupL8C2,
+        "LANDSAT/LC09/C02/T1_L2": lookupL8C2,
+        "LANDSAT/LC09/C02/T2_L2": lookupL8C2,
+        "LANDSAT/LE07/C01/T1_SR": lookupL7,
+        "LANDSAT/LE07/C01/T2_SR": lookupL7,
+        "LANDSAT/LE07/C02/T1_L2": lookupL7C2,
+        "LANDSAT/LE07/C02/T2_L2": lookupL7C2,
+        "LANDSAT/LT05/C01/T1_SR": lookupL45,
+        "LANDSAT/LT05/C01/T2_SR": lookupL45,
+        "LANDSAT/LT05/C02/T1_L2": lookupL45C2,
+        "LANDSAT/LT05/C02/T2_L2": lookupL45C2,
+        "LANDSAT/LT04/C01/T1_SR": lookupL45,
+        "LANDSAT/LT04/C01/T2_SR": lookupL45,
+        "LANDSAT/LT04/C02/T1_L2": lookupL45C2,
+        "LANDSAT/LT04/C02/T2_L2": lookupL45C2,
         "MODIS/006/MOD09GQ": lookupMOD09GQ,
         "MODIS/006/MYD09GQ": lookupMOD09GQ,
         "MODIS/006/MOD09GA": lookupMOD09GA,
@@ -133,11 +211,22 @@ def _get_expression_map(img: ee.Image, platformDict: dict) -> dict:
         "MODIS/006/MOD09A1": lookupMOD09GA,
         "MODIS/006/MYD09A1": lookupMOD09GA,
         "MODIS/006/MCD43A4": lookupMCD43A4,
+        "MODIS/061/MOD09GQ": lookupMOD09GQ,
+        "MODIS/061/MYD09GQ": lookupMOD09GQ,
+        "MODIS/061/MOD09GA": lookupMOD09GA,
+        "MODIS/061/MYD09GA": lookupMOD09GA,
+        "MODIS/061/MOD09Q1": lookupMOD09GQ,
+        "MODIS/061/MYD09Q1": lookupMOD09GQ,
+        "MODIS/061/MOD09A1": lookupMOD09GA,
+        "MODIS/061/MYD09A1": lookupMOD09GA,
+        "MODIS/061/MCD43A4": lookupMCD43A4,
     }
 
-    if platformDict["platform"] not in list(lookupPlatform.keys()):
+    plat = platformDict["platform"]
+
+    if plat not in list(lookupPlatform.keys()):
         raise Exception(
-            "Sorry, satellite platform not supported for index computation!"
+            f"Sorry, satellite platform {plat} not supported for spectral index computation!"
         )
 
     return lookupPlatform[platformDict["platform"]](img)
@@ -154,7 +243,7 @@ def _get_indices(online: bool) -> dict:
     """
     if online:
         with urllib.request.urlopen(
-            "https://raw.githubusercontent.com/davemlz/awesome-ee-spectral-indices/main/output/spectral-indices-dict.json"
+            "https://raw.githubusercontent.com/awesome-spectral-indices/awesome-spectral-indices/main/output/spectral-indices-dict.json"
         ) as url:
             indices = json.loads(url.read().decode())
     else:
@@ -245,7 +334,7 @@ def _get_kernel_parameters(
     return kernelParameters
 
 
-def _get_tc_coefficients(platformDict: dict) -> dict:
+def _get_tc_coefficients(platform: str) -> dict:
     """Gets the platform-specific coefficient dictionary required for tasseled cap
     transformation.
 
@@ -253,18 +342,8 @@ def _get_tc_coefficients(platformDict: dict) -> dict:
     specified by the reference literature that coefficients were sourced from, e.g.
     Landsat 8 SR cannot be transformed with Landsat 8 TOA coefficients.
 
-    Coefficients are provided for the following platforms:
-
-    * Sentinel-2 MSI Level 1C [1]_
-    * Landsat 8 OLI TOA [2]_
-    * Landsat 7 ETM+ TOA [3]_
-    * Landsat 5 TM Raw DN [4]_
-    * Landsat 4 TM Raw DN [5]_
-    * Landsat 4 TM Surface Reflectance [6]_
-    * MODIS NBAR [7]_
-
     Args:
-        platformDict : Dictionary retrieved from the _get_STAC_platform() method.
+        platform : Platform name retrieved from the STAC.
 
     Returns:
         Map dictionary with band names and corresponding coefficients for brightness
@@ -272,30 +351,6 @@ def _get_tc_coefficients(platformDict: dict) -> dict:
 
     Raises:
         Exception : If the platform has no supported coefficients.
-
-    References:
-        .. [1] Shi, T., & Xu, H. (2019). Derivation of Tasseled Cap Transformation
-           Coefficients for Sentinel-2 MSI At-Sensor Reflectance Data. IEEE Journal
-           of Selected Topics in Applied Earth Observations and Remote Sensing, 1–11.
-           doi:10.1109/jstars.2019.2938388
-        .. [2] Baig, M.H.A., Zhang, L., Shuai, T. and Tong, Q., 2014. Derivation of a
-           tasselled cap transformation based on Landsat 8 at-satellite reflectance.
-           Remote Sensing Letters, 5(5), pp.423-431.
-        .. [3] Huang, C., Wylie, B., Yang, L., Homer, C. and Zylstra, G., 2002.
-           Derivation of a tasselled cap transformation based on Landsat 7 at-satellite
-           reflectance. International journal of remote sensing, 23(8), pp.1741-1748.
-        .. [4] Crist, E.P., Laurin, R. and Cicone, R.C., 1986, September. Vegetation and
-           soils information contained in transformed Thematic Mapper data. In
-           Proceedings of IGARSS’86 symposium (pp. 1465-1470). Paris: European Space
-           Agency Publications Division.
-        .. [5] Crist, E.P. and Cicone, R.C., 1984. A physically-based transformation of
-           Thematic Mapper data---The TM Tasseled Cap. IEEE Transactions on Geoscience
-           and Remote sensing, (3), pp.256-263.
-        .. [6] Crist, E.P., 1985. A TM tasseled cap equivalent transformation for
-           reflectance factor data. Remote sensing of Environment, 17(3), pp.301-306.
-        .. [7] Lobser, S.E. and Cohen, W.B., 2007. MODIS tasselled cap: land cover
-           characteristics expressed through transformed MODIS data. International
-           Journal of Remote Sensing, 28(22), pp.5079-5101.
     """
 
     SENTINEL2_1C = {
@@ -361,12 +416,29 @@ def _get_tc_coefficients(platformDict: dict) -> dict:
         ),
     }
 
-    LANDSAT8_TOA = {
-        "bands": ("B2", "B3", "B4", "B5", "B6", "B7"),
-        "TCB": (0.3029, 0.2786, 0.4733, 0.5599, 0.5080, 0.1872),
-        "TCG": (-0.2941, -0.2430, -0.5424, 0.7276, 0.0713, -0.1608),
-        "TCW": (0.1511, 0.1973, 0.3283, 0.3407, -0.7117, -0.4559),
+    # Zhai et al. 2022 also provide coefficients with the blue band, but
+    # recommend omitting it due to difficulties in atmospheric correction.
+    LANDSAT8_SR = {
+        "bands": ("SR_B3", "SR_B4", "SR_B5", "SR_B6", "SR_B7"),
+        "TCB": (0.4596, 0.5046, 0.5458, 0.4114, 0.2589),
+        "TCG": (-0.3374, -0.4901, 0.7909, 0.0177, -0.1416),
+        "TCW": (0.2254, 0.3681, 0.2250, -0.6053, -0.6298)
     }
+
+    # Zhai et al. 2022 coefficients were included for L8 TOA over the Baig 
+    # et al. 2014 coefficients for consistency with the L8 SR coefficients, 
+    # which were not calculated by Baig et al.
+    LANDSAT8_TOA = {
+        "bands": ("B3", "B4", "B5", "B6", "B7"),
+        "TCB": (0.4321, 0.4971, 0.5695, 0.4192, 0.2569),
+        "TCG": (-0.3318, -0.4844, 0.7856, -0.0331, -0.1923),
+        "TCW": (0.2633, 0.3945, 0.1801, -0.6121, -0.6066)
+    }
+
+    # Coefficients for Landsat 8 OLI are usable for Landsat 9 OLI-2, per
+    # Zhai et al. 2022
+    LANDSAT9_SR = LANDSAT8_SR
+    LANDSAT9_TOA = LANDSAT8_TOA
 
     LANDSAT7_TOA = {
         "bands": ("B1", "B2", "B3", "B4", "B5", "B7"),
@@ -414,6 +486,10 @@ def _get_tc_coefficients(platformDict: dict) -> dict:
     platformCoeffs = {
         "COPERNICUS/S2": SENTINEL2_1C,
         "MODIS/006/MCD43A4": MODIS_NBAR,
+        "LANDSAT/LC09/C02/T1_L2": LANDSAT9_SR,
+        "LANDSAT/LC09/C02/T1_TOA": LANDSAT9_TOA,
+        "LANDSAT/LC08/C02/T1_L2": LANDSAT8_SR,
+        "LANDSAT/LC08/C02/T2_L2": LANDSAT8_SR,
         "LANDSAT/LC08/C01/T1_TOA": LANDSAT8_TOA,
         "LANDSAT/LC08/C01/T1_RT_TOA": LANDSAT8_TOA,
         "LANDSAT/LC08/C01/T2_TOA": LANDSAT8_TOA,
@@ -428,7 +504,6 @@ def _get_tc_coefficients(platformDict: dict) -> dict:
         "LANDSAT/LT04/C01/T2": LANDSAT4_DN,
     }
 
-    platform = platformDict["platform"]
 
     if platform not in list(platformCoeffs.keys()):
         raise Exception(

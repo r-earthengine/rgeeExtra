@@ -58,6 +58,12 @@ EEextra_PYTHON_PACKAGE <- NULL
   ee$Image$getSTAC <- ee_Image_getSTAC
   ee$Image$getSTAC <- ee_Image_preprocess
   ee$Image$spectralIndex <- ee_Image_spectralIndex
+  ee$Image$preprocess <- ee_Image_preprocess
+  ee$Image$panSharpen <- ee_Image_panSharpen
+  ee$Image$maskClouds <- ee_Image_maskClouds
+  ee$Image$matchHistogram <- ee_Image_matchHistogram
+  ee$Image$tasseledCap <- ee_Image_tasseledCap
+  ee$Image$scaleAndOffset <- ee_Image_scaleAndOffset
 
   # ee.ImageCollection
   ee$ImageCollection$closest <- ee_ImageCollection_closest
@@ -69,4 +75,6 @@ EEextra_PYTHON_PACKAGE <- NULL
   ee$ImageCollection$spectralIndex <- ee_ImageCollection_spectralIndex
   ee$ImageCollection$preprocess <- ee_ImageCollection_preprocess
   ee$ImageCollection$scaleAndOffset <- ee_ImageCollection_scaleAndOffset
+  ee$ImageCollection$tasseledCap <- ee_ImageCollection_tasseledCap
+  ee$ImageCollection$panSharpen <- ee_ImageCollection_panSharpen
 }
