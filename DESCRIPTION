@@ -36,6 +36,5 @@ Suggests:
     googleCloudStorageR,
     geojsonio,
     magick,
-    raster,
     stars,
     sf
