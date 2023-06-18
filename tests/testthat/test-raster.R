@@ -1,6 +1,9 @@
 context("rgee: Operators test")
-skip_if_no_pypkg()
 # -------------------------------------------------------------------------
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
 
 img <- ee$ImageCollection$Dataset$LANDSAT_LC08_C01_T1$first()[["B1"]]
 

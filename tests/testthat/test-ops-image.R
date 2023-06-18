@@ -1,6 +1,10 @@
 context("rgee: Operators test")
-skip_if_no_pypkg()
 # -------------------------------------------------------------------------
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
+
 
 test_that("Arithmetic Operator", {
   img <- ee$Image(1)

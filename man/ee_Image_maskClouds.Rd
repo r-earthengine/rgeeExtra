@@ -75,7 +75,7 @@ ee_Initialize()
 
 img <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee_Image_maskClouds(prob = 75,buffer = 300,cdi = -0.5)
+  ee$Image$maskClouds(prob = 75,buffer = 300,cdi = -0.5)
 
 names(img)
 }

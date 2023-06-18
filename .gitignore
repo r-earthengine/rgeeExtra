@@ -6,3 +6,7 @@
 .httr-oauth
 .DS_Store
 tester.R
+inst/ee_extra/ee_extra/Algorithms/__pycache__/
+
+inst/ee_extra/ee_extra/QA/__pycache__/
+inst/doc

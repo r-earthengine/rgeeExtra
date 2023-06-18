@@ -1,6 +1,9 @@
 context("rgeeExtra: subsetting ee.ImageCollection")
-skip_if_no_pypkg()
 # -------------------------------------------------------------------------
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
 
 ic_demo <- ee$ImageCollection$Dataset$AU_GA_AUSTRALIA_5M_DEM
 

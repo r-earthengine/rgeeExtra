@@ -1,5 +1,9 @@
 context("rgeeExtra: subsetting ee.Image")
-skip_if_no_pypkg()
+
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
 
 # -------------------------------------------------------------------------
 ic <- ee$ImageCollection$Dataset$LANDFIRE_Fire_MFRI_v1_2_0

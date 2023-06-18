@@ -1,7 +1,10 @@
 context("rgeeExtra: subsetting ee.Image")
-skip_if_no_pypkg()
-
 # -------------------------------------------------------------------------
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
+
 img <- ee$Image$Dataset$JAXA_ALOS_AW3D30_V2_2
 
 x <- img
