@@ -1,24 +1,66 @@
 ---
-title: "Introduction"
+title: "Introducción a rgeeExtra"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
-
-
+`rgeeExtra` is an extension of the rgee package, enhancing the capabilities of Google Earth Engine (GEE) integration within the R environment. This guide provides a brief introduction to the key features and functionalities of the rgeeExtra package.
 
 ```{r setup}
 library(rgeeExtra)
+library(rgee)
 
-ee_Initialize()
+ee_Initialize()        # Initialize the Google Earth Engine API connection
+extra_Initialize()     # Initialize the extended functionalities of rgeeExtra
 ```
+
+The `extra_Initialize()` function ensures that the additional functionalities of rgeeExtra are ready to use. This step is vital to leverage the enhanced capabilities provided by the package.
+
+
+## Install
+
+To install the `rgeeExtra` package, you can use the following:
+  
+  ```{r}
+remotes::install_github("r-earthengine/rgeeExtra")
+```
+
+## Example
+
+The focus here is to compute and visualize the Soil Adjusted Vegetation Index (SAVI) from the Sentinel-2 image and its logarithmic transformation.
+ 
+```{r}
+savi <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK") %>% 
+  ee$Image$preprocess()%>%
+  ee$Image$spectralIndex("SAVI")
+
+geoviz_1 <- list(palette = c('001fff', '00ffff', 'fbff00', 'ff0000'), min=0, max=0.3)
+savi[savi > 0.3] <- 0
+
+Map$addLayer(savi, geoviz, "SAVI") | Map$addLayer(log1p(savi)*2, geoviz, "log_SAVI")
+```
+
+This series of commands does the following:
+
+- Retrieves a Sentinel-2 surface reflectance product image with a specific ID (COPERNICUS/S2_SR/...).
+
+- Applies some preprocessing steps to the image (this process remove the clouds and decompress the image).
+
+- Computes the Soil Adjusted Vegetation Index (SAVI) for the image. SAVI is a vegetation index designed to minimize soil brightness influences using a soil-brightness correction factor.
+
+- Reassigning High SAVI Values.
+
+<center>
+<img src=img01.png width=75%>
+</center>

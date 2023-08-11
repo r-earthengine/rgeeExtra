@@ -38,43 +38,61 @@ EEextra_PYTHON_PACKAGE <- NULL
 
 
 .onAttach <- function(libname, pkgname) {
-  options(rgee.print.option = "simply")
+    options(rgee.print.option = "simply")
 }
 
 
 .onLoad <- function(libname, pkgname) {
-  # Check other packages in CRAN that depends
-  library(rgee)
-
-  # Load Python package available in inst/ folder.
-  ee_extra_location <- sprintf("%s/ee_extra", system.file(package = "rgeeExtra"))
-  EEextra_PYTHON_PACKAGE <<- reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = TRUE)
-
-  # ee.Image
-  ee$Image$getCitation <- ee_image_getCitation
-  ee$Image$getDOI <- ee_image_getDOI
-  ee$Image$getOffsetParams <- ee_Image_getOffsetParams
-  ee$Image$getScaleParams <- ee_Image_getScaleParams
-  ee$Image$getSTAC <- ee_Image_getSTAC
-  ee$Image$getSTAC <- ee_Image_preprocess
-  ee$Image$spectralIndex <- ee_Image_spectralIndex
-  ee$Image$preprocess <- ee_Image_preprocess
-  ee$Image$panSharpen <- ee_Image_panSharpen
-  ee$Image$maskClouds <- ee_Image_maskClouds
-  ee$Image$matchHistogram <- ee_Image_matchHistogram
-  ee$Image$tasseledCap <- ee_Image_tasseledCap
-  ee$Image$scaleAndOffset <- ee_Image_scaleAndOffset
-
-  # ee.ImageCollection
-  ee$ImageCollection$closest <- ee_ImageCollection_closest
-  ee$ImageCollection$getCitation <- ee_ImageCollection_getCitation
-  ee$ImageCollection$getDOI <- ee_ImageCollection_getDOI
-  ee$ImageCollection$getOffsetParams <- ee_ImageCollection_getOffsetParams
-  ee$ImageCollection$getScaleParams <- ee_ImageCollection_getScaleParams
-  ee$ImageCollection$getSTAC <- ee_ImageCollection_getSTAC
-  ee$ImageCollection$spectralIndex <- ee_ImageCollection_spectralIndex
-  ee$ImageCollection$preprocess <- ee_ImageCollection_preprocess
-  ee$ImageCollection$scaleAndOffset <- ee_ImageCollection_scaleAndOffset
-  ee$ImageCollection$tasseledCap <- ee_ImageCollection_tasseledCap
-  ee$ImageCollection$panSharpen <- ee_ImageCollection_panSharpen
+    ee_extra_location <- sprintf("%s/ee_extra", system.file(package = "rgeeExtra"))
+    EEextra_PYTHON_PACKAGE <<- tryCatch(
+        expr = reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = TRUE),
+        error = function(e) {
+            "An error occurred while trying to import the ee Python package. Please, check if you have installed it correctly."
+        }
+    )
 }
+
+
+#' Load extra functionality for rgee
+#'
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#' extra_Initialize()
+#' }
+#' @export
+extra_Initialize <- function() {
+    print("Extra loaded successfully!")
+
+    # ee.Image
+    ee$Image$getCitation <- ee_image_getCitation
+    ee$Image$getDOI <- ee_image_getDOI
+    ee$Image$getOffsetParams <- ee_Image_getOffsetParams
+    ee$Image$getScaleParams <- ee_Image_getScaleParams
+    ee$Image$getSTAC <- ee_Image_getSTAC
+    ee$Image$getSTAC <- ee_Image_preprocess
+    ee$Image$spectralIndex <- ee_Image_spectralIndex
+    ee$Image$preprocess <- ee_Image_preprocess
+    ee$Image$panSharpen <- ee_Image_panSharpen
+    ee$Image$maskClouds <- ee_Image_maskClouds
+    ee$Image$matchHistogram <- ee_Image_matchHistogram
+    ee$Image$tasseledCap <- ee_Image_tasseledCap
+    ee$Image$scaleAndOffset <- ee_Image_scaleAndOffset
+
+    # ee.ImageCollection
+    ee$ImageCollection$closest <- ee_ImageCollection_closest
+    ee$ImageCollection$getCitation <- ee_ImageCollection_getCitation
+    ee$ImageCollection$getDOI <- ee_ImageCollection_getDOI
+    ee$ImageCollection$getOffsetParams <- ee_ImageCollection_getOffsetParams
+    ee$ImageCollection$getScaleParams <- ee_ImageCollection_getScaleParams
+    ee$ImageCollection$getSTAC <- ee_ImageCollection_getSTAC
+    ee$ImageCollection$spectralIndex <- ee_ImageCollection_spectralIndex
+    ee$ImageCollection$preprocess <- ee_ImageCollection_preprocess
+    ee$ImageCollection$scaleAndOffset <- ee_ImageCollection_scaleAndOffset
+    ee$ImageCollection$tasseledCap <- ee_ImageCollection_tasseledCap
+    ee$ImageCollection$panSharpen <- ee_ImageCollection_panSharpen
+}
+

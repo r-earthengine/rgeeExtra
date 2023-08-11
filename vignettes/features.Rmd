@@ -1,0 +1,119 @@
+---
+title: "rgeeExtra - Features"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+`rgeeExtra` serves as a wrapper for the Python package named `eeExtra`. The creation of `eeExtra` was driven by a need to consolidate various third-party GEE packages and projects found on GitHub. 
+
+`rgeeExtra` ensures a seamless integration of these projects across different programming languages by standardizing methods and facilitating the use of JavaScript code projects beyond the traditional Code Editor environment.
+
+Key features of `rgeeExtra` include:
+
+1. **Automatic Scaling and Offsetting**: Simplifying the adaptation and visualization of images and datasets.
+
+2. **Spectral Indices Computation**: Harnessing the capabilities of Awesome Spectral Indices, it allows for the calculation of a wide range of spectral indices from satellite imagery.
+
+3. **Clouds and Shadows Masking**: An essential tool for processing satellite images, it identifies and masks areas impacted by clouds and their shadows.
+
+4. **STAC-related Functions**: Streamlining interactions with the SpatioTemporal Asset Catalog (STAC), standardizing the description of spatiotemporal datasets.
+
+5. **Operator Overloading**: Provides a more direct and simplified interaction with data, enhancing code clarity and efficiency.
+
+
+```{r setup}
+library(rgeeExtra)
+library(rgee)
+
+ee_Initialize()        # Initialize the Google Earth Engine API connection
+extra_Initialize()     # Initialize the extended functionalities of rgeeExtra
+```
+
+## **1. Automatic Scaling and Offsetting**
+
+- [Image or ImageCollection]$getOffsetParams: Apply offset 
+parameters for each bands.
+
+- [Image or ImageCollection]$getScaleParams: Apply scale parameters for each bands.
+
+```{r}
+ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
+  ee$ImageCollection$first() %>%
+  ee$ImageCollection$getOffsetParams()
+
+ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
+  ee$ImageCollection$first() %>%
+  ee$Image$getScaleParams()
+```
+
+
+## **2. Spectral Indices Computation**
+
+Computes one or more spectral indices for an `ee$Image` or an `ee$ImageCollection` object.
+
+```{r}
+s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
+  ee$ImageCollection$first() %>%
+  ee$Image$preprocess()%>%
+  ee$Image$spectralIndex(c("NDVI", "SAVI"))
+
+names(s2_indices)
+```
+
+
+## **3. Clouds and Shadows Masking**
+
+Masks clouds and shadows in an `ee$Image`. Valid just for Surface Reflectance products. This function may mask water as well as clouds for the Sentinel-3 Radiance product.
+
+```{r}
+img <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
+  ee$ImageCollection$first() %>%
+  ee$Image$maskClouds(prob = 75,buffer = 300,cdi = -0.5)
+
+names(img)
+```
+
+## **4. STAC-related Functions**
+
+
+Streamlining interactions with the SpatioTemporal Asset Catalog (STAC), get metadata easier!
+
+```{r}
+# get metadata
+ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
+  ee$ImageCollection$first() %>%
+  ee$Image$getSTAC() %>%
+  ee$Image$getInfo()
+
+# get citation
+ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
+  ee$ImageCollection$first() %>%
+  ee$Image$getDOI()
+```
+
+## **5. Third-party repositories**
+
+
+### **5.1 Apply pansharpening**
+
+Apply panchromatic sharpening to an `ee$Image` or an `ee$ImageCollection`. Optionally, run quality assessments between the original and sharpened Image to measure spectral distortion and set results as properties of the sharpened Image.
+
+```{r}
+img <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
+img_sharp <- ee$Image$panSharpen(img, method="HPFA", qa=c("MSE", "RMSE"), maxPixels=1e13)
+
+Map$centerObject(img)
+Map$addLayer(img_sharp, list(bands=c("B4", "B3", "B2"))) |
+Map$addLayer(img, list(bands=c("B4", "B3", "B2")))
+```
