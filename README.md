@@ -13,7 +13,6 @@
 
 <p align="center">
 <a href="https://colab.research.google.com/github/r-spatial/rgee/blob/examples/rgee_colab.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" title="Open and Execute in Google Colaboratory"></a>
-<a href="https://github.com/r-earthengine/rgeeExtra/actions"><img src="https://github.com/r-earthengine/rgeeExtra/workflows/R-CMD-check/badge.svg" alt="R build status"></a>
 <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed."></a>
@@ -112,13 +111,6 @@ The rgeeExtra extends the following Earth Engine classes:
 
 rgeeExtra develops and maintains new methods and constructors that extents the most popular GEE classes (See ee$Extra$...). Besides, it supports functional programming (FP) style to make R users feel more comfortable with the API.
 
-The main user-relevant R functions are:
-  
-  - under dev
-
-The main user-relevant server-side methods are:
-
-  - under dev
 
 ## Example
 

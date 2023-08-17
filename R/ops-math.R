@@ -105,8 +105,10 @@ Ops.ee.image.Image <- function(e1, e2) {
   }
 
   # Export results
-  new_names <- ee_new_list_name(ops_r$bandNames())
-  ops_r$rename(new_names)
+  #new_names <- ee_new_list_name(ops_r$bandNames())
+  #ops_r$rename(new_names)
+
+  ops_r
 }
 
 

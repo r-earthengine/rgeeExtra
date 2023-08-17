@@ -117,3 +117,8 @@ Map$centerObject(img)
 Map$addLayer(img_sharp, list(bands=c("B4", "B3", "B2"))) |
 Map$addLayer(img, list(bands=c("B4", "B3", "B2")))
 ```
+
+<center>
+<img src=img02.png width=75%>
+</center>
+
