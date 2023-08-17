@@ -13,6 +13,15 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/articles/Introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/articles/features.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/authors.html</loc>
   </url>
   <url>
@@ -22,6 +31,9 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/news/index.html</loc>
   </url>
   <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/EEextra_PYTHON_PACKAGE.html</loc>
+  </url>
+  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Math-methods.html</loc>
   </url>
   <url>
@@ -29,6 +41,45 @@
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Summary-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-citation.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-getdoi.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-getoffset.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-getscaleparams.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-getstac.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-pansharpen.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-preprocess.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-scaleandoffset.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-spectralindex.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-tasseledcap.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_ImageCollection_closest.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_Image_maskClouds.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_Image_matchHistogram.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_get.html</loc>
@@ -56,6 +107,9 @@
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_utils_gif_save.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/extra_Initialize.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/extremeValues.html</loc>

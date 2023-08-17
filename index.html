@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Extensions for rgee • rgee</title>
+<title>Extensions for rgee • rgeeExtra</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -32,8 +32,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">rgee</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <a class="navbar-link" href="index.html">rgeeExtra</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
       </span>
     </div>
 
@@ -41,14 +41,14 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fas fa-book"></span>
      
     Articles
@@ -57,36 +57,30 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/rgeeExtra01.html">Introduction</a>
+      <a href="articles/Introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="articles/rgeeExtra02.html">Consideration</a>
-    </li>
-    <li>
-      <a href="articles/rgeeExtra03.html">Best Practices</a>
-    </li>
-    <li>
-      <a href="https://r-earthengine.github.io/">rgee examples</a>
+      <a href="articles/features.html">Features</a>
     </li>
   </ul>
 </li>
 <li>
   <a href="news/index.html">
-    <span class="fa fa fa fa-newspaper-o"></span>
+    <span class="fa fa-newspaper-o"></span>
      
     news
   </a>
 </li>
 <li>
   <a href="reference/index.html">
-    <span class="fa fa fa fa-file-code-o"></span>
+    <span class="fa fa-file-code-o"></span>
      
     functions
   </a>
 </li>
 <li>
-  <a href="https://github.com/r-spatial/rgee/">
-    <span class="fa fa fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-earthengine/rgeeExtra/" class="external-link">
+    <span class="fa fa-github fa-lg"></span>
      
     github
   </a>
@@ -114,9 +108,9 @@ High-level functions to process spatial and simple Earth Engine objects. Popular
 <p align="center">
 • <a href="#installation">Installation</a>  •<br><a href="#how-does-it-work">How does it work?</a>  • <a href="#example">Example</a>  • <a href="#contributing-guide">Contributing</a>  • <a href="#share-the-love">Citation</a>  • <a href="#credits">Credits</a>
 </p>
-<div id="what-is-google-earth-engine" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-is-google-earth-engine" class="anchor" aria-hidden="true"></a>What is Google Earth Engine?</h2>
+<div class="section level2">
+<h2 id="what-is-google-earth-engine">What is Google Earth Engine?<a class="anchor" aria-label="anchor" href="#what-is-google-earth-engine"></a>
+</h2>
 <p><a href="https://earthengine.google.com/" class="external-link">Google Earth Engine</a> is a cloud-based platform that allows users to have an easy access to a petabyte-scale archive of remote sensing data and run geospatial analysis on Google’s infrastructure. Currently, Google offers support only for Python and JavaScript. <code>rgee</code> will fill the gap <strong>starting to provide support to R!</strong>. Below you will find the comparison between the syntax of <code>rgee</code> and the two Google-supported client libraries.</p>
 <table class="table">
 <tr>
@@ -132,44 +126,44 @@ rgeeExtra
 </tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> ee</span>
-<span id="cb1-2"><a href="#cb1-2"></a>ee.Initialize()</span>
-<span id="cb1-3"><a href="#cb1-3"></a>db <span class="op">=</span> <span class="st">'CGIAR/SRTM90_V4'</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>image <span class="op">=</span> ee.Image(db)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>image.bandNames().getInfo()</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt; [u'elevation']</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ee</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ee.Initialize()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="st">'CGIAR/SRTM90_V4'</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> ee.Image(db)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>image.bandNames().getInfo()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [u'elevation']</span></span></code></pre></div>
 </td>
 <td>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">db</span> <span class="op">&lt;-</span> <span class="st">'CGIAR/SRTM90_V4'</span>
-<span class="va">image</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="va">db</span><span class="op">)</span>
-<span class="va">image</span><span class="op">$</span><span class="fu">bandNames</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">getInfo</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "elevation"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">db</span> <span class="op">&lt;-</span> <span class="st">'CGIAR/SRTM90_V4'</span></span>
+<span><span class="va">image</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
+<span><span class="va">image</span><span class="op">$</span><span class="fu">bandNames</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">getInfo</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "elevation"</span></span></code></pre></div>
 </td>
 <td>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rgeeExtra</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">image</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="va">Dataset</span><span class="op">$</span><span class="va">CGIAR_SRTM90_V4</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">image</span><span class="op">)</span>
-<span class="co">#&gt; [1] "elevation"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rgeeExtra</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">image</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="va">Dataset</span><span class="op">$</span><span class="va">CGIAR_SRTM90_V4</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">image</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "elevation"</span></span></code></pre></div>
 </td>
 </tr>
 </table>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install rgeeExtra from <a href="https://github.com/r-earthengine/rgeeExtra" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"r-earthengine/rgeeExtra"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-earthengine/rgeeExtra"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="how-does-it-work" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-does-it-work" class="anchor" aria-hidden="true"></a>How does it work?</h2>
+<div class="section level2">
+<h2 id="how-does-it-work">How does it work?<a class="anchor" aria-label="anchor" href="#how-does-it-work"></a>
+</h2>
 <p>The rgeeExtra extends the following Earth Engine classes:</p>
 <ul>
 <li><a href="https://developers.google.com/earth-engine/guides/features" class="external-link">ee.Feature</a></li>
@@ -188,70 +182,70 @@ rgeeExtra
 <li>under dev</li>
 </ul>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor" aria-hidden="true"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>Look at this simple example to estimate the NDVI from a Landsat-8 Surface Reflectance image.</p>
 <p>With <a href="https://github.com/r-spatial/rgee" class="external-link"><strong>rgee</strong></a>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Define an image.</span>
-<span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC08/C01/T1_SR/LC08_038029_20180810"</span><span class="op">)</span><span class="op">$</span>
-  <span class="fu">normalizedDifference</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B5"</span>, <span class="st">"B4"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span>
-  <span class="fu">pow</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
-
-<span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">img</span>,zoom<span class="op">=</span><span class="fl">12</span><span class="op">)</span>
-<span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">img</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define an image.</span></span>
+<span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC08/C01/T1_SR/LC08_038029_20180810"</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">normalizedDifference</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B5"</span>, <span class="st">"B4"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span></span>
+<span>  <span class="fu">pow</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">img</span>,zoom<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">img</span><span class="op">)</span></span></code></pre></div>
 <p>With <a href="https://github.com/r-earthengine/rgeeExtra" class="external-link"><strong>rgeeExtra</strong></a>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC08/C01/T1_SR/LC08_038029_20180810"</span><span class="op">)</span>
-<span class="va">ndvi</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">-</span> <span class="va">img</span><span class="op">[[</span><span class="st">"B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">img</span><span class="op">[[</span><span class="st">"B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">**</span><span class="fl">2</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ndvi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"pow_ndvi"</span>
-
-<span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">img</span>,zoom<span class="op">=</span><span class="fl">12</span><span class="op">)</span>
-<span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">img</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC08/C01/T1_SR/LC08_038029_20180810"</span><span class="op">)</span></span>
+<span><span class="va">ndvi</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">-</span> <span class="va">img</span><span class="op">[[</span><span class="st">"B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">img</span><span class="op">[[</span><span class="st">"B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">**</span><span class="fl">2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ndvi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"pow_ndvi"</span></span>
+<span></span>
+<span><span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">img</span>,zoom<span class="op">=</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">img</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor" aria-hidden="true"></a>Code of Conduct</h2>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
 <p>Please note that the <code>rgeeExtra</code> project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
-<div id="contributing-guide" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributing-guide" class="anchor" aria-hidden="true"></a>Contributing Guide</h2>
+<div class="section level2">
+<h2 id="contributing-guide">Contributing Guide<a class="anchor" aria-label="anchor" href="#contributing-guide"></a>
+</h2>
 <p>👍 Thanks for taking the time to contribute! 🎉👍 Please review our <a href="CONTRIBUTING.html">Contributing Guide</a>.</p>
 </div>
-<div id="share-the-love" class="section level2">
-<h2 class="hasAnchor">
-<a href="#share-the-love" class="anchor" aria-hidden="true"></a>Share the love</h2>
+<div class="section level2">
+<h2 id="share-the-love">Share the love<a class="anchor" aria-label="anchor" href="#share-the-love"></a>
+</h2>
 <p>Think <strong>rgeeExtra</strong> is useful? Let others discover it, by telling them in person via Twitter or a blog post.</p>
 <p>Using <strong>rgeeExtra</strong> for a paper you are writing? Consider citing it</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">citation</span>(<span class="st">"rgeeExtra"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>To cite rgee <span class="cf">in</span> publications use<span class="op">:</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span>C Aybar, Q Wu, L Bautista, R Yali and A <span class="kw">Barja</span> (<span class="dv">2020</span>) rgee<span class="op">:</span><span class="st"> </span>An R</span>
-<span id="cb7-5"><a href="#cb7-5"></a>  package <span class="cf">for</span> interacting with Google Earth Engine Journal of Open</span>
-<span id="cb7-6"><a href="#cb7-6"></a>  Source Software URL https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>r<span class="op">-</span>spatial<span class="op">/</span>rgee<span class="op">/</span>.</span>
-<span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb7-9"><a href="#cb7-9"></a></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="op">@</span>Article{,</span>
-<span id="cb7-11"><a href="#cb7-11"></a>  title =<span class="st"> </span>{rgee<span class="op">:</span><span class="st"> </span>An R package <span class="cf">for</span> interacting with Google Earth Engine},</span>
-<span id="cb7-12"><a href="#cb7-12"></a>  author =<span class="st"> </span>{Cesar Aybar and Quisheng Wu and Lesly Bautista and Roy Yali and Antony Barja},</span>
-<span id="cb7-13"><a href="#cb7-13"></a>  journal =<span class="st"> </span>{Journal of Open Source Software},</span>
-<span id="cb7-14"><a href="#cb7-14"></a>  year =<span class="st"> </span>{<span class="dv">2020</span>},</span>
-<span id="cb7-15"><a href="#cb7-15"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"rgeeExtra"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>To cite rgee <span class="cf">in</span> publications use<span class="sc">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  C Aybar, Q Wu, L Bautista, R Yali and A <span class="fu">Barja</span> (<span class="dv">2020</span>) rgee<span class="sc">:</span> An R</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  package <span class="cf">for</span> interacting with Google Earth Engine Journal of Open</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  Source Software URL https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>r<span class="sc">-</span>spatial<span class="sc">/</span>rgee<span class="sc">/</span>.</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Article{,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {rgee<span class="sc">:</span> An R package <span class="cf">for</span> interacting with Google Earth Engine},</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Cesar Aybar and Quisheng Wu and Lesly Bautista and Roy Yali and Antony Barja},</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  journal <span class="ot">=</span> {Journal of Open Source Software},</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2020</span>},</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div id="credits" class="section level2">
-<h2 class="hasAnchor">
-<a href="#credits" class="anchor" aria-hidden="true"></a>Credits</h2>
+<div class="section level2">
+<h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a>
+</h2>
 <p>We would like to mention the following third-party R/Python packages for contributing indirectly to the improvement of rgeeExtra:</p>
 <ul>
 <li><a href="https://github.com/davemlz/eemont" class="external-link"><strong>eemont - David Montero Loaiza</strong></a></li>
@@ -280,15 +274,15 @@ rgeeExtra
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing rgeeExtra</a></li>
+<li><a href="authors.html#citation">Citing rgeeExtra</a></li>
 </ul>
 </div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Cesar Aybar <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2745-9535" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">More on authors...</a></li>
+<li>Cesar Aybar <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2745-9535" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -322,7 +316,7 @@ status"></a></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
