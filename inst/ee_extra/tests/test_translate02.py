@@ -5,15 +5,15 @@ import unittest
 import ee
 
 from ee_extra import install, require
-from ee_extra.JavaScript.merge import JSModule 
+from ee_extra.JavaScript.merge import JSModule
 
 ee.Initialize()
 
 
 class Test(unittest.TestCase):
-
     def test(self):
-        self.assertIsInstance(1,int)
+        self.assertIsInstance(1, int)
+
 
 #    def test_module_01(self):
 #        """Testing Temperature modules"""

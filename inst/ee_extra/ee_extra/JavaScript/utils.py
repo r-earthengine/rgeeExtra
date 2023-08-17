@@ -13,6 +13,7 @@ def _check_regex():
             '"regex" is not installed. Please install "regex" -> "pip install regex"'
         )
 
+
 def _check_jsbeautifier():
     """Checks if jsbeautifier is installed and returns it as a module.
 

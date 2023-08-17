@@ -17,7 +17,7 @@ def functextin(x, fname="parseInt"):
         >>> functextin('parseInt(a=2)')
     """
     regex = _check_regex()
-    
+
     search = "(?<![\w\.])%s\(" % fname
     matches = regex.finditer(search, x, regex.MULTILINE)
     paranthesis_index = list()

@@ -139,7 +139,7 @@ def spectralIndices(
             "urban",
             "soil",
             "kernel",
-            "radar"
+            "radar",
         ]:
             temporalListOfIndices = []
             for idx in indicesNames:

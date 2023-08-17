@@ -16,3 +16,9 @@ inst/ee_extra/ee_extra/TimeSeries/__pycache__/
 inst/ee_extra/ee_extra/Spectral/__pycache__/
 
 inst/ee_extra/ee_extra/JavaScript/__pycache__/__init__.cpython-310.pyc
+
+inst/ee_extra/ee_extra/Apps/__pycache__/__init__.cpython-310.pyc
+
+inst/ee_extra/ee_extra/__pycache__/__init__.cpython-310.pyc
+
+*.pyc

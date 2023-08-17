@@ -30,5 +30,6 @@ class Test(unittest.TestCase):
         text = text.replace("\n    ", "")
         self.assertIsInstance(translate(text, black=False), str)
 
+
 if __name__ == "__main__":
     unittest.main()

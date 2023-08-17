@@ -25,11 +25,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    reticulate (>= 1.22),
-    rgee,
-    magrittr,
-    utils,
-    crayon
+    reticulate (>= 1.31),
+    rgee
 Suggests:
     testthat (>= 3.0.0),
     googledrive,

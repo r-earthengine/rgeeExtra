@@ -25,7 +25,7 @@ class Test(unittest.TestCase):
     def test_pansharpen_with_unsupported_platform(self):
         """Pansharpening an unsupported platform should raise an AttributeError."""
         unsupp = ee.ImageCollection("COPERNICUS/S2_SR").limit(10)
-        
+
         with self.assertRaises(AttributeError):
             panSharpen(unsupp)
 
@@ -42,7 +42,7 @@ class Test(unittest.TestCase):
     def test_pansharpen_with_bad_qa(self):
         """Pansharpening with invalid QA names should raise an AttributeError"""
         img = ee.Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
-        
+
         with self.assertRaises(AttributeError):
             panSharpen(img, qa=["not_a_real_metric"])
 

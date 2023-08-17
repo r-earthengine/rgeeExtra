@@ -72,7 +72,7 @@ def var_remove(x):
         >>> # cesar = 10
     """
     regex = _check_regex()
-    
+
     # remove single declarations
     # from "var lesly;" to ""
     pattern01 = r"\s*var\s+"

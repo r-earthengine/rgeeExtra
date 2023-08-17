@@ -782,10 +782,11 @@ def remove_single_declarations(x):
     x = regex.sub(condition, "", x)
     return x
 
+
 def remove_documentation(x):
     regex = _check_regex()
     # remove // only if it is not in a string
-    condition = "\/\/(?=(?:[^\"']*\"[^\"']*\")*[^\"']*$).*"
+    condition = '\/\/(?=(?:[^"\']*"[^"\']*")*[^"\']*$).*'
     newx = regex.sub(condition, "", x, flags=regex.MULTILINE)
     return newx
 
@@ -850,9 +851,9 @@ def translate(x: str, black: bool = False, quiet: bool = True) -> str:
     x = tloops.fix_inline_iterators(x)
 
     x = if_statement(x)
-    
+
     # 14. Delete extra brackets.
-    x = tgnrl.delete_brackets(x)    
+    x = tgnrl.delete_brackets(x)
 
     # 15. Change [if (condition) ? true_value : false_value] to [true_value if condition else false_value]
     # OBS: fix_sugar_if must always to if_statement to avoid conflicts.
@@ -867,11 +868,12 @@ def translate(x: str, black: bool = False, quiet: bool = True) -> str:
     if black:
         try:
             from black import FileMode, format_str
+
             x = format_str(x, mode=FileMode())
         except ImportError:
             raise ImportError(
                 '"black" is not installed. Please install "black" when using "black=True" -> "pip install black"'
-            )    
+            )
     x, header = fix_str_plus_int(x)
     header_list.append(header)
     x = add_header(x, header_list)

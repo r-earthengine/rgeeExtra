@@ -8,6 +8,7 @@ import ee
 
 from ee_extra.Apps.utils import _get_apps
 
+
 def apps(online: bool = False) -> dict:
     """Gets the dictionary of available Google Earth Engine Apps.
 

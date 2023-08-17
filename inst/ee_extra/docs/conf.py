@@ -79,7 +79,7 @@ html_theme_options = {
             "url": "https://twitter.com/csaybar",
             "icon": "fab fa-twitter-square",
         },
-    ],
+    ]
 }
 
 

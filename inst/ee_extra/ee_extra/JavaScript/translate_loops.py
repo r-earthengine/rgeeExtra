@@ -369,7 +369,7 @@ def check_loop_line_breaks_r(x):
 
 def check_loop_line_breaks(x):
     regex = _check_regex()
-    
+
     lines = x.split("\n")
     # trace for loop bad line breaks
     condtion = r"^for\s*\("

@@ -24,9 +24,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=("tests",), include=["ee_extra", "ee_extra.*"]),
     package_data={"ee_extra": ["data/*.json"]},
-    install_requires=[
-        "earthengine-api",
-    ],
+    install_requires=["earthengine-api"],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "License :: OSI Approved :: Apache Software License",
