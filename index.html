@@ -60,7 +60,7 @@
       <a href="articles/Introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="articles/features.html">Features</a>
+      <a href="articles/Features.html">Features</a>
     </li>
   </ul>
 </li>
@@ -99,7 +99,7 @@
   <div class="contents col-md-9">
 
 <div class="page-header"><h1 align="center">
-<br><a href="https://r-spatial.github.io/rgee/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376965-5f7dca80-b5cb-11eb-9a82-47876680a3e6.png" alt="Markdownify" width="200"></a> <a href="http://r-earthengine.github.io/rgeeExtra/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="Markdownify" width="200"></a> <a href="https://rgeebook.netlify.app/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="Markdownify" width="200"></a><br><br> rgeeExtra: An Extension for rgee <br>
+<br><a href="https://r-spatial.github.io/rgee/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376965-5f7dca80-b5cb-11eb-9a82-47876680a3e6.png" alt="Markdownify" width="200"></a> <a href="https://r-earthengine.com/rgeeExtra/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="Markdownify" width="200"></a> <a href="https://r-earthengine.com/rgeebook/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="Markdownify" width="200"></a><br><br> rgeeExtra: An Extension for rgee <br>
 </h1></div>
 <h4 align="center">
 High-level functions to process spatial and simple Earth Engine objects. Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.
@@ -146,7 +146,10 @@ rgeeExtra
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rgeeExtra</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/extra_Initialize.html">extra_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">image</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="va">Dataset</span><span class="op">$</span><span class="va">CGIAR_SRTM90_V4</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">image</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "elevation"</span></span></code></pre></div>
@@ -194,8 +197,10 @@ rgeeExtra
 <p>With <a href="https://github.com/r-earthengine/rgeeExtra" class="external-link"><strong>rgeeExtra</strong></a>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rgeeExtra</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/extra_Initialize.html">extra_Initialize</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC08/C01/T1_SR/LC08_038029_20180810"</span><span class="op">)</span></span>
 <span><span class="va">ndvi</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">-</span> <span class="va">img</span><span class="op">[[</span><span class="st">"B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">img</span><span class="op">[[</span><span class="st">"B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">**</span><span class="fl">2</span></span>
@@ -285,7 +290,7 @@ rgeeExtra
 <li><a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed."></a></li>
-<li><a href="https://codecov.io/gh/r-earthengine/rgeeExtra" class="external-link"> <img src="https://codecov.io/gh/r-earthengine/rgeeExtra/branch/master/graph/badge.svg?token=Q1SNZZU62W"></a></li>
+<li><a href="https://codecov.io/gh/csaybar/rgeeExtra" class="external-link"> <img src="https://codecov.io/gh/csaybar/rgeeExtra/branch/master/graph/badge.svg"></a></li>
 <li><a href="https://opensource.org/licenses/Apache-2.0" class="external-link"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a></li>
 <li><a href="https://www.tidyverse.org/lifecycle/#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
 <li><a href="https://joss.theoj.org/papers/aea42ddddd79df480a858bc1e51857fc" class="external-link"><img src="https://joss.theoj.org/papers/aea42ddddd79df480a858bc1e51857fc/status.svg" alt="status"></a></li>
