@@ -54,7 +54,8 @@ EEextra_PYTHON_PACKAGE <- NULL
 
 
 #' Load extra functionality for rgee
-#'
+#' @param quiet  Logical. Suppress info messages.
+#' @import cli
 #' @examples
 #' \dontrun{
 #' library(rgee)

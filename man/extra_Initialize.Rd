@@ -6,6 +6,9 @@
 \usage{
 extra_Initialize(quiet = FALSE)
 }
+\arguments{
+\item{quiet}{Logical. Suppress info messages.}
+}
 \description{
 Load extra functionality for rgee
 }

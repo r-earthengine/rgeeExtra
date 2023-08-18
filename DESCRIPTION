@@ -39,7 +39,8 @@ Imports:
     reticulate (>= 1.27),
     rgee,
     magrittr,
-    crayon
+    crayon,
+    cli
 Suggests:
     testthat (>= 3.0.0),
     googledrive,
