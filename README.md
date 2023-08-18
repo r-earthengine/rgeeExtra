@@ -1,8 +1,8 @@
 <h1 align="center">
   <br>
   <a href="https://r-spatial.github.io/rgee/"><img src="https://user-images.githubusercontent.com/16768318/118376965-5f7dca80-b5cb-11eb-9a82-47876680a3e6.png" alt="Markdownify" width="200"></a>
-  <a href="http://r-earthengine.github.io/rgeeExtra/"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="Markdownify" width="200"></a>
-  <a href="https://rgeebook.netlify.app/"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="Markdownify" width="200"></a>  
+  <a href="https://r-earthengine.com/rgeeExtra/"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="Markdownify" width="200"></a>
+  <a href="https://r-earthengine.com/rgeebook/"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="Markdownify" width="200"></a>  
   <br>
   rgeeExtra: An Extension for rgee
   <br>
@@ -16,8 +16,8 @@
 <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed."></a>
-<a href="https://codecov.io/gh/r-earthengine/rgeeExtra">
-  <img src="https://codecov.io/gh/r-earthengine/rgeeExtra/branch/master/graph/badge.svg?token=Q1SNZZU62W"/>
+<a href="https://codecov.io/gh/csaybar/rgeeExtra">
+  <img src="https://codecov.io/gh/csaybar/rgeeExtra/branch/master/graph/badge.svg"/>
 </a>
 <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
 <a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a>
@@ -82,7 +82,10 @@ image$bandNames()$getInfo()
 ``` r
 library(rgee)
 library(rgeeExtra)
+
 ee_Initialize()
+extra_Initialize()
+
 image <- ee$Image$Dataset$CGIAR_SRTM90_V4
 names(image)
 #> [1] "elevation"
@@ -136,8 +139,10 @@ With [**rgeeExtra**](https://github.com/r-earthengine/rgeeExtra):
 
 ``` r
 library(rgee)
+library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 img <- ee$Image("LANDSAT/LC08/C01/T1_SR/LC08_038029_20180810")
 ndvi <- (img[["B5"]] - img[["B4"]])/(img[["B5"]] + img[["B4"]])**2

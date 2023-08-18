@@ -4,6 +4,7 @@ library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 ic_demo <- ee$ImageCollection$Dataset$AU_GA_AUSTRALIA_5M_DEM
 

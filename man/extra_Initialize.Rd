@@ -4,7 +4,7 @@
 \alias{extra_Initialize}
 \title{Load extra functionality for rgee}
 \usage{
-extra_Initialize()
+extra_Initialize(quiet = FALSE)
 }
 \description{
 Load extra functionality for rgee

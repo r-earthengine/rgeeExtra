@@ -22,3 +22,17 @@ inst/ee_extra/ee_extra/Apps/__pycache__/__init__.cpython-310.pyc
 inst/ee_extra/ee_extra/__pycache__/__init__.cpython-310.pyc
 
 *.pyc
+
+inst/ee_extra/docs/_static/
+
+inst/ee_extra/docs/
+
+inst/ee_extra/ee_extra/JavaScript/
+
+inst/ee_extra/tests/onefile/
+
+inst/ee_extra/tests/
+
+inst/ee_extra/readthedocs.yml
+
+inst/ee_extra/README.md

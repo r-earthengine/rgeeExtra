@@ -34,6 +34,7 @@ library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 image <- ee$ImageCollection$Dataset$LANDSAT_LC08_C01_T1$first()[["B1"]]
 # max values

@@ -45,7 +45,7 @@ EEextra_PYTHON_PACKAGE <- NULL
 .onLoad <- function(libname, pkgname) {
     ee_extra_location <- sprintf("%s/ee_extra", system.file(package = "rgeeExtra"))
     EEextra_PYTHON_PACKAGE <<- tryCatch(
-        expr = reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = TRUE),
+        expr = reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = list(priority = 10)),
         error = function(e) {
             "An error occurred while trying to import the ee Python package. Please, check if you have installed it correctly."
         }
@@ -64,8 +64,30 @@ EEextra_PYTHON_PACKAGE <- NULL
 #' extra_Initialize()
 #' }
 #' @export
-extra_Initialize <- function() {
-    print("Extra loaded successfully!")
+extra_Initialize <- function(quiet = FALSE) {
+
+    if (!quiet) {
+        cat(
+            "",
+            crayon::green(cli::symbol[["tick"]]),
+            crayon::blue("Initializing ee_Extra module:")
+        )
+    }
+
+    # Initialize EXTRA MODULE
+    ee_current_version <- system.file("ee_extra/ee_extra/ImageCollection/core.py", package = "rgeeExtra")
+    ee_utils <- ee_connect_to_py(path = ee_current_version, n = 5)
+    ee_utils$closest(ee$ImageCollection('COPERNICUS/S2_SR'), '2018-01-23') # force load
+
+
+    if (!quiet) {
+        cat(
+            "\r",
+            crayon::green(cli::symbol[["tick"]]),
+            crayon::blue("Initializing ee_Extra module:"),
+            crayon::green(" DONE!\n")
+        )
+    }
 
     # ee.Image
     ee$Image$getCitation <- ee_image_getCitation
@@ -96,3 +118,41 @@ extra_Initialize <- function() {
     ee$ImageCollection$panSharpen <- ee_ImageCollection_panSharpen
 }
 
+
+#' ee_utils if the first call that rgee does to Python, so delay_load (reticulate::import)
+#' will affected. This function was created to force n times the connection to Python virtual
+#' env, before to display a error message.
+#' @noRd
+ee_connect_to_py <- function(path, n = 5) {
+  ee_utils <- try(ee_source_python(oauth_func_path = path), silent = TRUE)
+  # counter added to prevent problems with reticulate
+  con_reticulate_counter <- 1
+  while (any(class(ee_utils) %in%  "try-error")) {
+    ee_utils <- try(ee_source_python(path), silent = TRUE)
+    con_reticulate_counter <- con_reticulate_counter + 1
+    if (con_reticulate_counter == (n + 1)) {
+      python_path <- reticulate::py_discover_config()
+      message_con <- c(
+        sprintf("The current Python PATH: %s",
+                crayon::bold(python_path[["python"]])),
+        "does not have the Python package \"earthengine-api\" installed. Do you restarted/terminated",
+        "your R session after install miniconda or run ee_install()?",
+        "If this is not the case, try:",
+        "> reticulate::use_python(): Refresh your R session and manually set the Python environment with all rgee dependencies.",
+        "> ee_install(): To create and set a Python environment with all rgee dependencies.",
+        "> ee_install_set_pyenv(): To set a specific Python environment."
+      )
+
+      stop(paste(message_con,collapse = "\n"))
+    }
+  }
+  return(ee_utils)
+}
+
+#' Read and evaluate a python script
+#' @noRd
+ee_source_python <- function(oauth_func_path) {
+  module_name <- gsub("\\.py$", "", basename(oauth_func_path))
+  module_path <- dirname(oauth_func_path)
+  reticulate::import_from_path(module_name, path = module_path, convert = FALSE)
+}

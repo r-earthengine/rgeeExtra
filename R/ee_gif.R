@@ -3,8 +3,10 @@
 #' Create an GIF (as a magick-image object) from a EE
 #' ImageCollection. Note: Animations can only be created when ImageCollections
 #' is composed by RGB or RGBA image. This can be done by mapping
-#' a visualization function onto an ImageCollection (e.g. \code{ic$map(function(img) img$visualize(...))})
-#' or specifying three bands in parameters argument (See examples). [ee_utils_gif_creator] is a
+#' a visualization function onto an ImageCollection
+#' (e.g. \code{ic$map(function(img) img$visualize(...))})
+#' or specifying three bands in parameters argument (See examples).
+#' [ee_utils_gif_creator] is a
 #' wrapper around \strong{\code{ee$ImageCollection$getVideoThumbURL}}.
 #'
 #' @author Jeroen Ooms

@@ -1,5 +1,5 @@
 ---
-title: "Introducción a rgeeExtra"
+title: "Introduction"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction}
@@ -32,7 +32,7 @@ The `extra_Initialize()` function ensures that the additional functionalities of
 
 To install the `rgeeExtra` package, you can use the following:
   
-  ```{r}
+```{r}
 remotes::install_github("r-earthengine/rgeeExtra")
 ```
 

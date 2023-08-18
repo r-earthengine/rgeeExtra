@@ -8,15 +8,20 @@ Authors@R:
            email = "csaybar@gmail.com",
            comment = c(ORCID = "0000-0003-2745-9535")),
       person(given = "David",
-           family = " Montero",
+           family = "Montero",
 	         role = c("ctb"),
 	         email = "dml.mont@gmail.com",
 	         comment = c(ORCID = "0000-0002-9010-3286")),
       person(given = "Lesly",
-           family = " Bautista",
+           family = "Bautista",
 	         role = c("ctb"),
 	         email = "leslyarcelly.213@gmail.com",
-	         comment = c(ORCID = "0000-0003-3523-8687"))
+	         comment = c(ORCID = "0000-0003-3523-8687")),
+      person(given = "Marc",
+           family = "Choisy",
+	         role = c("ctb"),
+	         email = "mchoisy@oucru.org",
+	         comment = c(ORCID = "0000-0002-5187-6390"))
     )
 Description: High-level functions to post-process raster data (ee.Image and ee.ImageCollection), vector data (ee.Geometry, ee.Feature, and ee.FeatureCollection) and additional Earth Engine objects (e.g. ee.Array, ee.List, ee.Number, ee.Dictionary, etc.). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.
 License: Apache License (>= 2)
@@ -24,9 +29,17 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Config/reticulate:
+  list(
+    packages = list(
+      list(package = "earthengine-api")
+    )
+  )
 Imports:
-    reticulate (>= 1.31),
-    rgee
+    reticulate (>= 1.27),
+    rgee,
+    magrittr,
+    crayon
 Suggests:
     testthat (>= 3.0.0),
     googledrive,
@@ -38,3 +51,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+Language: en-US

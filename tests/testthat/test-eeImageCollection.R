@@ -4,6 +4,7 @@ library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 test_that("ee_ImageCollection_closest", {
   roi <- ee$Geometry$Point(c(-79, -12))
@@ -12,6 +13,7 @@ test_that("ee_ImageCollection_closest", {
     ee$ImageCollection$first() -> ee_img
   expect_is(ee_img, "ee.image.Image")
 })
+
 
 test_that("ee_ImageCollection_getCitation", {
   ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%

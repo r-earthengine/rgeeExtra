@@ -15,7 +15,7 @@ navbar:
       -  text: Introduction
          href: articles/Introduction.html
       -  text: Features
-         href: articles/features.html
+         href: articles/Features.html
     - icon: fa fa-newspaper-o
       text: "news"
       href: news/index.html

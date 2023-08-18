@@ -4,6 +4,7 @@ library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 test_that("ee_image_getCitation", {
   ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%

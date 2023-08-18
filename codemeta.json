@@ -1,0 +1,266 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "rgeeExtra",
+  "description": "High-level functions to post-process raster data (ee.Image and ee.ImageCollection), vector data (ee.Geometry, ee.Feature, and ee.FeatureCollection) and additional Earth Engine objects (e.g. ee.Array, ee.List, ee.Number, ee.Dictionary, etc.). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.",
+  "name": "rgeeExtra: Extensions for 'rgee'",
+  "license": "Apache License 2",
+  "version": "0.0.1",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Cesar",
+      "familyName": "Aybar",
+      "email": "csaybar@gmail.com",
+      "@id": "https://orcid.org/0000-0003-2745-9535"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "David",
+      "familyName": "Montero",
+      "email": "dml.mont@gmail.com",
+      "@id": "https://orcid.org/0000-0002-9010-3286"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Lesly",
+      "familyName": "Bautista",
+      "email": "leslyarcelly.213@gmail.com",
+      "@id": "https://orcid.org/0000-0003-3523-8687"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Marc",
+      "familyName": "Choisy",
+      "email": "mchoisy@oucru.org",
+      "@id": "https://orcid.org/0000-0002-5187-6390"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Cesar",
+      "familyName": "Aybar",
+      "email": "csaybar@gmail.com",
+      "@id": "https://orcid.org/0000-0003-2745-9535"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "googledrive",
+      "name": "googledrive",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=googledrive"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "googleCloudStorageR",
+      "name": "googleCloudStorageR",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=googleCloudStorageR"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "geojsonio",
+      "name": "geojsonio",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=geojsonio"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "magick",
+      "name": "magick",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magick"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stars",
+      "name": "stars",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stars"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "sf",
+      "name": "sf",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=sf"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "reticulate",
+      "name": "reticulate",
+      "version": ">= 1.31",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=reticulate"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "rgee",
+      "name": "rgee",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rgee"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "magrittr",
+      "name": "magrittr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "crayon",
+      "name": "crayon",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crayon"
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "5226.337KB",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2020",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Cesar",
+          "familyName": "Aybar"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Quisheng",
+          "familyName": "Wu"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Lesly",
+          "familyName": "Bautista"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Roy",
+          "familyName": "Yali"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Antony",
+          "familyName": "Barja"
+        }
+      ],
+      "name": "rgee: An R package for interacting with Google Earth Engine",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2020",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "Journal of Open Source Software"
+        }
+      }
+    }
+  ],
+  "codeRepository": "https://github.com/r-earthengine/rgeeExtra",
+  "releaseNotes": "https://github.com/r-earthengine/rgeeExtra/blob/master/NEWS.md",
+  "readme": "https://github.com/r-earthengine/rgeeExtra/blob/master/README.md",
+  "keywords": "rgee"
+}

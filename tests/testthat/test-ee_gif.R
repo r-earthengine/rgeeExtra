@@ -1,6 +1,12 @@
+context("rgee: ee_gif simple test")
+# -------------------------------------------------------------------------
+
+
+library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 test_that("ee_utils_gif_creator", {
   col <- ee$ImageCollection("JRC/GSW1_1/YearlyHistory")$map(function(img) {
@@ -16,11 +22,11 @@ test_that("ee_utils_gif_creator", {
   # 1 Basic Animation - Ucayali Peru
   # -----------------------------------
 
-  bgColor = "FFFFFF" # Assign white to background pixels.
-  riverColor = "0D0887" # Assign blue to river pixels.
+  bgColor <- "FFFFFF" # Assign white to background pixels.
+  riverColor <- "0D0887" # Assign blue to river pixels.
 
   ## 1.1 Create the dataset
-  annualCol = col$map(function(img) {
+  annualCol <- col$map(function(img) {
     img$unmask(0)$
       visualize(min = 0, max = 1, palette = c(bgColor, riverColor))$
       set("year", img$get("year"))
@@ -30,7 +36,7 @@ test_that("ee_utils_gif_creator", {
 
   ## 1.2 Set video arguments
   aoi <- ee$Geometry$Rectangle(-74.327, -10.087, -73.931, -9.327)
-  videoArgs = list(
+  videoArgs <- list(
     dimensions = 600, # Max dimension (pixels), min dimension is proportionally scaled.
     region = aoi,
     framesPerSecond = 10
