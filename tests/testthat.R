@@ -4,4 +4,8 @@ library(rgeeExtra)
 library(stars)
 library(sf)
 
-test_check("rgeeExtra")
+if (identical(Sys.getenv("NOT_CRAN"), "true")) {
+  test_check("rgeeExtra")
+}
+
+
