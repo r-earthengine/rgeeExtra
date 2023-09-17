@@ -23,7 +23,7 @@ Authors@R:
 	         email = "mchoisy@oucru.org",
 	         comment = c(ORCID = "0000-0002-5187-6390"))
     )
-Description: High-level functions to post-process raster data (ee.Image and ee.ImageCollection), vector data (ee.Geometry, ee.Feature, and ee.FeatureCollection) and additional Earth Engine objects (e.g. ee.Array, ee.List, ee.Number, ee.Dictionary, etc.). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.
+Description: High-level API to process Google Earth Engine (GEE) raster (ee.Image and ee.ImageCollection) and vector data (ee.Geometry, ee.Feature, and ee.FeatureCollection). Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.
 License: Apache License (>= 2)
 Encoding: UTF-8
 LazyData: true
