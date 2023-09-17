@@ -14,3 +14,4 @@
 ^inst/ee_extra/\.gitignore
 ^pkgdown
 ^codemeta\.json$
+^\.github$

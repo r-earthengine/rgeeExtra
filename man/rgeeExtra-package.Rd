@@ -22,6 +22,14 @@ The package implements and supports:
 \item Math operators
 }
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/r-earthengine/rgeeExtra}
+  \item Report bugs at \url{https://github.com/r-earthengine/rgeeExtra/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Cesar Aybar \email{csaybar@gmail.com} (\href{https://orcid.org/0000-0003-2745-9535}{ORCID})
 

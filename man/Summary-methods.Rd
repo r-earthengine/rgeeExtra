@@ -18,3 +18,16 @@
 \description{
 Summary Methods
 }
+\examples{
+\dontrun{
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
+
+roi <- ee$Geometry$Point(c(-79, -12))
+
+img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
+max(img_demo)
+}
+}

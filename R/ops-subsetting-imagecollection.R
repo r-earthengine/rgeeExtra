@@ -155,6 +155,18 @@
 #'
 #' @param x an EE ImageCollection Object.
 #' @name ee_length_ic
+#' @examples
+#' \dontrun{
+#' library(rgeeExtra)
+#' library(rgee)
+#'
+#' ee_Initialize()     # Initialize the Google Earth Engine API connection
+#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
+#'
+#' ic <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
+#'   ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
+#' length(ic)
+#' }
 #' @export
 'length.ee.imagecollection.ImageCollection' <-function(x) {
   x %>%
@@ -168,6 +180,18 @@
 #' Get the names of the properties of an Earth Engine ImageCollection object.
 #' @param x an EE ImageCollection object.
 #' @name ee_name_ic
+#' @examples
+#' \dontrun{
+#' library(rgeeExtra)
+#' library(rgee)
+#'
+#' ee_Initialize()     # Initialize the Google Earth Engine API connection
+#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
+#'
+#' ic <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
+#'   ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
+#' names(ic)
+#' }
 #' @export
 'names.ee.imagecollection.ImageCollection' <-function(x) {
   x %>% rgee::ee$ImageCollection$propertyNames() %>% rgee::ee$List$getInfo()

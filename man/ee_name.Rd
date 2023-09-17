@@ -18,3 +18,15 @@
 \description{
 Get or set the names of the layers of an Earth Engine Image object.
 }
+\examples{
+\dontrun{
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
+extra_Initialize()
+
+img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
+names(img_demo)
+}
+}

@@ -22,3 +22,20 @@ object as argument: \code{abs}, \code{sign}, \code{sqrt}, \code{ceiling},
 \description{
 Mathematical functions
 }
+\examples{
+\dontrun{
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
+
+roi <- ee$Geometry$Point(c(-79, -12))
+
+a <- ee$Image(1)
+b <- ee$Image(2)
+c <- a + b
+
+log1p(ee$Image(10))
+
+}
+}

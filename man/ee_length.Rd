@@ -33,3 +33,15 @@ If a vector is shortened, extra values are discarded and when a vector
 is lengthened, it is padded out to its new length with ee$Image(0), with
 band name of zzz_rgee_NA_\%02d.
 }
+\examples{
+\dontrun{
+library(rgeeExtra)
+library(rgee)
+
+ee_Initialize()     # Initialize the Google Earth Engine API connection
+extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
+
+ic <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
+length(ic)
+}
+}

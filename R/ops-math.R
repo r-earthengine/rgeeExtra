@@ -125,6 +125,22 @@ Ops.ee.image.Image <- function(e1, e2) {
 #' \code{tan}, and \code{tanh}.
 #'
 #' @name Math-methods
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#'
+#' roi <- ee$Geometry$Point(c(-79, -12))
+#'
+#' a <- ee$Image(1)
+#' b <- ee$Image(2)
+#' c <- a + b
+#'
+#' log1p(ee$Image(10))
+#'
+#' }
 #' @export
 Math.ee.image.Image <- function(x, ...) {
   if (.Generic == "abs") {
@@ -204,6 +220,18 @@ Math.ee.image.Image <- function(x, ...) {
 #' @param ... ee$Image.
 #' @param na.rm Ignore.
 #' @name Summary-methods
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#'
+#' roi <- ee$Geometry$Point(c(-79, -12))
+#'
+#' img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
+#' max(img_demo)
+#' }
 #' @export
 Summary.ee.image.Image <- function(..., na.rm = TRUE) {
   img <- rgee::ee$ImageCollection(list(...))$toBands()

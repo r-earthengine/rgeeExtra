@@ -92,6 +92,17 @@
 #' @param x an EE Image object.
 #' @param value a character vector with the same length as x.
 #' @name ee_name
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#' extra_Initialize()
+#'
+#' img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
+#' names(img_demo)
+#' }
 #' @export
 'names<-.ee.image.Image' <-function(x, value) {
   rgee::ee$Image$rename(x, value)
@@ -116,6 +127,17 @@
 #'  is lengthened, it is padded out to its new length with ee$Image(0), with
 #'  band name of zzz_rgee_NA_%02d.
 #' @name ee_length
+#' @examples
+#' \dontrun{
+#' library(rgeeExtra)
+#' library(rgee)
+#'
+#' ee_Initialize()     # Initialize the Google Earth Engine API connection
+#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
+#'
+#' ic <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
+#' length(ic)
+#' }
 #' @export
 'length.ee.image.Image' <-function(x) {
   x %>% rgee::ee$Image$bandNames() %>% rgee::ee$List$getInfo() %>% length()

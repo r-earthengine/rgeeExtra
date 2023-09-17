@@ -13,3 +13,16 @@
 \description{
 Get the names of the properties of an Earth Engine ImageCollection object.
 }
+\examples{
+\dontrun{
+library(rgeeExtra)
+library(rgee)
+
+ee_Initialize()     # Initialize the Google Earth Engine API connection
+extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
+
+ic <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
+  ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
+names(ic)
+}
+}
