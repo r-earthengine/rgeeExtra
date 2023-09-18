@@ -61,9 +61,10 @@ EEextra_PYTHON_PACKAGE <- NULL
 #' library(rgee)
 #' library(rgeeExtra)
 #'
-#' ee_Initialize()
-#' extra_Initialize()
+#' ee_Initialize() # Initialize GEE
+#' extra_Initialize() # Extent the GEE API
 #' }
+#' @returns TRUE if the function runs smoothly.
 #' @export
 extra_Initialize <- function(quiet = FALSE) {
 
@@ -117,6 +118,8 @@ extra_Initialize <- function(quiet = FALSE) {
     ee$ImageCollection$scaleAndOffset <- ee_ImageCollection_scaleAndOffset
     ee$ImageCollection$tasseledCap <- ee_ImageCollection_tasseledCap
     ee$ImageCollection$panSharpen <- ee_ImageCollection_panSharpen
+
+    invisible(TRUE)
 }
 
 

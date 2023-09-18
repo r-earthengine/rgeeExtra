@@ -9,6 +9,9 @@ extra_Initialize(quiet = FALSE)
 \arguments{
 \item{quiet}{Logical. Suppress info messages.}
 }
+\value{
+TRUE if the function runs smoothly.
+}
 \description{
 Load extra functionality for rgee
 }
@@ -17,7 +20,7 @@ Load extra functionality for rgee
 library(rgee)
 library(rgeeExtra)
 
-ee_Initialize()
-extra_Initialize()
+ee_Initialize() # Initialize GEE
+extra_Initialize() # Extent the GEE API
 }
 }

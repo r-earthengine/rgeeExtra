@@ -12,6 +12,9 @@
 
 \item{e2}{Numeric or ee$Image.}
 }
+\value{
+An ee$Image object
+}
 \description{
 Arithmetic, logic and compare operators for computation with \code{ee$Image}
 objects and numeric values.

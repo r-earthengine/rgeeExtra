@@ -23,6 +23,7 @@ Return the element at a specified position in an Earth Engine Image or ImageColl
 library(rgee)
 library(sf)
 
+
 ee_Initialize()
 
 nc <- st_read(system.file("shape/nc.shp", package = "sf")) \%>\%

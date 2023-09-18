@@ -1,8 +1,7 @@
 #' Extract or replace parts of and ee$ImageCollection
 #' @param x ee$ImageCollection or ee$Image.
 #' @param index Integer. Index specifying elements to extract or replace.
-#' @param value ee$ImageCollection or ee$Image to replace in.
-#' @name ee_subsetting
+#' @return An EE.ImageCollection
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -66,7 +65,25 @@
   }
 }
 
-#' @name ee_subsetting
+
+#' Extract or replace parts of and ee$ImageCollection
+#' @param x ee$ImageCollection or ee$Image.
+#' @param index Integer. Index specifying elements to extract or replace.
+#' @param value ee$ImageCollection or ee$Image to replace in.
+#' @return An EE.ImageCollection
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#' library(sf)
+#'
+#' ee_Initialize(gcs = TRUE, drive = TRUE)
+#' extra_Initialize()
+#' # Define a Image or ImageCollection: Terraclimate
+#  terraclimate <- ee$ImageCollection("IDAHO_EPSCOR/TERRACLIMATE") %>%
+#      ee$ImageCollection$filterDate("2001-01-01", "2001-04-01")
+#  terraclimate[[1]] <- ee$Image(0)
+#' }
 #' @export
 '[[<-.ee.imagecollection.ImageCollection' <- function(x, index, value) {
   # 1. Deal with negative and zero index
@@ -154,7 +171,6 @@
 #' Set the length of an Earth Engine Image.
 #'
 #' @param x an EE ImageCollection Object.
-#' @name ee_length_ic
 #' @examples
 #' \dontrun{
 #' library(rgeeExtra)
@@ -167,6 +183,7 @@
 #'   ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
 #' length(ic)
 #' }
+#' @return A numeric representing the number of images.
 #' @export
 'length.ee.imagecollection.ImageCollection' <-function(x) {
   x %>%
@@ -178,8 +195,8 @@
 #' Names of Earth Engine ImagesCollection properties
 #'
 #' Get the names of the properties of an Earth Engine ImageCollection object.
+#'
 #' @param x an EE ImageCollection object.
-#' @name ee_name_ic
 #' @examples
 #' \dontrun{
 #' library(rgeeExtra)
@@ -192,6 +209,7 @@
 #'   ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
 #' names(ic)
 #' }
+#' @returns A vector with the property names of ee$ImageCollection object
 #' @export
 'names.ee.imagecollection.ImageCollection' <-function(x) {
   x %>% rgee::ee$ImageCollection$propertyNames() %>% rgee::ee$List$getInfo()

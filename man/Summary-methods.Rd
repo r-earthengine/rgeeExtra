@@ -15,6 +15,9 @@
 
 \item{na.rm}{Ignore.}
 }
+\value{
+An ee$Image object
+}
 \description{
 Summary Methods
 }

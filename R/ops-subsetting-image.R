@@ -86,12 +86,12 @@
   }
 }
 
-#' Names of Earth Engine Images layers (bands)
+#' Rename of Earth Engine Images layers (bands)
 #'
-#' Get or set the names of the layers of an Earth Engine Image object.
+#' Set the names of the layers of an Earth Engine Image object.
+#'
 #' @param x an EE Image object.
 #' @param value a character vector with the same length as x.
-#' @name ee_name
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -100,16 +100,33 @@
 #' ee_Initialize()
 #' extra_Initialize()
 #'
-#' img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
-#' names(img_demo)
+#' img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")[[1:3]]
+#' names(img_demo) <- c("B01", "B02", "B03")
 #' }
+#' @return An ee$Image with its bands renamed.
 #' @export
 'names<-.ee.image.Image' <-function(x, value) {
   rgee::ee$Image$rename(x, value)
 }
 
 
-#' @name ee_name
+
+#' Names of Earth Engine Images layers (bands)
+#'
+#' Get the names of the layers of an Earth Engine Image object.
+#' @param x an EE Image object.
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#' extra_Initialize()
+#'
+#' img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")[[1:3]]
+#' names(img_demo)
+#' }
+#' @return A vector with the name of the bands.
 #' @export
 'names.ee.image.Image' <-function(x) {
   x %>% rgee::ee$Image$bandNames() %>% rgee::ee$List$getInfo()
@@ -121,12 +138,10 @@
 #'
 #' Get or set the length of an Earth Engine Image.
 #' @param x an EE Image Object.
-#' @param value a non-negative integer.
 #' @details
 #'  If a vector is shortened, extra values are discarded and when a vector
 #'  is lengthened, it is padded out to its new length with ee$Image(0), with
 #'  band name of zzz_rgee_NA_%02d.
-#' @name ee_length
 #' @examples
 #' \dontrun{
 #' library(rgeeExtra)
@@ -138,13 +153,32 @@
 #' ic <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")
 #' length(ic)
 #' }
+#' @return A numeric value that indicate the number of bands in a ee$Image.
 #' @export
 'length.ee.image.Image' <-function(x) {
   x %>% rgee::ee$Image$bandNames() %>% rgee::ee$List$getInfo() %>% length()
 }
 
 
-#' @name ee_length
+#' Length of an Earth Engine Image Object
+#'
+#' Get the length of an Earth Engine Image.
+#'
+#' @param x an EE Image Object.
+#' @param  value A non-negative integer which increase or filter the initial lenght of the
+#' ee$Image object.
+#' @examples
+#' \dontrun{
+#' library(rgeeExtra)
+#' library(rgee)
+#'
+#' ee_Initialize()     # Initialize the Google Earth Engine API connection
+#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
+#'
+#' ic <- ee$ImageCollection("COPERNICUS/S2_SR")$first()
+#' length(ic) <- 10
+#' }
+#' @return A filter or increase the number of bands in a ee$Image.
 #' @export
 'length<-.ee.image.Image' <-function(x, value) {
   ee_x_length <- length(x)

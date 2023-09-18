@@ -55,5 +55,3 @@ VignetteBuilder: knitr
 Language: en-US
 BugReports: https://github.com/r-earthengine/rgeeExtra/issues
 URL: https://github.com/r-earthengine/rgeeExtra
-
-

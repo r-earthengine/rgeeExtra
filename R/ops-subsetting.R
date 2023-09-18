@@ -9,6 +9,7 @@
 #' library(rgee)
 #' library(sf)
 #'
+#'
 #' ee_Initialize()
 #'
 #' nc <- st_read(system.file("shape/nc.shp", package = "sf")) %>%

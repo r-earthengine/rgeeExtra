@@ -1,4 +1,22 @@
-#' @name ee_subsetting
+#' Extract parts of and EE FeatureCollection
+#' @param x ee$FeatureCollection.
+#' @param index Integer. Index specifying elements to extract or replace.
+#' @return An ee$FeatureCollection
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#' library(sf)
+#'
+#' ee_Initialize(gcs = TRUE, drive = TRUE)
+#' extra_Initialize()
+#'
+#' # Define a Image or ImageCollection: Terraclimate
+#' fc_tiger <- ee$FeatureCollection('TIGER/2016/Roads')
+#' fc_tiger_subset <- fc_tiger[[1:100]]
+#' Map$centerObject(fc_tiger_subset)
+#' Map$addLayer(fc_tiger_subset)
+#' }
 #' @export
 '[[.ee.featurecollection.FeatureCollection' <- function(x, index) {
   if (is.numeric(index)) {
@@ -31,23 +49,50 @@
 }
 
 
-#' Length of an Earth Engine Image Object
+#' Length of an Earth Engine FeatureCollection Object
 #'
-#' Get or set the length of an Earth Engine Image.
+#' Get the length of an Earth Engine FeatureCollection.
+#'
 #' @param x an EE FeatureCollection Object.
-#' @name ee_length
+#'
+#' @return A numeric representing the length of a ee$FeatureCollection object.
+#' @examples
+#' \dontrun{
+#'
+#' library(rgeeExtra)
+#' library(rgee)
+#'
+#' ee_Initialize()
+#' extra_Initialize()
+#'
+#' region <- ee$Geometry$Rectangle(-119.224, 34.669, -99.536, 50.064)
+#' randomPoints <- ee$FeatureCollection$randomPoints(region)
+#' length(randomPoints)
+#' }
 #' @export
 'length.ee.featurecollection.FeatureCollection' <-function(x) {
   x$size()$getInfo()
 }
 
 
-#' Length of an Earth Engine Image Object
+#' Names of Earth Engine FeatureCollection object
 #'
-#' Get or set the length of an Earth Engine Image.
-#' @param x an EE FeatureCollection Object.
-#' @name ee_length
+#' Get the properties names of FeatureCollection object
+#' @param x an EE FeatureCollection object.
+#' @examples
+#' \dontrun{
+#' library(rgee)
+#' library(rgeeExtra)
+#'
+#' ee_Initialize()
+#' extra_Initialize()
+#'
+#' fc <- ee$FeatureCollection('WRI/GPPD/power_plants')
+#' fc$propertyNames()$getInfo()
+#' }
+#' @returns A vector representing the property names of the ee$FeatureCollection object
 #' @export
 'names.ee.feature.Feature' <-function(x) {
   x$propertyNames()$getInfo()
 }
+

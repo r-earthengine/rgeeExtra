@@ -19,6 +19,9 @@ object as argument: \code{abs}, \code{sign}, \code{sqrt}, \code{ceiling},
 \code{expm1}, \code{cos}, \code{cosh}, \code{sin}, \code{sinh},
 \code{tan}, and \code{tanh}.}
 }
+\value{
+An ee$Image object
+}
 \description{
 Mathematical functions
 }

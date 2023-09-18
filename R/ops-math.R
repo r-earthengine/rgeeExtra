@@ -45,6 +45,7 @@
 #' v6
 #' }
 #' @name Ops-methods
+#' @returns An ee$Image object
 #' @export
 Ops.ee.image.Image <- function(e1, e2) {
 
@@ -125,6 +126,7 @@ Ops.ee.image.Image <- function(e1, e2) {
 #' \code{tan}, and \code{tanh}.
 #'
 #' @name Math-methods
+#' @returns An ee$Image object
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -254,6 +256,7 @@ Summary.ee.image.Image <- function(..., na.rm = TRUE) {
 }
 
 #' @name Summary-methods
+#' @returns An ee$Image object
 #' @export
 mean.ee.image.Image <- function(..., na.rm = TRUE) {
   img <- rgee::ee$ImageCollection(list(...))$toBands()
