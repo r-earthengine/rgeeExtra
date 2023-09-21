@@ -1,6 +1,6 @@
 Package: rgeeExtra
 Title: Extensions for 'rgee'
-Version: 0.0.1
+Version: 0.0.1.999
 Authors@R: 
     c(person(given = "Cesar",
            family = "Aybar",
