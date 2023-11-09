@@ -8,7 +8,10 @@
   <br>
 </h1>
 
-<h4 align="center">High-level functions to process spatial and simple Earth Engine objects. Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.</h4>
+<h4 align="center">
+Simplifies the interaction with GEE APIs and functions, making it more R-like. Popular third-party GEE algorithms are 
+made available to R users
+</h4>
 
 
 <p align="center">
@@ -27,9 +30,8 @@ developed."></a>
 status"></a>
 <a href="https://doi.org/10.5281/zenodo.3945409"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3945409.svg" alt="DOI"></a>
 <br>
-<a href="https://www.buymeacoffee.com/csay" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml/badge.svg" alt="" width="200"></a>
 </p>
-
 
 
 <p align="center">  
@@ -42,9 +44,15 @@ status"></a>
   <a href="#credits">Credits</a>  
 </p>
 
-## What is Google Earth Engine?
+## Why rgeeExtra is needed?
 
-[Google Earth Engine](https://earthengine.google.com/) is a cloud-based platform that allows users to have an easy access to a petabyte-scale archive of remote sensing data and run geospatial analysis on Google's infrastructure. Currently, Google offers support only for Python and JavaScript. `rgee` will fill the gap **starting to provide support to R!**. Below you will find the comparison between the syntax of `rgee` and the two Google-supported client libraries.
+The goal of rgeeExtra is to improve the user-friendliness of Google Earth Engine (GEE) by 
+simplifying its syntax and enhancing the experience for R users. GEE primarily utilizes JavaScript 
+for its API, which can be quite different from the R programming language. "rgeeExtra" can bridge 
+this gap by providing R users with a set of functions and tools that abstract the intricacies 
+of GEE's JavaScript syntax. This extension provides R users with higher-level abstractions and 
+custom functions that have been reworked from the JavaScript API.
+
 
 <table>
 <tr>
@@ -102,21 +110,18 @@ You can install rgeeExtra from [GitHub](https://github.com/r-earthengine/rgeeExt
 remotes::install_github("r-earthengine/rgeeExtra")
 ```
 
-To install Python dependencies, please refer to the installation guidelines provided in the [rgee](https://github.com/r-spatial/rgee#installation) 
-section of the documentation.
-
 ## How does it work?
 
 The rgeeExtra extends the following Earth Engine classes:
 
-- [ee.Feature](https://developers.google.com/earth-engine/guides/features)
-- [ee.FeatureCollection](https://developers.google.com/earth-engine/guides/feature_collections)
-- [ee.Geometry](https://developers.google.com/earth-engine/guides/geometries)
-- [ee.Image](https://developers.google.com/earth-engine/guides/image_overview)
-- [ee.ImageCollection](https://developers.google.com/earth-engine/guides/ic_creating)
+- [ee$Feature](https://developers.google.com/earth-engine/guides/features)
+- [ee$FeatureCollection](https://developers.google.com/earth-engine/guides/feature_collections)
+- [ee$Geometry](https://developers.google.com/earth-engine/guides/geometries)
+- [ee$Image](https://developers.google.com/earth-engine/guides/image_overview)
+- [ee$ImageCollection](https://developers.google.com/earth-engine/guides/ic_creating)
 
-rgeeExtra develops and maintains new methods and constructors that extents the most popular GEE classes (See ee$Extra$...). Besides, it supports functional programming (FP) style to make R users feel more comfortable with the API.
 
+rgeeExtra develops and maintains new methods and constructors that extend the most popular GEE classes (e.g., ee$Feature$Extra_...). All third-party methods implemented by rgeeExtra start with 'Extra_.' To learn more about all the functionalities that rgeeExtra offers, please refer to the article [Features] for additional information.
 
 ## Example
 
