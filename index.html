@@ -102,16 +102,16 @@
 <br><a href="https://r-spatial.github.io/rgee/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376965-5f7dca80-b5cb-11eb-9a82-47876680a3e6.png" alt="" width="200"></a> <a href="https://r-earthengine.com/rgeeExtra/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376968-63a9e800-b5cb-11eb-83e7-3f36299e17cb.png" alt="" width="200"></a> <a href="https://r-earthengine.com/rgeebook/" class="external-link"><img src="https://user-images.githubusercontent.com/16768318/118376966-60aef780-b5cb-11eb-8df2-ca70dcfe04c5.png" alt="" width="200"></a> <br> rgeeExtra: An Extension for rgee <br>
 </h1></div>
 <h4 align="center">
-High-level functions to process spatial and simple Earth Engine objects. Popular Third-party GEE algorithms are re-coded from Javascript and Python to R.
+Simplifies the interaction with GEE APIs and functions, making it more R-like. Popular third-party GEE algorithms are made available to R users
 </h4>
 
 <p align="center">
 • <a href="#installation">Installation</a>  •<br><a href="#how-does-it-work">How does it work?</a>  • <a href="#example">Example</a>  • <a href="#contributing-guide">Contributing</a>  • <a href="#share-the-love">Citation</a>  • <a href="#credits">Credits</a>
 </p>
 <div class="section level2">
-<h2 id="what-is-google-earth-engine">What is Google Earth Engine?<a class="anchor" aria-label="anchor" href="#what-is-google-earth-engine"></a>
+<h2 id="why-rgeeextra-is-needed">Why rgeeExtra is needed?<a class="anchor" aria-label="anchor" href="#why-rgeeextra-is-needed"></a>
 </h2>
-<p><a href="https://earthengine.google.com/" class="external-link">Google Earth Engine</a> is a cloud-based platform that allows users to have an easy access to a petabyte-scale archive of remote sensing data and run geospatial analysis on Google’s infrastructure. Currently, Google offers support only for Python and JavaScript. <code>rgee</code> will fill the gap <strong>starting to provide support to R!</strong>. Below you will find the comparison between the syntax of <code>rgee</code> and the two Google-supported client libraries.</p>
+<p>The goal of rgeeExtra is to improve the user-friendliness of Google Earth Engine (GEE) by simplifying its syntax and enhancing the experience for R users. GEE primarily utilizes JavaScript for its API, which can be quite different from the R programming language. “rgeeExtra” can bridge this gap by providing R users with a set of functions and tools that abstract the intricacies of GEE’s JavaScript syntax. This extension provides R users with higher-level abstractions and custom functions that have been reworked from the JavaScript API.</p>
 <table class="table">
 <tr>
 <th>
@@ -163,20 +163,19 @@ rgeeExtra
 <p>You can install rgeeExtra from <a href="https://github.com/r-earthengine/rgeeExtra" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-earthengine/rgeeExtra"</span><span class="op">)</span></span></code></pre></div>
-<p>To install Python dependencies, please refer to the installation guidelines provided in the <a href="https://github.com/r-spatial/rgee#installation" class="external-link">rgee</a> section of the documentation.</p>
 </div>
 <div class="section level2">
 <h2 id="how-does-it-work">How does it work?<a class="anchor" aria-label="anchor" href="#how-does-it-work"></a>
 </h2>
 <p>The rgeeExtra extends the following Earth Engine classes:</p>
 <ul>
-<li><a href="https://developers.google.com/earth-engine/guides/features" class="external-link">ee.Feature</a></li>
-<li><a href="https://developers.google.com/earth-engine/guides/feature_collections" class="external-link">ee.FeatureCollection</a></li>
-<li><a href="https://developers.google.com/earth-engine/guides/geometries" class="external-link">ee.Geometry</a></li>
-<li><a href="https://developers.google.com/earth-engine/guides/image_overview" class="external-link">ee.Image</a></li>
-<li><a href="https://developers.google.com/earth-engine/guides/ic_creating" class="external-link">ee.ImageCollection</a></li>
+<li><a href="https://developers.google.com/earth-engine/guides/features" class="external-link">ee$Feature</a></li>
+<li><a href="https://developers.google.com/earth-engine/guides/feature_collections" class="external-link">ee$FeatureCollection</a></li>
+<li><a href="https://developers.google.com/earth-engine/guides/geometries" class="external-link">ee$Geometry</a></li>
+<li><a href="https://developers.google.com/earth-engine/guides/image_overview" class="external-link">ee$Image</a></li>
+<li><a href="https://developers.google.com/earth-engine/guides/ic_creating" class="external-link">ee$ImageCollection</a></li>
 </ul>
-<p>rgeeExtra develops and maintains new methods and constructors that extents the most popular GEE classes (See ee<span class="math inline"><em>E</em><em>x</em><em>t</em><em>r</em><em>a</em></span>…). Besides, it supports functional programming (FP) style to make R users feel more comfortable with the API.</p>
+<p>rgeeExtra develops and maintains new methods and constructors that extend the most popular GEE classes (e.g., ee<span class="math inline"><em>F</em><em>e</em><em>a</em><em>t</em><em>u</em><em>r</em><em>e</em></span>Extra_…). All third-party methods implemented by rgeeExtra start with ‘Extra_.’ To learn more about all the functionalities that rgeeExtra offers, please refer to the article [Features] for additional information.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -306,7 +305,7 @@ developed."></a></li>
 <li><a href="https://cran.r-project.org/package=rgeeExtra" class="external-link"><img src="https://www.r-pkg.org/badges/version/rgeeExtra" alt="CRAN
 status"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.3945409" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3945409.svg" alt="DOI"></a></li>
-<li><a href="https://www.buymeacoffee.com/csay" target="_blank" class="external-link"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;"></a></li>
+<li><a href="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml/badge.svg" alt="" width="200"></a></li>
 </ul>
 </div>
 
