@@ -15,9 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`rgeeExtra` serves as a wrapper for the Python package named `eeExtra`. The creation of `eeExtra` was driven by a need to consolidate various third-party GEE packages and projects found on GitHub. 
-
-`rgeeExtra` ensures a seamless integration of these projects across different programming languages by standardizing methods and facilitating the use of JavaScript code projects beyond the traditional Code Editor environment.
+`rgeeExtra` serves as a wrapper for the Python package named `eeExtra`. The creation of `eeExtra` was driven by a need to consolidate various third-party GEE Javascript and Python packages and projects found on GitHub in the same programming language and style, avoiding dependencies. `rgeeExtra` ensures a seamless integration of `eeExtra` within the R ecosystem
 
 Key features of `rgeeExtra` include:
 
@@ -39,6 +37,155 @@ library(rgee)
 ee_Initialize()        # Initialize the Google Earth Engine API connection
 extra_Initialize()     # Initialize the extended functionalities of rgeeExtra
 ```
+
+
+## **1. Features for `ee$Feature` and `ee$FeatureCollection`**
+
+### **Subsetting**
+
+todo
+
+### **length**
+
+todo
+
+### **names**
+
+todo
+
+## **2. Features for ee$Image**
+
+### **Subsetting**
+
+todo
+
+### **length**
+
+todo
+
+### **names**
+
+todo
+
+### **getCitation**
+
+todo
+
+### **getCitation**
+
+todo
+    
+### **getDOI**
+
+todo
+
+### **getOffsetParams**
+
+todo
+
+### **getScaleParams**
+
+todo
+
+### **getSTAC**
+
+todo
+
+### **getSTAC**
+
+todo
+
+### **spectralIndex**
+
+todo
+
+### **preprocess**
+
+todo
+
+### **panSharpen**
+
+todo
+
+### **maskClouds**
+
+todo
+
+### **matchHistogram**
+
+todo
+
+### **tasseledCap**
+
+todo
+
+### **scaleAndOffset**
+
+todo
+
+## **2. Features for ee$ImageCollection**
+
+todo
+
+### **Subsetting**
+
+todo
+
+### **length**
+
+todo
+
+### **names**
+
+todo
+
+### **closest**
+
+todo
+
+### **getCitation**
+
+todo
+
+### **getDOI**
+
+todo
+
+### **getOffsetParams**
+
+todo
+
+### **getScaleParams**
+
+todo
+
+### **getSTAC**
+
+todo
+
+### **spectralIndex**
+
+todo
+
+### **preprocess**
+
+todo
+
+### **scaleAndOffset**
+
+todo
+
+### **tasseledCap**
+
+todo
+
+### **panSharpen**
+
+todo
+
+
+## **3. Third-party repositories**
+
 
 ## **1. Automatic Scaling and Offsetting**
 

@@ -92,32 +92,32 @@ extra_Initialize <- function(quiet = FALSE) {
     }
 
     # ee.Image
-    ee$Image$getCitation <- ee_image_getCitation
-    ee$Image$getDOI <- ee_image_getDOI
-    ee$Image$getOffsetParams <- ee_Image_getOffsetParams
-    ee$Image$getScaleParams <- ee_Image_getScaleParams
-    ee$Image$getSTAC <- ee_Image_getSTAC
-    ee$Image$getSTAC <- ee_Image_preprocess
-    ee$Image$spectralIndex <- ee_Image_spectralIndex
-    ee$Image$preprocess <- ee_Image_preprocess
-    ee$Image$panSharpen <- ee_Image_panSharpen
-    ee$Image$maskClouds <- ee_Image_maskClouds
-    ee$Image$matchHistogram <- ee_Image_matchHistogram
-    ee$Image$tasseledCap <- ee_Image_tasseledCap
-    ee$Image$scaleAndOffset <- ee_Image_scaleAndOffset
+    ee$Image$Extra_getCitation <- ee_image_getCitation
+    ee$Image$Extra_getDOI <- ee_image_getDOI
+    ee$Image$Extra_getOffsetParams <- ee_Image_getOffsetParams
+    ee$Image$Extra_getScaleParams <- ee_Image_getScaleParams
+    ee$Image$Extra_getSTAC <- ee_Image_getSTAC
+    ee$Image$Extra_getSTAC <- ee_Image_preprocess
+    ee$Image$Extra_spectralIndex <- ee_Image_spectralIndex
+    ee$Image$Extra_preprocess <- ee_Image_preprocess
+    ee$Image$Extra_panSharpen <- ee_Image_panSharpen
+    ee$Image$Extra_maskClouds <- ee_Image_maskClouds
+    ee$Image$Extra_matchHistogram <- ee_Image_matchHistogram
+    ee$Image$Extra_tasseledCap <- ee_Image_tasseledCap
+    ee$Image$Extra_scaleAndOffset <- ee_Image_scaleAndOffset
 
     # ee.ImageCollection
-    ee$ImageCollection$closest <- ee_ImageCollection_closest
-    ee$ImageCollection$getCitation <- ee_ImageCollection_getCitation
-    ee$ImageCollection$getDOI <- ee_ImageCollection_getDOI
-    ee$ImageCollection$getOffsetParams <- ee_ImageCollection_getOffsetParams
-    ee$ImageCollection$getScaleParams <- ee_ImageCollection_getScaleParams
-    ee$ImageCollection$getSTAC <- ee_ImageCollection_getSTAC
-    ee$ImageCollection$spectralIndex <- ee_ImageCollection_spectralIndex
-    ee$ImageCollection$preprocess <- ee_ImageCollection_preprocess
-    ee$ImageCollection$scaleAndOffset <- ee_ImageCollection_scaleAndOffset
-    ee$ImageCollection$tasseledCap <- ee_ImageCollection_tasseledCap
-    ee$ImageCollection$panSharpen <- ee_ImageCollection_panSharpen
+    ee$ImageCollection$Extra_closest <- ee_ImageCollection_closest
+    ee$ImageCollection$Extra_getCitation <- ee_ImageCollection_getCitation
+    ee$ImageCollection$Extra_getDOI <- ee_ImageCollection_getDOI
+    ee$ImageCollection$Extra_getOffsetParams <- ee_ImageCollection_getOffsetParams
+    ee$ImageCollection$Extra_getScaleParams <- ee_ImageCollection_getScaleParams
+    ee$ImageCollection$Extra_getSTAC <- ee_ImageCollection_getSTAC
+    ee$ImageCollection$Extra_spectralIndex <- ee_ImageCollection_spectralIndex
+    ee$ImageCollection$Extra_preprocess <- ee_ImageCollection_preprocess
+    ee$ImageCollection$Extra_scaleAndOffset <- ee_ImageCollection_scaleAndOffset
+    ee$ImageCollection$Extra_tasseledCap <- ee_ImageCollection_tasseledCap
+    ee$ImageCollection$Extra_panSharpen <- ee_ImageCollection_panSharpen
 
     invisible(TRUE)
 }
