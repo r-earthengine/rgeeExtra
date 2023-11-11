@@ -42,15 +42,6 @@ EEextra_PYTHON_PACKAGE <- NULL
 }
 
 
-.onLoad <- function(libname, pkgname) {
-    ee_extra_location <- sprintf("%s/ee_extra", system.file(package = "rgeeExtra"))
-    EEextra_PYTHON_PACKAGE <<- tryCatch(
-        expr = reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = list(priority = 10)),
-        error = function(e) {
-            "An error occurred while trying to import the ee Python package. Please, check if you have installed it correctly."
-        }
-    )
-}
 
 
 #' Load extra functionality for rgee
@@ -77,10 +68,7 @@ extra_Initialize <- function(quiet = FALSE) {
     }
 
     # Initialize EXTRA MODULE
-    ee_current_version <- system.file("ee_extra/ee_extra/ImageCollection/core.py", package = "rgeeExtra")
-    ee_utils <- ee_connect_to_py(path = ee_current_version, n = 5)
-    ee_utils$closest(ee$ImageCollection('COPERNICUS/S2_SR'), '2018-01-23') # force load
-
+   
 
     if (!quiet) {
         cat(
@@ -159,4 +147,15 @@ ee_source_python <- function(oauth_func_path) {
   module_name <- gsub("\\.py$", "", basename(oauth_func_path))
   module_path <- dirname(oauth_func_path)
   reticulate::import_from_path(module_name, path = module_path, convert = FALSE)
+}
+
+load_ee_Extra <- function() {
+  ee_extra_location <- sprintf("%s/ee_extra", system.file(package = "rgeeExtra"))
+  EEextra_PYTHON_PACKAGE <- tryCatch(
+      expr = reticulate::import_from_path("ee_extra", ee_extra_location, delay_load = list(priority = 10)),
+      error = function(e) {
+          "An error occurred while trying to import the ee Python package. Please, check if you have installed it correctly."
+      }
+  )
+  return(EEextra_PYTHON_PACKAGE)
 }
