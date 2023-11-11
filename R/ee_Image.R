@@ -18,6 +18,7 @@
 #'   ee$Image$getCitation()
 #' }
 ee_image_getCitation <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)
 }
 
