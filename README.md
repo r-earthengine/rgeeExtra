@@ -41,7 +41,7 @@
     <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3945409.svg" alt="DOI">
   </a>
   <a href="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml">
-    <img src="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml/badge.svg" alt="" width="200">
+    <img src="https://github.com/r-earthengine/rgeeExtra/actions/workflows/R-CMD-check.yaml/badge.svg" alt="">
   </a>
 </p>
 
