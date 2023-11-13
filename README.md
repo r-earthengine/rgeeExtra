@@ -55,9 +55,53 @@ status"/></a>
 
 The 'rgeeExtra' package enhances the R user experience with Google Earth Engine (GEE) 🌍. It simplifies GEE's JavaScript-heavy API into R-friendly syntax, easing the learning curve 📉. By offering higher-level R abstractions and custom functions mirroring the JavaScript API, 'rgeeExtra' streamlines GEE's complex operations for R users, making Earth observation data analysis more accessible and efficient 🚀.
 
-| Python                                                                                                                                     | rgee                                                                                                                                              | rgeeExtra                                                                                                                                                           |
-|-----------------------|----------------|------------------------|
-| \`\`\` python import ee ee.Initialize() db = 'CGIAR/SRTM90_V4' image = ee.Image(db) image.b andNames().getInfo() #\> [u'elevation'] \`\`\` | \`\`\` r library(rgee) ee_Initialize() db \<- 'CGIAR/SRTM90_V4' image \<- ee\$Image(db) image\$ba ndNames()\$getInfo() #\> [1] "elevation" \`\`\` | \`\`\` r library(rgee) library(rgeeExtra) ee_Initialize() extra_Initialize() image \<- ee\$Image\$Data set\$CGIAR_SRTM90_V4 names(image) #\> [1] "elevation" \`\`\` |
+<table>
+<tr>
+<th> Python </th>
+<th> rgee </th>
+<th> rgeeExtra </th>
+</tr>
+<tr>
+<td>
+  
+``` python
+import ee
+ee.Initialize()
+db = 'CGIAR/SRTM90_V4'
+image = ee.Image(db)
+image.bandNames().getInfo()
+#> [u'elevation']
+```
+
+</td>
+<td>
+
+``` r
+library(rgee)
+ee_Initialize()
+db <- 'CGIAR/SRTM90_V4'
+image <- ee$Image(db)
+image$bandNames()$getInfo()
+#> [1] "elevation"
+```
+
+</td>
+<td>
+
+``` r
+library(rgee)
+library(rgeeExtra)
+
+ee_Initialize()
+extra_Initialize()
+
+image <- ee$Image$Dataset$CGIAR_SRTM90_V4
+names(image)
+#> [1] "elevation"
+```
+</td>
+</tr>
+</table>
 
 ## **Installation** 🚀
 
