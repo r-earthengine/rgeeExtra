@@ -142,7 +142,7 @@ Map$addLayer(
 ```
 
 <p align="center">
-  <img src="./assets/image/ndvi_example.png" width="70%">
+  <img src="./assets/image/ndvi_example.png" width="100%">
 </p>
 
 
