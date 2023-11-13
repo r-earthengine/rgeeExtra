@@ -43,6 +43,7 @@ ee_image_getCitation <- function(x) {
 #'   ee$Image$getDOI()
 #' }
 ee_image_getDOI <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getDOI(x = x)
 }
 
@@ -70,6 +71,7 @@ ee_image_getDOI <- function(x) {
 #'
 #' }
 ee_Image_getOffsetParams <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getOffsetParams(x = x)
 }
 
@@ -96,6 +98,7 @@ ee_Image_getOffsetParams <- function(x) {
 #'   ee$Image$getScaleParams()
 #' }
 ee_Image_getScaleParams <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getScaleParams(x = x)
 }
 
@@ -120,6 +123,7 @@ ee_Image_getScaleParams <- function(x) {
 #'   ee$Image$getInfo()
 #' }
 ee_Image_getSTAC <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getSTAC(x = x)
 }
 
@@ -154,6 +158,7 @@ ee_Image_getSTAC <- function(x) {
 #' }
 ee_Image_matchHistogram <- function(image, target, bands, geometry=NULL, maxBuckets=256) {
   #_matchHistogram(self, target, bands, geometry, maxBuckets)
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Spectral$core$matchHistogram(
     source=image,
     target=target,
@@ -190,6 +195,7 @@ ee_Image_matchHistogram <- function(image, target, bands, geometry=NULL, maxBuck
 #' }
 #' @return An ee$Image or ee$ImageCollection object
 ee_Image_preprocess <- function(x, ...) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$QA$pipelines$preprocess(x, ...)
 }
 
@@ -309,6 +315,7 @@ ee_Image_spectralIndex <- function(
   online = FALSE,
   drop = TRUE
 ) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Spectral$core$spectralIndices(
     x = x, index = index, G = G, C1 = C1, C2 = C2, L = L,
     cexp = cexp, nexp = nexp, alpha = alpha, slope = slope,
@@ -357,6 +364,7 @@ ee_Image_spectralIndex <- function(
 #' Map$addLayer(img, list(bands=c("B4", "B3", "B2")))
 #' }
 ee_Image_panSharpen <- function(x, method="SFIM", qa = "MSE", ...) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Algorithms$panSharpening$'_panSharpen'(
       img = x,
       method = method,
@@ -430,18 +438,19 @@ ee_Image_maskClouds <- function(
     buffer=250,
     cdi=NULL
   ) {
-  EEextra_PYTHON_PACKAGE$QA$clouds$maskClouds(
-    x = image,
-    method = method,
-    prob = prob,
-    maskCirrus = maskCirrus,
-    maskShadows = maskShadows,
-    scaledImage = scaledImage,
-    dark = dark,
-    cloudDist = cloudDist,
-    buffer = buffer,
-    cdi = cdi
-  )
+    EEextra_PYTHON_PACKAGE <- load_ee_Extra()
+    EEextra_PYTHON_PACKAGE$QA$clouds$maskClouds(
+      x = image,
+      method = method,
+      prob = prob,
+      maskCirrus = maskCirrus,
+      maskShadows = maskShadows,
+      scaledImage = scaledImage,
+      dark = dark,
+      cloudDist = cloudDist,
+      buffer = buffer,
+      cdi = cdi
+    )
 }
 
 
@@ -508,6 +517,7 @@ ee_Image_maskClouds <- function(
 #' names(img)
 #' }
 ee_Image_tasseledCap <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Spectral$core$tasseledCap(x = x)
 }
 
@@ -537,6 +547,7 @@ ee_Image_tasseledCap <- function(x) {
 #'   ee$Image$scaleAndOffset()
 #' }
 ee_Image_scaleAndOffset <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$QA$pipelines$scaleAndOffset(
     x = x
   )
