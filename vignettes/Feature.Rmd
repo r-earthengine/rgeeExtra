@@ -1,0 +1,53 @@
+---
+title: "Feature"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Feature}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+`rgeeExtra` serves as a wrapper for the Python package named `eeExtra`. The creation of `eeExtra` was driven by a need to consolidate various third-party GEE Javascript and Python packages and projects found on GitHub in the same programming language and style, avoiding dependencies. `rgeeExtra` ensures a seamless integration of `eeExtra` within the R ecosystem
+
+```{r setup}
+library(rgeeExtra)
+library(rgee)
+
+ee_Initialize()        # Initialize the Google Earth Engine API connection
+extra_Initialize()     # Load the extended functionalities of rgeeExtra
+```
+
+## **Features for `ee$Feature`**
+
+`ee$Feature` objects represent geographic features which are fundamental to spatial analyses. Enhanced manipulation of these objects in R can significantly streamline workflows.
+
+
+### **1. Names**
+
+The `names` function for `ee$Feature` objects efficiently extracts the names of properties, providing valuable insights into the attributes of individual features within Earth Engine FeatureCollections.
+
+```{r}
+# Retrieve the first feature from the 'WRI/GPPD/power_plants' Feature Collection.
+fc <- ee$FeatureCollection('WRI/GPPD/power_plants')$first()
+
+# List the properties and methods available for the feature.
+names(fc)
+
+# Result:
+#  [1] "args"               "aside"              "copyProperties"    
+#  [4] "encode"             "encode_cloud_value" "freeze"            
+#  [7] "func"               "geometry"           "get"               
+# [10] "getArray"           "getInfo"            "getNumber"         
+# [13] "getString"          "initialize"         "isVariable"        
+# [16] "name"               "propertyNames"      "replaceProperties" 
+# [19] "reset"              "serialize"          "set"               
+# [22] "setMulti"           "toDictionary"       "varName"  
+```

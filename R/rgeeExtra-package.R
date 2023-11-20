@@ -85,7 +85,6 @@ extra_Initialize <- function(quiet = FALSE) {
     ee$Image$Extra_getOffsetParams <- ee_Image_getOffsetParams
     ee$Image$Extra_getScaleParams <- ee_Image_getScaleParams
     ee$Image$Extra_getSTAC <- ee_Image_getSTAC
-    ee$Image$Extra_getSTAC <- ee_Image_preprocess
     ee$Image$Extra_spectralIndex <- ee_Image_spectralIndex
     ee$Image$Extra_preprocess <- ee_Image_preprocess
     ee$Image$Extra_panSharpen <- ee_Image_panSharpen
@@ -93,7 +92,9 @@ extra_Initialize <- function(quiet = FALSE) {
     ee$Image$Extra_matchHistogram <- ee_Image_matchHistogram
     ee$Image$Extra_tasseledCap <- ee_Image_tasseledCap
     ee$Image$Extra_scaleAndOffset <- ee_Image_scaleAndOffset
-
+    ee$Image$Extra_maxValue <- ee_maxValue
+    ee$Image$Extra_minValue <- ee_minValue
+    
     # ee.ImageCollection
     ee$ImageCollection$Extra_closest <- ee_ImageCollection_closest
     ee$ImageCollection$Extra_getCitation <- ee_ImageCollection_getCitation
@@ -106,7 +107,6 @@ extra_Initialize <- function(quiet = FALSE) {
     ee$ImageCollection$Extra_scaleAndOffset <- ee_ImageCollection_scaleAndOffset
     ee$ImageCollection$Extra_tasseledCap <- ee_ImageCollection_tasseledCap
     ee$ImageCollection$Extra_panSharpen <- ee_ImageCollection_panSharpen
-
     invisible(TRUE)
 }
 

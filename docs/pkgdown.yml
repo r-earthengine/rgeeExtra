@@ -1,0 +1,16 @@
+pandoc: 3.1.1
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  Aditional: Aditional.html
+  Feature: Feature.html
+  FeatureCollection: FeatureCollection.html
+  Features: Features.html
+  Image: Image.html
+  ImageCollection: ImageCollection.html
+  Introduction: Introduction.html
+last_built: 2023-11-20T07:31Z
+urls:
+  reference: https://r-earthengine.github.io/rgeeExtra/reference
+  article: https://r-earthengine.github.io/rgeeExtra/articles
+

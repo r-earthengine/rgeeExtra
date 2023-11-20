@@ -14,8 +14,14 @@ navbar:
       menu:
       -  text: Introduction
          href: articles/Introduction.html
-      -  text: Features
-         href: articles/Features.html
+      -  text: Image
+         href: articles/Image.html
+      -  text: Image Collection
+         href: articles/ImageCollection.html
+      -  text: Feature
+         href: articles/Feature.html
+      -  text: Feature Collection
+         href: articles/FeatureCollection.html
     - icon: fa fa-newspaper-o
       text: "news"
       href: news/index.html

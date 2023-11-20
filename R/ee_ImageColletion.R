@@ -31,6 +31,7 @@
 #' @export
 ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
   # check if there is an image
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$closest(
     x = x,
     date = date,
@@ -41,30 +42,35 @@ ee_ImageCollection_closest <- function(x, date, tolerance=1, unit="month") {
 
 #' @name ee-citation
 ee_ImageCollection_getCitation <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)
 }
 
 
 #' @name ee-getdoi
 ee_ImageCollection_getDOI <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getDOI(x = x)
 }
 
 
 #' @name ee-getoffset
 ee_ImageCollection_getOffsetParams <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getOffsetParams(x = x)
 }
 
 
 #' @name ee-getscaleparams
 ee_ImageCollection_getScaleParams <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getScaleParams(x = x)
 }
 
 
 #' @name ee-getstac
 ee_ImageCollection_getSTAC <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getSTAC(x = x)
 }
 
@@ -89,6 +95,7 @@ ee_ImageCollection_spectralIndex <- function(
   online = FALSE,
   drop = TRUE
 ) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Spectral$core$spectralIndices(
     x = x, index = index, G = G, C1 = C1, C2 = C2, L = L,
     cexp = cexp, nexp = nexp, alpha = alpha, slope = slope,
@@ -99,11 +106,13 @@ ee_ImageCollection_spectralIndex <- function(
 
 #' @name ee-preprocess
 ee_ImageCollection_preprocess <- function(x, ...) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$QA$pipelines$preprocess(x, ...)
 }
 
 #' @name ee-scaleandoffset
 ee_ImageCollection_scaleAndOffset <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$QA$pipelines$scaleAndOffset(
     x = x
   )
@@ -111,6 +120,7 @@ ee_ImageCollection_scaleAndOffset <- function(x) {
 
 #' @name ee-pansharpen
 ee_ImageCollection_panSharpen <- function(x, method="SFIM", qa = "MSE", ...) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Algorithms$panSharpening$'_panSharpen'(
     img = x,
     method = method,
@@ -121,5 +131,6 @@ ee_ImageCollection_panSharpen <- function(x, method="SFIM", qa = "MSE", ...) {
 
 #' @name ee-tasseledcap
 ee_ImageCollection_tasseledCap <- function(x) {
+  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$Spectral$core$tasseledCap(x = x)
 }
