@@ -283,9 +283,11 @@ stac_metadata$summaries$`gee:visualizations`
 The `length` function for `ee$ImageCollection` objects quantifies the number of images within a collection. This straightforward method returns a numeric value representing the total count of images in an Earth Engine ImageCollection, aiding in dataset size assessment and management.
 
 ```{r}
-# Load first 10 images from Sentinel-2 SR collection and count them.
+# Load the first 10 images from the 'COPERNICUS/S2_SR' Image Collection.
 ic <- ee$ImageCollection("COPERNICUS/S2_SR")[[1:10]]
-length(ic)
+
+# Count the number of images in the subset collection.
+imagesCount <- length(ic) # Expected output: 10
 ```
 
 ### **10. Names of properties**
