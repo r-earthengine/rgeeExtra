@@ -4,7 +4,7 @@
 \alias{ee_ImageCollection_closest}
 \title{Get the temporal nearest image}
 \usage{
-ee_ImageCollection_closest(x, date, tolerance = 1, unit = "month")
+`ee$ImageCollection$Extra_closest()`
 }
 \arguments{
 \item{x}{ee$ImageCollection. Image Collection from which to get
@@ -36,7 +36,7 @@ ee_Initialize()
 
 roi <- ee$Geometry$Point(c(-79, -12))
 ee$ImageCollection$Dataset$MODIS_006_MCD12Q1 \%>\%
-  ee_ImageCollection_closest("2020-10-15",  2, "year") \%>\%
+  ee$ImageCollection$Extra_closest("2020-10-15",  2, "year") \%>\%
   ee$ImageCollection$first() \%>\%
   Map$addLayer()
 }

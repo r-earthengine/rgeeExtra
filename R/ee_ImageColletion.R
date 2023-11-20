@@ -74,35 +74,6 @@ ee_ImageCollection_getSTAC <- function(x) {
   EEextra_PYTHON_PACKAGE$STAC$core$getSTAC(x = x)
 }
 
-#' @name ee-spectralindex
-ee_ImageCollection_spectralIndex <- function(
-  x,
-  index = "NDVI",
-  G = 2.5,
-  C1 = 6.0,
-  C2 = 7.5,
-  L = 1.0,
-  cexp = 1.16,
-  nexp = 2.0,
-  alpha = 0.1,
-  slope = 1.0,
-  intercept = 0.0,
-  gamma = 1.0,
-  kernel = "RBF",
-  sigma = "0.5 * (a + b)",
-  p = 2.0,
-  c = 1.0,
-  online = FALSE,
-  drop = TRUE
-) {
-  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
-  EEextra_PYTHON_PACKAGE$Spectral$core$spectralIndices(
-    x = x, index = index, G = G, C1 = C1, C2 = C2, L = L,
-    cexp = cexp, nexp = nexp, alpha = alpha, slope = slope,
-    intercept = intercept, gamma = gamma, kernel = kernel, sigma = sigma,
-    p = p, c = c, online = online, drop = drop
-  )
-}
 
 #' @name ee-preprocess
 ee_ImageCollection_preprocess <- function(x, ...) {
@@ -116,21 +87,4 @@ ee_ImageCollection_scaleAndOffset <- function(x) {
   EEextra_PYTHON_PACKAGE$QA$pipelines$scaleAndOffset(
     x = x
   )
-}
-
-#' @name ee-pansharpen
-ee_ImageCollection_panSharpen <- function(x, method="SFIM", qa = "MSE", ...) {
-  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
-  EEextra_PYTHON_PACKAGE$Algorithms$panSharpening$'_panSharpen'(
-    img = x,
-    method = method,
-    qa = qa,
-    ...
-  )
-}
-
-#' @name ee-tasseledcap
-ee_ImageCollection_tasseledCap <- function(x) {
-  EEextra_PYTHON_PACKAGE <- load_ee_Extra()
-  EEextra_PYTHON_PACKAGE$Spectral$core$tasseledCap(x = x)
 }

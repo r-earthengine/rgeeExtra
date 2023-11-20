@@ -443,9 +443,11 @@ straightforward method returns a numeric value representing the total
 count of images in an Earth Engine ImageCollection, aiding in dataset
 size assessment and management.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load first 10 images from Sentinel-2 SR collection and count them.</span></span>
+<code class="sourceCode R"><span><span class="co"># Load the first 10 images from the 'COPERNICUS/S2_SR' Image Collection.</span></span>
 <span><span class="va">ic</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ic</span><span class="op">)</span></span></code></pre></div>
+<span></span>
+<span><span class="co"># Count the number of images in the subset collection.</span></span>
+<span><span class="va">imagesCount</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ic</span><span class="op">)</span> <span class="co"># Expected output: 10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="names-of-properties">

@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getOffsetParams}
 \title{Retrieve offset parameter from EE Image and EE ImageCollections objects}
 \usage{
-ee_Image_getOffsetParams(x)
+`ee$Image$Extra_getOffsetParams()`
 
-ee_ImageCollection_getOffsetParams(x)
+`ee$ImageCollection$Extra_getOffsetParams()`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}
@@ -30,7 +30,7 @@ ee_Initialize()
 
 ee$ImageCollection("NASA/GPM_L3/IMERG_V06") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$ImageCollection$getOffsetParams()
+  ee$Image$Extra_getOffsetParams()
 
 }
 }

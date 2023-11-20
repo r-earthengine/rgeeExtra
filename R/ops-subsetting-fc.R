@@ -35,11 +35,11 @@
     if (length(index) > 1) {
       x %>% ee_get((index) - 1)
     } else {
-      x %>% ee_get((index) - 1) %>% rgee::ee$ImageCollection$first()
+      x %>% ee_get((index) - 1) %>% rgee::ee$FeatureCollection$first()
     }
   } else if (is.character(index)) {
     x %>%
-      rgee::ee$ImageCollection$get(index) %>%
+      rgee::ee$FeatureCollection$get(index) %>%
       rgee::ee$ComputedObject$getInfo()
   } else {
     stop(
@@ -47,33 +47,6 @@
     )
   }
 }
-
-
-#' Length of an Earth Engine FeatureCollection Object
-#'
-#' Get the length of an Earth Engine FeatureCollection.
-#'
-#' @param x an EE FeatureCollection Object.
-#'
-#' @return A numeric representing the length of a ee$FeatureCollection object.
-#' @examples
-#' \dontrun{
-#'
-#' library(rgeeExtra)
-#' library(rgee)
-#'
-#' ee_Initialize()
-#' extra_Initialize()
-#'
-#' region <- ee$Geometry$Rectangle(-119.224, 34.669, -99.536, 50.064)
-#' randomPoints <- ee$FeatureCollection$randomPoints(region)
-#' length(randomPoints)
-#' }
-#' @export
-'length.ee.featurecollection.FeatureCollection' <-function(x) {
-  x$size()$getInfo()
-}
-
 
 #' Names of Earth Engine FeatureCollection object
 #'
@@ -95,4 +68,3 @@
 'names.ee.feature.Feature' <-function(x) {
   x$propertyNames()$getInfo()
 }
-

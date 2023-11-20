@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_preprocess}
 \title{Automated EE Image or EE ImageCollection preprocessing}
 \usage{
-ee_Image_preprocess(x, ...)
+`ee$Image$Extra_preprocess()`
 
-ee_ImageCollection_preprocess(x, ...)
+`ee$ImageCollection$Extra_preprocess()`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}
@@ -36,6 +36,6 @@ ee_Initialize()
 
 ee$ImageCollection$Dataset$COPERNICUS_S2_SR \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$preprocess()
+  ee$Image$Extra_preprocess()
 }
 }

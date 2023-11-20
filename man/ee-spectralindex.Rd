@@ -6,47 +6,9 @@
 \alias{ee_ImageCollection_spectralIndex}
 \title{Spectral Indices Computation}
 \usage{
-ee_Image_spectralIndex(
-  x,
-  index = "NDVI",
-  G = 2.5,
-  C1 = 6,
-  C2 = 7.5,
-  L = 1,
-  cexp = 1.16,
-  nexp = 2,
-  alpha = 0.1,
-  slope = 1,
-  intercept = 0,
-  gamma = 1,
-  kernel = "RBF",
-  sigma = "0.5 * (a + b)",
-  p = 2,
-  c = 1,
-  online = FALSE,
-  drop = TRUE
-)
+`ee$Image$Extra_spectralIndex()`
 
-ee_ImageCollection_spectralIndex(
-  x,
-  index = "NDVI",
-  G = 2.5,
-  C1 = 6,
-  C2 = 7.5,
-  L = 1,
-  cexp = 1.16,
-  nexp = 2,
-  alpha = 0.1,
-  slope = 1,
-  intercept = 0,
-  gamma = 1,
-  kernel = "RBF",
-  sigma = "0.5 * (a + b)",
-  p = 2,
-  c = 1,
-  online = FALSE,
-  drop = TRUE
-)
+`ee$ImageCollection$Extra_spectralIndex()`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection to compute indices on.}
@@ -137,7 +99,7 @@ ee_Initialize()
 s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%
   ee$Image$preprocess()\%>\%
-  ee$Image$spectralIndex(c("NDVI", "SAVI"))
+  ee$Image$Extra_spectralIndex(c("NDVI", "SAVI"))
 
 names(s2_indices)
 # "NDVI" "SAVI"

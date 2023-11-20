@@ -166,30 +166,7 @@
   rgee::ee$ImageCollection(ic_list)
 }
 
-#' Length of an Earth Engine ImageCollection Object
-#'
-#' Set the length of an Earth Engine Image.
-#'
-#' @param x an EE ImageCollection Object.
-#' @examples
-#' \dontrun{
-#' library(rgeeExtra)
-#' library(rgee)
-#'
-#' ee_Initialize()     # Initialize the Google Earth Engine API connection
-#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
-#'
-#' ic <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
-#'   ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
-#' length(ic)
-#' }
-#' @return A numeric representing the number of images.
-#' @export
-'length.ee.imagecollection.ImageCollection' <-function(x) {
-  x %>%
-    rgee::ee$ImageCollection$size() %>%
-    rgee::ee$Number$getInfo()
-}
+
 
 
 #' Names of Earth Engine ImagesCollection properties

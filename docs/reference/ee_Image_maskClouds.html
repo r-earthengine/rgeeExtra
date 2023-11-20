@@ -96,18 +96,7 @@ as well as clouds for the Sentinel-3 Radiance product</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ee_Image_maskClouds</span><span class="op">(</span></span>
-<span>  <span class="va">image</span>,</span>
-<span>  method <span class="op">=</span> <span class="st">"cloud_prob"</span>,</span>
-<span>  prob <span class="op">=</span> <span class="fl">60</span>,</span>
-<span>  maskCirrus <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  maskShadows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  scaledImage <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  dark <span class="op">=</span> <span class="fl">0.15</span>,</span>
-<span>  cloudDist <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  buffer <span class="op">=</span> <span class="fl">250</span>,</span>
-<span>  cdi <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">`ee$Image$Extra_maskClouds()`</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -189,7 +178,7 @@ Remote Sensing of Environment 2015: 471-481'. Default value is NULL.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">first</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">maskClouds</span><span class="op">(</span>prob <span class="op">=</span> <span class="fl">75</span>,buffer <span class="op">=</span> <span class="fl">300</span>,cdi <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_maskClouds</span><span class="op">(</span>prob <span class="op">=</span> <span class="fl">75</span>,buffer <span class="op">=</span> <span class="fl">300</span>,cdi <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">img</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>

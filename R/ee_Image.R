@@ -4,7 +4,9 @@
 #'
 #' @param x An EE object to get the citation from.
 #'
-#' @name ee-citation
+#' @name ee$Image$Extra_getCitation(x)
+#' @usage `ee$Image$Extra_getCitation()`
+#' @family ee_Image
 #' @returns A character with citation information.
 #'
 #' @examples
@@ -15,8 +17,10 @@
 #'
 #' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$getCitation()
+#'   ee$Image$Extra_getCitation()
 #' }
+
+
 ee_image_getCitation <- function(x) {
   EEextra_PYTHON_PACKAGE <- load_ee_Extra()
   EEextra_PYTHON_PACKAGE$STAC$core$getCitation(x = x)
@@ -28,6 +32,7 @@ ee_image_getCitation <- function(x) {
 #' If it exists, retrieve the DOI of an EE object.
 #'
 #' @name ee-getdoi
+#' @usage `ee$Image$Extra_getDOI()`
 #' @param x An EE object.
 #'
 #' @returns A character with DOI information.
@@ -40,7 +45,7 @@ ee_image_getCitation <- function(x) {
 #'
 #' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$getDOI()
+#'   ee$Image$Extra_getDOI()
 #' }
 ee_image_getDOI <- function(x) {
   EEextra_PYTHON_PACKAGE <- load_ee_Extra()
@@ -57,6 +62,7 @@ ee_image_getDOI <- function(x) {
 #'
 #' @param x An ee$Image or an ee$ImageCollection object.
 #' @name ee-getoffset
+#' @usage `ee$Image$Extra_getOffsetParams()`
 #' @returns A list with the offset parameters for each band.
 #'
 #' @examples
@@ -67,7 +73,7 @@ ee_image_getDOI <- function(x) {
 #'
 #' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$ImageCollection$getOffsetParams()
+#'   ee$Image$Extra_getOffsetParams()
 #'
 #' }
 ee_Image_getOffsetParams <- function(x) {
@@ -85,6 +91,7 @@ ee_Image_getOffsetParams <- function(x) {
 #'
 #' @param x An ee$Image.or an ee$ImageCollection object.
 #' @name ee-getscaleparams
+#' @usage `ee$Image$Extra_getScaleParams()`
 #' @returns A list with the scale parameters for each band.
 #' @examples
 #' \dontrun{
@@ -95,7 +102,7 @@ ee_Image_getOffsetParams <- function(x) {
 #'
 #' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$getScaleParams()
+#'   ee$Image$Extra_getScaleParams()
 #' }
 ee_Image_getScaleParams <- function(x) {
   EEextra_PYTHON_PACKAGE <- load_ee_Extra()
@@ -109,6 +116,7 @@ ee_Image_getScaleParams <- function(x) {
 #'
 #' @param x An ee$Image or an ee$ImageCollection object.
 #' @name ee-getstac
+#' @usage `ee$Image$Extra_getSTAC()`
 #' @returns Return STAC metadata for each band.
 #' @examples
 #' \dontrun{
@@ -119,7 +127,7 @@ ee_Image_getScaleParams <- function(x) {
 #'
 #' ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$getSTAC() %>%
+#'   ee$Image$Extra_getSTAC() %>%
 #'   ee$Image$getInfo()
 #' }
 ee_Image_getSTAC <- function(x) {
@@ -130,6 +138,7 @@ ee_Image_getSTAC <- function(x) {
 
 #' Adjust the image's histogram to match a target image
 #'
+#' @usage `ee$Image$Extra_matchHistogram()`
 #' @param image ee$Image to adjust.
 #' @param target ee$Image image to match.
 #' @param bands A dictionary of band names to match, with
@@ -152,7 +161,7 @@ ee_Image_getSTAC <- function(x) {
 #' target <-ee$Image("LANDSAT/LE07/C01/T1_TOA/LE07_046027_20150701")
 #' bands <- list("B4"="B3", "B3"="B2", "B2"="B1")
 #'
-#' matched <- ee$Image$matchHistogram(source, target, bands)
+#' matched <- ee$Image$Extra_matchHistogram(source, target, bands)
 #'
 #' names(matched)
 #' }
@@ -182,6 +191,7 @@ ee_Image_matchHistogram <- function(image, target, bands, geometry=NULL, maxBuck
 #' @param x An ee$Image or an ee$ImageCollection object.
 #' @param ... Arguments to pass to ee$Image$cloudmask.
 #' @name ee-preprocess
+#' @usage `ee$Image$Extra_preprocess()`
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -191,7 +201,7 @@ ee_Image_matchHistogram <- function(image, target, bands, geometry=NULL, maxBuck
 #'
 #' ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$preprocess()
+#'   ee$Image$Extra_preprocess()
 #' }
 #' @return An ee$Image or ee$ImageCollection object
 ee_Image_preprocess <- function(x, ...) {
@@ -276,7 +286,7 @@ ee_Image_preprocess <- function(x, ...) {
 #' @param drop Logical. If TRUE, drop the image bands. Default TRUE.
 #'
 #' @name ee-spectralindex
-#'
+#' @usage `ee$Image$Extra_spectralIndex()`
 #' @returns An ee$Image or an ee$ImageCollection with the computed spectral
 #' index, or indices, as new bands.
 #'
@@ -290,7 +300,7 @@ ee_Image_preprocess <- function(x, ...) {
 #' s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
 #'   ee$ImageCollection$first() %>%
 #'   ee$Image$preprocess()%>%
-#'   ee$Image$spectralIndex(c("NDVI", "SAVI"))
+#'   ee$Image$Extra_spectralIndex(c("NDVI", "SAVI"))
 #'
 #' names(s2_indices)
 #' # "NDVI" "SAVI"
@@ -350,6 +360,7 @@ ee_Image_spectralIndex <- function(
 #' panchromatic resolution and quality assessments run and set
 #' as properties.
 #' @name ee-pansharpen
+#' @usage `ee$Image$Extra_panSharpen()`
 #' @examples
 #' \dontrun{
 #' library(rgeeExtra)
@@ -357,7 +368,7 @@ ee_Image_spectralIndex <- function(
 #' ee_Initialize()
 #'
 #' img <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
-#' img_sharp <- ee$Image$panSharpen(img, method="HPFA", qa=c("MSE", "RMSE"), maxPixels=1e13)
+#' img_sharp <- ee$Image$Extra_panSharpen(img, method="HPFA", qa=c("MSE", "RMSE"), maxPixels=1e13)
 #'
 #' Map$centerObject(img)
 #' Map$addLayer(img_sharp, list(bands=c("B4", "B3", "B2"))) |
@@ -379,7 +390,7 @@ ee_Image_panSharpen <- function(x, method="SFIM", qa = "MSE", ...) {
 #' Masks clouds and shadows in an ee.Image. Valid just for
 #' Surface Reflectance products. This function may mask water
 #' as well as clouds for the Sentinel-3 Radiance product
-#'
+#' @usage `ee$Image$Extra_maskClouds()`
 #' @param image An ee$Image
 #' @param method The method to mask clouds. Available
 #' options: "cloud_prob" and "qa".
@@ -422,7 +433,7 @@ ee_Image_panSharpen <- function(x, method="SFIM", qa = "MSE", ...) {
 #'
 #' img <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$maskClouds(prob = 75,buffer = 300,cdi = -0.5)
+#'   ee$Image$Extra_maskClouds(prob = 75,buffer = 300,cdi = -0.5)
 #'
 #' names(img)
 #' }
@@ -471,7 +482,7 @@ ee_Image_maskClouds <- function(
 #'    \item{9.} Landsat 4 TM Surface Reflectance  (6)
 #'    \item{10.} MODIS NBAR  (7)
 #' }
-#'
+#' @usage `ee$Image$Extra_tasseledCap()`
 #' @param x ee$Image or ee$ImageCollection to calculate tasseled
 #' cap components for. Must belong to a supported platform.
 #'
@@ -513,7 +524,7 @@ ee_Image_maskClouds <- function(
 #' ee_Initialize()
 #'
 #' img <- ee$Image("LANDSAT/LT05/C01/T1/LT05_044034_20081011")
-#' img <- ee$Image$tasseledCap(img)
+#' img <- ee$Image$Extra_tasseledCap(img)
 #' names(img)
 #' }
 ee_Image_tasseledCap <- function(x) {
@@ -532,7 +543,7 @@ ee_Image_tasseledCap <- function(x) {
 #' @family calibration
 #' @param x  An ee$Image or an ee$ImageCollection object.
 #' @name ee-scaleandoffset
-#'
+#' @usage `ee$Image$Extra_scaleAndOffset()`
 #' @return An ee$Image or an ee$ImageCollection with float pixel values.
 #'
 #' @examples
@@ -544,7 +555,7 @@ ee_Image_tasseledCap <- function(x) {
 #'
 #' ee$ImageCollection("COPERNICUS/S2_SR") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$scaleAndOffset()
+#'   ee$Image$Extra_scaleAndOffset()
 #' }
 ee_Image_scaleAndOffset <- function(x) {
   EEextra_PYTHON_PACKAGE <- load_ee_Extra()

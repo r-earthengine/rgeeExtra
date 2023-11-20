@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_scaleAndOffset}
 \title{Automatic decompression of EE Image or EE ImageCollection objects}
 \usage{
-ee_Image_scaleAndOffset(x)
+`ee$Image$Extra_scaleAndOffset()`
 
-ee_ImageCollection_scaleAndOffset(x)
+`ee$ImageCollection$Extra_scaleAndOffset()`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}
@@ -31,7 +31,7 @@ ee_Initialize()
 
 ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$scaleAndOffset()
+  ee$Image$Extra_scaleAndOffset()
 }
 }
 \concept{calibration}

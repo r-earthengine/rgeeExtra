@@ -102,11 +102,8 @@ extra_Initialize <- function(quiet = FALSE) {
     ee$ImageCollection$Extra_getOffsetParams <- ee_ImageCollection_getOffsetParams
     ee$ImageCollection$Extra_getScaleParams <- ee_ImageCollection_getScaleParams
     ee$ImageCollection$Extra_getSTAC <- ee_ImageCollection_getSTAC
-    ee$ImageCollection$Extra_spectralIndex <- ee_ImageCollection_spectralIndex
     ee$ImageCollection$Extra_preprocess <- ee_ImageCollection_preprocess
     ee$ImageCollection$Extra_scaleAndOffset <- ee_ImageCollection_scaleAndOffset
-    ee$ImageCollection$Extra_tasseledCap <- ee_ImageCollection_tasseledCap
-    ee$ImageCollection$Extra_panSharpen <- ee_ImageCollection_panSharpen
     invisible(TRUE)
 }
 

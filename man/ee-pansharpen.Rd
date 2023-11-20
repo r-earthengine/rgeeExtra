@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_panSharpen}
 \title{Apply panchromatic sharpening to an ee$Image or an ee$ImageCollection}
 \usage{
-ee_Image_panSharpen(x, method = "SFIM", qa = "MSE", ...)
+`ee$Image$Extra_panSharpen()`
 
-ee_ImageCollection_panSharpen(x, method = "SFIM", qa = "MSE", ...)
+`ee$ImageCollection$Extra_panSharpen()`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object. The image to sharpen.}
@@ -45,7 +45,7 @@ library(rgeeExtra)
 ee_Initialize()
 
 img <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
-img_sharp <- ee$Image$panSharpen(img, method="HPFA", qa=c("MSE", "RMSE"), maxPixels=1e13)
+img_sharp <- ee$Image$Extra_panSharpen(img, method="HPFA", qa=c("MSE", "RMSE"), maxPixels=1e13)
 
 Map$centerObject(img)
 Map$addLayer(img_sharp, list(bands=c("B4", "B3", "B2"))) |

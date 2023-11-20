@@ -4,18 +4,7 @@
 \alias{ee_Image_maskClouds}
 \title{Masks clouds and shadows}
 \usage{
-ee_Image_maskClouds(
-  image,
-  method = "cloud_prob",
-  prob = 60,
-  maskCirrus = TRUE,
-  maskShadows = TRUE,
-  scaledImage = FALSE,
-  dark = 0.15,
-  cloudDist = 1000,
-  buffer = 250,
-  cdi = NULL
-)
+`ee$Image$Extra_maskClouds()`
 }
 \arguments{
 \item{image}{An ee$Image}
@@ -75,7 +64,7 @@ ee_Initialize()
 
 img <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$maskClouds(prob = 75,buffer = 300,cdi = -0.5)
+  ee$Image$Extra_maskClouds(prob = 75,buffer = 300,cdi = -0.5)
 
 names(img)
 }

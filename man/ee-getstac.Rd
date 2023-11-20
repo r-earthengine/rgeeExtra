@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getSTAC}
 \title{Retrieve EE Image or EE ImageCollection STAC metadata}
 \usage{
-ee_Image_getSTAC(x)
+`ee$Image$Extra_getSTAC()`
 
-ee_ImageCollection_getSTAC(x)
+`ee$ImageCollection$Extra_getSTAC()`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}
@@ -28,7 +28,7 @@ ee_Initialize()
 
 ee$ImageCollection("NASA/GPM_L3/IMERG_V06") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$getSTAC() \%>\%
+  ee$Image$Extra_getSTAC() \%>\%
   ee$Image$getInfo()
 }
 }

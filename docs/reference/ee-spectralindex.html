@@ -92,47 +92,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ee_Image_spectralIndex</span><span class="op">(</span></span>
-<span>  <span class="va">x</span>,</span>
-<span>  index <span class="op">=</span> <span class="st">"NDVI"</span>,</span>
-<span>  G <span class="op">=</span> <span class="fl">2.5</span>,</span>
-<span>  C1 <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>  C2 <span class="op">=</span> <span class="fl">7.5</span>,</span>
-<span>  L <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  cexp <span class="op">=</span> <span class="fl">1.16</span>,</span>
-<span>  nexp <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  alpha <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>  slope <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  intercept <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  gamma <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  kernel <span class="op">=</span> <span class="st">"RBF"</span>,</span>
-<span>  sigma <span class="op">=</span> <span class="st">"0.5 * (a + b)"</span>,</span>
-<span>  p <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  c <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  online <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  drop <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">`ee$Image$Extra_spectralIndex()`</span></span>
 <span></span>
-<span><span class="fu">ee_ImageCollection_spectralIndex</span><span class="op">(</span></span>
-<span>  <span class="va">x</span>,</span>
-<span>  index <span class="op">=</span> <span class="st">"NDVI"</span>,</span>
-<span>  G <span class="op">=</span> <span class="fl">2.5</span>,</span>
-<span>  C1 <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>  C2 <span class="op">=</span> <span class="fl">7.5</span>,</span>
-<span>  L <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  cexp <span class="op">=</span> <span class="fl">1.16</span>,</span>
-<span>  nexp <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  alpha <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>  slope <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  intercept <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  gamma <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  kernel <span class="op">=</span> <span class="st">"RBF"</span>,</span>
-<span>  sigma <span class="op">=</span> <span class="st">"0.5 * (a + b)"</span>,</span>
-<span>  p <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  c <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  online <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  drop <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">`ee$ImageCollection$Extra_spectralIndex()`</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -256,7 +218,7 @@ index, or indices, as new bands.</p>
 <span class="r-in"><span><span class="va">s2_indices</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">first</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">preprocess</span><span class="op">(</span><span class="op">)</span><span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">spectralIndex</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NDVI"</span>, <span class="st">"SAVI"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_spectralIndex</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NDVI"</span>, <span class="st">"SAVI"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">s2_indices</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># "NDVI" "SAVI"</span></span></span>

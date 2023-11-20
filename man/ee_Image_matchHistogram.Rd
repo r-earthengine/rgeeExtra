@@ -4,13 +4,7 @@
 \alias{ee_Image_matchHistogram}
 \title{Adjust the image's histogram to match a target image}
 \usage{
-ee_Image_matchHistogram(
-  image,
-  target,
-  bands,
-  geometry = NULL,
-  maxBuckets = 256
-)
+`ee$Image$Extra_matchHistogram()`
 }
 \arguments{
 \item{image}{ee$Image to adjust.}
@@ -43,7 +37,7 @@ source <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
 target <-ee$Image("LANDSAT/LE07/C01/T1_TOA/LE07_046027_20150701")
 bands <- list("B4"="B3", "B3"="B2", "B2"="B1")
 
-matched <- ee$Image$matchHistogram(source, target, bands)
+matched <- ee$Image$Extra_matchHistogram(source, target, bands)
 
 names(matched)
 }

@@ -49,6 +49,9 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/news/index.html</loc>
   </url>
   <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-cash-Image-cash-Extra_getCitation-open-paren-x-close-paren.html</loc>
+  </url>
+  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-citation.html</loc>
   </url>
   <url>
@@ -158,5 +161,8 @@
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Summary-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/tick-ee-cash-Image-cash-Extra_getCitation-open-paren-x-close-paren-tick.html</loc>
   </url>
 </urlset>

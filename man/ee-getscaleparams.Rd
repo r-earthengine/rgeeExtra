@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getScaleParams}
 \title{Retrieve scale parameter from EE Image and EE ImageCollection objects.}
 \usage{
-ee_Image_getScaleParams(x)
+`ee$Image$Extra_getScaleParams()`
 
-ee_ImageCollection_getScaleParams(x)
+`ee$ImageCollection$Extra_getScaleParams()`
 }
 \arguments{
 \item{x}{An ee$Image.or an ee$ImageCollection object.}
@@ -31,6 +31,6 @@ ee_Initialize()
 
 ee$ImageCollection("NASA/GPM_L3/IMERG_V06") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$getScaleParams()
+  ee$Image$Extra_getScaleParams()
 }
 }

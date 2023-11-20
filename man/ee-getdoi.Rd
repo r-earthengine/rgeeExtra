@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getDOI}
 \title{Get the Digital Object Identifier (DOI) of an EE object}
 \usage{
-ee_image_getDOI(x)
+`ee$Image$Extra_getDOI()`
 
-ee_ImageCollection_getDOI(x)
+`ee$ImageCollection$Extra_getDOI()`
 }
 \arguments{
 \item{x}{An EE object.}
@@ -27,6 +27,6 @@ ee_Initialize()
 
 ee$ImageCollection("NASA/GPM_L3/IMERG_V06") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$getDOI()
+  ee$Image$Extra_getDOI()
 }
 }

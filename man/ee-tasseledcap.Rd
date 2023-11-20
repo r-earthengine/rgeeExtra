@@ -7,9 +7,9 @@
 \title{Calculates tasseled cap brightness, wetness, and greenness
 components for an EE Image or EE ImageCollection}
 \usage{
-ee_Image_tasseledCap(x)
+`ee$Image$Extra_tasseledCap()`
 
-ee_ImageCollection_tasseledCap(x)
+`ee$ImageCollection$Extra_tasseledCap()`
 }
 \arguments{
 \item{x}{ee$Image or ee$ImageCollection to calculate tasseled
@@ -69,7 +69,7 @@ library(rgeeExtra)
 ee_Initialize()
 
 img <- ee$Image("LANDSAT/LT05/C01/T1/LT05_044034_20081011")
-img <- ee$Image$tasseledCap(img)
+img <- ee$Image$Extra_tasseledCap(img)
 names(img)
 }
 }
