@@ -1,7 +1,7 @@
 #' Extract parts of and EE FeatureCollection
 #' @param x ee$FeatureCollection.
 #' @param index Integer. Index specifying elements to extract or replace.
-#' @name ee_subsetting
+#' @name ee_extract_featurecollection
 #' @return An ee$FeatureCollection
 #' @examples
 #' \dontrun{
@@ -53,7 +53,7 @@
 #'
 #' Get the properties names of FeatureCollection object
 #' @param x an EE FeatureCollection object.
-#' @name ee_subsetting
+#' @name ee_names_feature
 #' @examples
 #' \dontrun{
 #' library(rgee)

@@ -48,6 +48,7 @@ library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%

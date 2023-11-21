@@ -37,9 +37,11 @@ For more information on parameters and methods, refer to relevant cloud masking 
 }
 \examples{
 \dontrun{
+library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 img <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%

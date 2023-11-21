@@ -4,7 +4,7 @@
 \alias{names.ee.image.Image}
 \title{Names of Earth Engine Images layers (bands)}
 \usage{
-\method{names}{ee.image.Image}(x)
+`names(x)`
 }
 \arguments{
 \item{x}{an EE Image object.}

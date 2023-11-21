@@ -83,7 +83,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Retrieve EE Image or EE ImageCollection STAC metadata</h1>
-    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageColletion.R" class="external-link"><code>R/ee_ImageColletion.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageCollection.R" class="external-link"><code>R/ee_ImageCollection.R</code></a></small>
     <div class="hidden name"><code>ee-getstac.Rd</code></div>
     </div>
 
@@ -117,11 +117,19 @@
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-earthengine/rgeeExtra" class="external-link">rgeeExtra</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="extra_Initialize.html">extra_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">first</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_getSTAC</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">getInfo</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve STAC metadata for the first image in NASA's GPM L3 IMERG V06 collection</span></span></span>
+<span class="r-in"><span><span class="va">stac_metadata</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_getSTAC</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">stac_metadata</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve STAC metadata from NASA's IMERG V06 image collection.</span></span></span>
+<span class="r-in"><span><span class="va">stac_metadata_</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_getSTAC</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">stac_metadata_</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

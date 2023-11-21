@@ -28,9 +28,6 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/articles/Introduction.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/articles/Third_party_rep.html</loc>
-  </url>
-  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/authors.html</loc>
   </url>
   <url>
@@ -47,9 +44,6 @@
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-cash-Image-cash-Extra_getCitation-open-paren-x-close-paren.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-citation.html</loc>
@@ -76,13 +70,16 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-scaleandoffset.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-spectralindex.html</loc>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-subset.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-tasseledcap.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/EEextra_PYTHON_PACKAGE.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_extract_featurecollection.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_get.html</loc>
@@ -100,7 +97,13 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_Image_spectralIndex.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_subsetting.html</loc>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_names_feature.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_names_imagecollection.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_subsetting_imagecollection.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_utils_gif_annotate.html</loc>
@@ -121,31 +124,16 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/length-set-.ee.image.Image.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/length.ee.featurecollection.FeatureCollection.html</loc>
-  </url>
-  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/length.ee.image.Image.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/length.ee.imagecollection.ImageCollection.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Math-methods.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/names-set-.ee.image.Image.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/names.ee.feature.Feature.html</loc>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/names-open-paren-x-close-paren-set-value.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/names.ee.image.Image.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/names.ee.imagecollection.ImageCollection.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Ops-methods.html</loc>
@@ -157,18 +145,9 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/rgeeExtra-package.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/sub-sub-.ee.featurecollection.FeatureCollection.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/sub-sub-.ee.imagecollection.ImageCollection.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/sub-subset-.ee.imagecollection.ImageCollection.html</loc>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/sub-sub.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Summary-methods.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/tick-ee-cash-Image-cash-Extra_getCitation-open-paren-x-close-paren-tick.html</loc>
   </url>
 </urlset>

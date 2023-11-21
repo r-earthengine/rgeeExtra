@@ -501,7 +501,17 @@ stac_metadata$summaries$`eo:bands`
 stac_metadata$summaries$`gee:visualizations`
 ```
 
-### **15. Subsetting Bands**
+### **15. Length of an Image**
+
+The `length` function counts the number of bands in an `ee$Image` object, offering a straightforward way to assess the complexity of Earth Engine Images.
+
+```{r}
+# Count bands in the first Sentinel-2 image
+image <- ee$ImageCollection("COPERNICUS/S2_SR")[[1]]
+length(image)  # Returns 23, the number of bands.
+```
+
+### **16. Subsetting Bands**
 
 Utilize the `[[` operator in R to selectively access or modify specific bands within an `ee$Image`. This feature is essential for focusing on particular spectral bands, simplifying the process of analyzing and processing multispectral satellite imagery.
 
@@ -512,7 +522,7 @@ names(image)  # Result: "B2", "B4", "B6", "B8"
 ```
 
 
-### **16. Names of Images layers (bands)**
+### **17. Names of Images layers (bands)**
 
 The `names` function retrieves band names from an `ee$Image` object, providing a simple method to identify and reference specific layers within Earth Engine Images.
 
@@ -524,7 +534,7 @@ img_demo <- ee$Image("COPERNICUS/S2_SR/20190310T105851_20190310T110327_T30TVK")[
 names(img_demo)  # Returns the names of the selected bands: "B1", "B2", "B3"
 ```
 
-### **17. Rename of Images layers (bands)**
+### **18. Rename of Images layers (bands)**
 
 Renaming bands in an `ee$Image` object using the `names` function in Earth Engine enhances clarity and organization, aligning each band with elements of a character vector.
 
@@ -542,7 +552,7 @@ names(image) <- c("B01", "B02", "B03")
 names(image)  # Updated band names: "B01", "B02", "B03"
 ```
 
-### **18. Citation in publications**
+### **19. Citation in publications**
 
 Citations play a key role in recognizing data sources, particularly for images used in research and publications. They ensure the traceability and credibility of the analysis.
 
@@ -561,7 +571,7 @@ citation
 # [doi:10.5067/GPM/IMERG/3B-HH/06](https://doi.org/10.5067/GPM/IMERG/3B-HH/06)"
 ```
 
-### **19. Get the Digital Object Identifier (DOI)**
+### **20. Get the Digital Object Identifier (DOI)**
 
 Retrieving the DOI of datasets in Earth Engine is vital for data sharing and reproducibility in scientific research, providing a permanent link to the datasets.
 

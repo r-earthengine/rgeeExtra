@@ -30,9 +30,11 @@ These parameters allow for detailed customization of the histogram matching proc
 }
 \examples{
 \dontrun{
+library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 source <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
 target <-ee$Image("LANDSAT/LE07/C01/T1_TOA/LE07_046027_20150701")

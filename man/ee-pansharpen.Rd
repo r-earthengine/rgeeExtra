@@ -8,7 +8,7 @@
 `ee$Image$Extra_panSharpen(x, ...)`
 }
 \arguments{
-\item{x}{An ee$Image or an ee$ImageCollection object, the image to sharpen.}
+\item{x}{An ee$Image object, the image to sharpen.}
 
 \item{...}{Additional arguments including sharpening method, quality
 assessments, and parameters for \code{ee.Image.reduceRegion()}.
@@ -20,7 +20,7 @@ panchromatic resolution and quality assessments run and set
 as properties.
 }
 \description{
-Apply panchromatic sharpening to an ee$Image or an ee$ImageCollection. Optionally,
+Apply panchromatic sharpening to an ee$Image. Optionally,
 run quality assessments between the original and
 sharpened Image to measure spectral distortion and set results
 as properties of the sharpened Image.
@@ -40,11 +40,13 @@ such as \code{geometry}, \code{maxPixels}, \code{bestEffort}, etc.
 }
 \examples{
 \dontrun{
+library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
-img <- ee$Image("LANDSAT/LC08/C01/T1_TOA/LC08_047027_20160819")
+img <- ee$Image("LANDSAT/LC09/C02/T1_TOA/LC09_047027_20230815")
 img_sharp <- ee$Image$Extra_panSharpen(img, method="HPFA", qa=c("MSE", "RMSE"), maxPixels=1e13)
 
 Map$centerObject(img)

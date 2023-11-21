@@ -9,11 +9,11 @@ components for an EE Image or EE ImageCollection}
 `ee$Image$Extra_tasseledCap(x)`
 }
 \arguments{
-\item{x}{ee$Image or ee$ImageCollection to calculate tasseled
+\item{x}{ee$Image to calculate tasseled
 cap components for. Must belong to a supported platform.}
 }
 \value{
-ee$Image  or ee$ImageCollection with the tasseled cap
+ee$Image with the tasseled cap
 components as new bands.
 }
 \description{
@@ -61,9 +61,11 @@ Journal of Remote Sensing, 28(22), pp.5079-5101.
 }
 \examples{
 \dontrun{
+library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 img <- ee$Image("LANDSAT/LT05/C01/T1/LT05_044034_20081011")
 img <- ee$Image$Extra_tasseledCap(img)

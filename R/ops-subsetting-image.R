@@ -1,4 +1,4 @@
-#' @name ee_subsetting
+#' @name ee-subset
 #' @export
 '[[.ee.image.Image' <- function(x, index) {
   # 2. Select just an specific band
@@ -26,7 +26,7 @@
   }
 }
 
-#' @name ee_subsetting
+#' @name ee-subset
 #' @export
 '[<-.ee.image.Image' <- function(x, index, value) {
   # 1. check if value is a ee.Image
@@ -47,7 +47,7 @@
 
 }
 
-#' @name ee_subsetting
+#' @name ee-subset
 #' @export
 '[[<-.ee.image.Image' <- function(x, index, value) {
   # 1. check if value is a ee.Image
@@ -92,6 +92,8 @@
 #'
 #' @param x an EE Image object.
 #' @param value a character vector with the same length as x.
+#' @name names(x) <- value
+#' @usage `names(x) <- value`
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -115,6 +117,7 @@
 #'
 #' Get the names of the layers of an Earth Engine Image object.
 #' @param x an EE Image object.
+#' @usage `names(x)`
 #' @examples
 #' \dontrun{
 #' library(rgee)
