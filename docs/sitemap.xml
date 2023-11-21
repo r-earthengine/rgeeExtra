@@ -76,9 +76,6 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee-tasseledcap.html</loc>
   </url>
   <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/EEextra_PYTHON_PACKAGE.html</loc>
-  </url>
-  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_extract_featurecollection.html</loc>
   </url>
   <url>
@@ -101,9 +98,6 @@
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_names_imagecollection.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_subsetting_imagecollection.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_utils_gif_annotate.html</loc>
@@ -143,9 +137,6 @@
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/rgeeExtra-package.html</loc>
-  </url>
-  <url>
-    <loc>https://r-earthengine.github.io/rgeeExtra/reference/sub-sub.html</loc>
   </url>
   <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/Summary-methods.html</loc>
