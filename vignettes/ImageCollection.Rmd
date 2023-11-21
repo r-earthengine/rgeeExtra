@@ -29,87 +29,8 @@ extra_Initialize()     # Load the extended functionalities of rgeeExtra
 
 `ee$ImageCollection` objects in Earth Engine represent collections of satellite images, allowing for comprehensive analysis over time and space. The `rgeeExtra` package enhances these functionalities within R, providing tools for diverse and complex image collection processing and analysis.
 
-### **1. Spectral Indices**
 
-The `ee$ImageCollection$Extra_spectralIndex` function efficiently computes spectral indices for `ee$ImageCollection` objects, offering a broad range of indices for diverse environmental analyses. This tool enables tailored index computation, catering to specific requirements in vegetation, water, urban, and other thematic studies.
-
-```{r}
-# Load Sentinel-2 SR image collection and compute NDVI and SAVI indices
-s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
-  ee$ImageCollection$Extra_spectralIndex(c("NDVI", "SAVI"))
-
-# Set visualization parameters for NDVI
-visParams <- list(
-  min = 0, 
-  max = 0.2, 
-  palette = c("brown", "yellow", "green")
-)
-
-# Select the first image for display on the map
-s2_indice <- s2_indices[[1]]
-
-# Display NDVI of the first image with custom visualization settings
-Map$centerObject(s2_indice, zoom = 10)
-Map$addLayer(
-  eeObject = s2_indice[["NDVI"]], 
-  visParams = visParams,
-  name = "NDVI"
-)
-```
-<center><img src="figures/spectral_indices.png" width="80%"/></center>
-
-### **2. Tasseled Cap Transformation**
-
-The `ee$ImageCollection$Extra_tasseledCap` function applies Tasseled Cap transformations to Earth Engine ImageCollections. It supports various satellite platforms, calculating key components like brightness, wetness, and greenness, crucial for advanced land cover and vegetation analysis across diverse datasets like Sentinel-2, Landsat, and MODIS.
-
-```{r}
-# Tasseled Cap transformation on LANDSAT LC09 C02 T1 L2 collection.
-ic <- ee$ImageCollection("LANDSAT/LC09/C02/T1_L2") %>% 
-  ee$ImageCollection$Extra_tasseledCap()
-
-# Select the first transformed image.
-image <- ic[[1]]
-
-# Map display: Brightness, Greenness, and Wetness layers.
-Map$centerObject(image)
-Map$addLayer(image$select("TCB"), list(min = 1900, max = 76400), "TC Brightness") +
-  Map$addLayer(image$select("TCG"), list(min = -23500, max = 1660), "TC Greenness") +
-  Map$addLayer(image$select("TCW"), list(min = -14200, max = 29800), "TC Wetness")
-```
-<center><img src="figures/tc_ic.png" width="80%"/></center>
-
-### **3. Panchromatic Sharpening**
-
-Enhance spatial resolution in `ee$ImageCollection` objects using the `ee$ImageCollection$Extra_panSharpen` function. This tool offers various sharpening methods like SFIM and HPFA, along with optional quality assessments, to improve image clarity and detail for more precise analysis.
-
-```{r}
-# Load Landsat 8 TOA reflectance image from GEE
-img <- ee$Image("LANDSAT/LC09/C02/T1_TOA/LC09_047027_20230815")
-
-# Apply HPFA panchromatic sharpening to enhance sharpness
-img_sharp <- ee$Image$Extra_panSharpen(
-  img, 
-  method="HPFA", 
-  qa=c("MSE", "RMSE"), 
-  maxPixels=1e13
-)
-
-# Define visualization parameters for displaying the images
-visParams <- list(
-  bands = c("B4","B3","B2"),
-  min = 0, 
-  max = 0.15, 
-  gamma = 1.4
-)
-
-# Display original and HPFA-sharpened images on the map
-Map$setCenter(lon = -123.11, lat = 47.307, zoom = 14)
-Map$addLayer(img, visParams, "Original Image") |
-  Map$addLayer(img_sharp, visParams, "Sharpened Image")
-```
-<center><img src="figures/sharp.png" width="80%"/></center>
-
-### **4. Automated Preprocessing**
+### **1. Automated Preprocessing**
 
 The `ee$ImageCollection$Extra_preprocess` function streamlines preprocessing of Earth Engine ImageCollections. It efficiently performs tasks like cloud masking and pixel value decompression, converting integer pixels to float point numbers, essential for accurate and clear image analysis.
 
@@ -132,7 +53,7 @@ Map$addLayer(ic[[100]], visParams = visParams, "Preprocessed image")
 ```
 <center><img src="figures/preprocess_ic.png" width="80%"/></center>
 
-### **5. Retrieve offset parameter**
+### **2. Retrieve offset parameter**
 
 The `ee$ImageCollection$Extra_getOffsetParams` function is essential for accessing offset parameters in `ee$ImageCollection` objects, crucial for understanding Earth Engine's lossless compression, encapsulated in the equation `IMG_Float_Values = scale * IMG_Integer_Values + offset`. This aids in precise data conversion and analysis.
 
@@ -165,7 +86,7 @@ offset_params
 ```
 
 
-### **6. Retrieve scale parameter**
+### **3. Retrieve scale parameter**
 
 The `ee$Image$Extra_getScaleParams` function in Earth Engine is essential for data accuracy, extracting scale parameters for each band of an ee$Image. This supports the conversion of integer pixel values to floating-point numbers, crucial for data integrity. The core equation for this process is: `IMG_Float_Values = scale * IMG_Integer_Values + offset`, ensuring precise data representation.
 
@@ -197,7 +118,7 @@ scale_params
 # [1] 1
 ```
 
-### **7. Automatic decompression**
+### **4. Automatic decompression**
 
 Earth Engine applies a straightforward lossless compression method: Floating-point image values `IMG_Float_Values` are calculated from integer image values (IMG_Integer_Values) using the formula `IMG_Float_Values = scale * IMG_Integer_Values + offset`. The `ee$Image$Extra_scaleAndOffset` method is used to convert integer pixel values back to floating-point numbers.
 
@@ -207,7 +128,7 @@ adjusted_images <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
   ee$ImageCollection$Extra_scaleAndOffset()
 ```
 
-### **8. Retrieve STAC metadata**
+### **5. Retrieve STAC metadata**
 
 The `ee$ImageCollection$Extra_getSTAC` function is designed to access STAC (SpatioTemporal Asset Catalog) metadata from `ee$ImageCollection` objects. This capability is crucial for obtaining comprehensive metadata for each band, enhancing data understanding and usability in Earth Engine applications.
 
@@ -278,19 +199,7 @@ stac_metadata$summaries$`eo:bands`
 stac_metadata$summaries$`gee:visualizations`
 ```
 
-### **9. Length of an Image**
-
-The `length` function for `ee$ImageCollection` objects quantifies the number of images within a collection. This straightforward method returns a numeric value representing the total count of images in an Earth Engine ImageCollection, aiding in dataset size assessment and management.
-
-```{r}
-# Load the first 10 images from the 'COPERNICUS/S2_SR' Image Collection.
-ic <- ee$ImageCollection("COPERNICUS/S2_SR")[[1:10]]
-
-# Count the number of images in the subset collection.
-imagesCount <- length(ic) # Expected output: 10
-```
-
-### **10. Names of properties**
+### **6. Names of properties**
 
 The `names` function is designed to extract property names from an Earth Engine ImageCollection object `ee$ImageCollection`. This functionality is essential for identifying and accessing specific properties associated with an image collection, thereby enhancing data management and analysis in Earth Engine.
 
@@ -316,7 +225,7 @@ names(ic)
 # [23] "visualization_0_bands"                                      
 ```
 
-### **11. Extract or replace parts**
+### **7. Extract or replace parts**
 
 The `[[` method allows for extraction or replacement of specific parts within an `ee$ImageCollection`. This function is pivotal for selectively accessing or modifying images based on their index in Earth Engine.
 
@@ -349,7 +258,7 @@ m1 | m2
 ```
 <center><img src="figures/replace_ic.png" width="80%"/></center>
 
-### **12. Complete GIF Toolkit for Earth Engine**
+### **8. Complete GIF Toolkit for Earth Engine**
 
 #### **Create a GIF**
 
@@ -415,7 +324,7 @@ ee_utils_gif_save(animation_wtxt, path = paste0(tempfile(), ".gif"))
 ```
 <center><img src="figures/ucayali.gif" width="40%"/></center>
 
-### **13. Citation in publications**
+### **9. Citation in publications**
 
 For academic and research purposes, `ee$ImageCollection$Extra_getCitation` retrieves the citation information of Earth Engine objects. This function is crucial for properly crediting the source of Earth Engine data in publications, providing a formatted citation string for reference.
 
@@ -434,7 +343,7 @@ citation
 # [doi:10.5067/GPM/IMERG/3B-HH/06](https://doi.org/10.5067/GPM/IMERG/3B-HH/06)
 ```
 
-### **14. Get the Digital Object Identifier (DOI)**
+### **10. Get the Digital Object Identifier (DOI)**
 
 The `ee$ImageCollection$Extra_getDOI` function is designed to extract the Digital Object Identifier (DOI) from Earth Engine objects. This feature is essential for accessing permanent, unique identifiers of Earth Engine datasets, facilitating data traceability and sharing in research and publications.
 
@@ -446,7 +355,7 @@ doi <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 doi # "10.5067/GPM/IMERG/3B-HH-L/06"
 ```
 
-### ***15. Get the temporal nearest image***
+### ***11. Get the temporal nearest image***
 
 The `ee$ImageCollection$Extra_closest` function identifies the closest image to a specified date within an Earth Engine `ee$ImageCollection`. It filters the collection within a user-defined tolerance range and unit, optimizing the search process, especially in collections with dense temporal data
 

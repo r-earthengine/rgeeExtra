@@ -97,6 +97,12 @@
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_Image_matchHistogram.html</loc>
   </url>
   <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_Image_spectralIndex.html</loc>
+  </url>
+  <url>
+    <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_subsetting.html</loc>
+  </url>
+  <url>
     <loc>https://r-earthengine.github.io/rgeeExtra/reference/ee_utils_gif_annotate.html</loc>
   </url>
   <url>

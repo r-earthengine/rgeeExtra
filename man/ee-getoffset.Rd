@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getOffsetParams}
 \title{Retrieve offset parameter from EE Image and EE ImageCollections objects}
 \usage{
-`ee$Image$Extra_getOffsetParams()`
+`ee$Image$Extra_getOffsetParams(x)`
 
-`ee$ImageCollection$Extra_getOffsetParams()`
+`ee$ImageCollection$Extra_getOffsetParams(x)`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}

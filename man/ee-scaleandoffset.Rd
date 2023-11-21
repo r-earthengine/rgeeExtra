@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_scaleAndOffset}
 \title{Automatic decompression of EE Image or EE ImageCollection objects}
 \usage{
-`ee$Image$Extra_scaleAndOffset()`
+`ee$Image$Extra_scaleAndOffset(x)`
 
-`ee$ImageCollection$Extra_scaleAndOffset()`
+`ee$ImageCollection$Extra_scaleAndOffset(x)`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}

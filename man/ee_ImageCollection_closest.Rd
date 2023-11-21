@@ -4,28 +4,28 @@
 \alias{ee_ImageCollection_closest}
 \title{Get the temporal nearest image}
 \usage{
-`ee$ImageCollection$Extra_closest()`
+`ee$ImageCollection$Extra_closest(x, ...)`
 }
 \arguments{
-\item{x}{ee$ImageCollection. Image Collection from which to get
-the closest image to the specified date.}
+\item{x}{ee$ImageCollection from which to get the closest image to the specified date.}
 
-\item{date}{ee$Date or R date object. Date of interest. The function will
-look for image closest to this date.}
-
-\item{tolerance}{Numeric. Default 1. Filter the collection between
-(date - tolerance: date + tolerance) before searching the closest
-image. This speeds up the searching process for collections with a
-high temporal resolution.}
-
-\item{unit}{Character. Units for tolerance. Available units: "year",
-"month", "week", "day", "hour", "minute" or "second". Default "month".}
+\item{...}{Additional arguments for finding the nearest image.
+See details for more information.}
 }
 \value{
 An ee$Image closest to the specified date.
 }
 \description{
-Gets the closest ee$Image to a specified date.
+Gets the closest ee$Image to a specified date from an ee$ImageCollection.
+}
+\details{
+The \code{...} argument can include the following:
+\itemize{
+\item{date}{ee$Date or R date object. Date of interest for searching the closest image.}
+\item{tolerance}{Numeric. Filters the collection within a range of (date - tolerance, date + tolerance). Default 1.}
+\item{unit}{Character. Units for tolerance. Options include "year", "month", "week", "day", "hour", "minute", "second". Default "month".}
+}
+These parameters allow for precise control over how the closest image is determined.
 }
 \examples{
 \dontrun{

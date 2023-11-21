@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getDOI}
 \title{Get the Digital Object Identifier (DOI) of an EE object}
 \usage{
-`ee$Image$Extra_getDOI()`
+`ee$Image$Extra_getDOI(x)`
 
-`ee$ImageCollection$Extra_getDOI()`
+`ee$ImageCollection$Extra_getDOI(x)`
 }
 \arguments{
 \item{x}{An EE object.}

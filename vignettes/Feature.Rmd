@@ -36,7 +36,7 @@ The `names` function for `ee$Feature` objects efficiently extracts the names of 
 
 ```{r}
 # Retrieve the first feature from the 'WRI/GPPD/power_plants' Feature Collection.
-fc <- ee$FeatureCollection('WRI/GPPD/power_plants')$first()
+fc <- ee$FeatureCollection('WRI/GPPD/power_plants')[[1]]
 
 # List the properties and methods available for the feature.
 names(fc)

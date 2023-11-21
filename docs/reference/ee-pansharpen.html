@@ -86,7 +86,7 @@ as properties of the sharpened Image."><!-- mathjax --><script src="https://cdnj
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Apply panchromatic sharpening to an ee$Image or an ee$ImageCollection</h1>
-    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageColletion.R" class="external-link"><code>R/ee_ImageColletion.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a></small>
     <div class="hidden name"><code>ee-pansharpen.Rd</code></div>
     </div>
 
@@ -98,35 +98,19 @@ as properties of the sharpened Image.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">`ee$Image$Extra_panSharpen()`</span></span>
-<span></span>
-<span><span class="va">`ee$ImageCollection$Extra_panSharpen()`</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">`ee$Image$Extra_panSharpen(x, ...)`</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
-<dd><p>An ee$Image or an ee$ImageCollection object. The image to sharpen.</p></dd>
-
-
-<dt>method</dt>
-<dd><p>Character. The sharpening algorithm to apply. Current
-options are “SFIM” (Smoothing Filter-based Intensity Modulation),
-“HPFA” (High Pass Filter Addition), “PCS” (Principal Component
-Substitution), and “SM” (simple mean). Different sharpening
-methods will produce different quality sharpening results in
-different scenarios.</p></dd>
-
-
-<dt>qa</dt>
-<dd><p>Character. One or more optional quality assessment names to
-apply after sharpening, e.g. “MSE”, “RASE”, “UIQI”, etc.</p></dd>
+<dd><p>An ee$Image or an ee$ImageCollection object, the image to sharpen.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Keyword arguments passed to ee.Image.reduceRegion() such
-as “geometry”, “maxPixels”, “bestEffort”, etc. These arguments are
-only used for PCS sharpening and quality assessments.</p></dd>
+<dd><p>Additional arguments including sharpening method, quality
+assessments, and parameters for <code>ee.Image.reduceRegion()</code>.
+See details for more information.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -136,6 +120,17 @@ only used for PCS sharpening and quality assessments.</p></dd>
 <p>The Image with all sharpenable bands sharpened to the
 panchromatic resolution and quality assessments run and set
 as properties.</p>
+    </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>The <code>...</code> argument can include the following:</p><ul><li><p>methodCharacter. The sharpening algorithm to apply. Options include “SFIM”,
+“HPFA”, “PCS”, and “SM”. Default is “SFIM”.</p></li>
+<li><p>qaCharacter. One or more quality assessment names to apply after sharpening,
+such as “MSE”, “RASE”, “UIQI”, etc.</p></li>
+<li><p>geometry, maxPixels, bestEffort, etc.Arguments passed to <code>ee.Image.reduceRegion()</code>
+during PCS sharpening and quality assessments.</p></li>
+</ul><p>For the PCS method, additional parameters for <code>ee.Image.reduceRegion()</code> can be specified,
+such as <code>geometry</code>, <code>maxPixels</code>, <code>bestEffort</code>, etc.</p>
     </div>
 
     <div id="ref-examples">

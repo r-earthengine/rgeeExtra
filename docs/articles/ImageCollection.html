@@ -140,115 +140,15 @@ over time and space. The <code>rgeeExtra</code> package enhances these
 functionalities within R, providing tools for diverse and complex image
 collection processing and analysis.</p>
 <div class="section level3">
-<h3 id="spectral-indices">
-<strong>1. Spectral Indices</strong><a class="anchor" aria-label="anchor" href="#spectral-indices"></a>
-</h3>
-<p>The <code>ee$ImageCollection$Extra_spectralIndex</code> function
-efficiently computes spectral indices for
-<code>ee$ImageCollection</code> objects, offering a broad range of
-indices for diverse environmental analyses. This tool enables tailored
-index computation, catering to specific requirements in vegetation,
-water, urban, and other thematic studies.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load Sentinel-2 SR image collection and compute NDVI and SAVI indices</span></span>
-<span><span class="va">s2_indices</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_spectralIndex</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NDVI"</span>, <span class="st">"SAVI"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Set visualization parameters for NDVI</span></span>
-<span><span class="va">visParams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  min <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>  max <span class="op">=</span> <span class="fl">0.2</span>, </span>
-<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"yellow"</span>, <span class="st">"green"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Select the first image for display on the map</span></span>
-<span><span class="va">s2_indice</span> <span class="op">&lt;-</span> <span class="va">s2_indices</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Display NDVI of the first image with custom visualization settings</span></span>
-<span><span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">s2_indice</span>, zoom <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span></span>
-<span>  eeObject <span class="op">=</span> <span class="va">s2_indice</span><span class="op">[[</span><span class="st">"NDVI"</span><span class="op">]</span><span class="op">]</span>, </span>
-<span>  visParams <span class="op">=</span> <span class="va">visParams</span>,</span>
-<span>  name <span class="op">=</span> <span class="st">"NDVI"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<center>
-<img src="figures/spectral_indices.png" width="80%">
-</center>
-</div>
-<div class="section level3">
-<h3 id="tasseled-cap-transformation">
-<strong>2. Tasseled Cap Transformation</strong><a class="anchor" aria-label="anchor" href="#tasseled-cap-transformation"></a>
-</h3>
-<p>The <code>ee$ImageCollection$Extra_tasseledCap</code> function
-applies Tasseled Cap transformations to Earth Engine ImageCollections.
-It supports various satellite platforms, calculating key components like
-brightness, wetness, and greenness, crucial for advanced land cover and
-vegetation analysis across diverse datasets like Sentinel-2, Landsat,
-and MODIS.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Tasseled Cap transformation on LANDSAT LC09 C02 T1 L2 collection.</span></span>
-<span><span class="va">ic</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"LANDSAT/LC09/C02/T1_L2"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_tasseledCap</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Select the first transformed image.</span></span>
-<span><span class="va">image</span> <span class="op">&lt;-</span> <span class="va">ic</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Map display: Brightness, Greenness, and Wetness layers.</span></span>
-<span><span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">image</span><span class="op">)</span></span>
-<span><span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">image</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="st">"TCB"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>min <span class="op">=</span> <span class="fl">1900</span>, max <span class="op">=</span> <span class="fl">76400</span><span class="op">)</span>, <span class="st">"TC Brightness"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">image</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="st">"TCG"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>min <span class="op">=</span> <span class="op">-</span><span class="fl">23500</span>, max <span class="op">=</span> <span class="fl">1660</span><span class="op">)</span>, <span class="st">"TC Greenness"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">image</span><span class="op">$</span><span class="fu">select</span><span class="op">(</span><span class="st">"TCW"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>min <span class="op">=</span> <span class="op">-</span><span class="fl">14200</span>, max <span class="op">=</span> <span class="fl">29800</span><span class="op">)</span>, <span class="st">"TC Wetness"</span><span class="op">)</span></span></code></pre></div>
-<center>
-<img src="figures/tc_ic.png" width="80%">
-</center>
-</div>
-<div class="section level3">
-<h3 id="panchromatic-sharpening">
-<strong>3. Panchromatic Sharpening</strong><a class="anchor" aria-label="anchor" href="#panchromatic-sharpening"></a>
-</h3>
-<p>Enhance spatial resolution in <code>ee$ImageCollection</code> objects
-using the <code>ee$ImageCollection$Extra_panSharpen</code> function.
-This tool offers various sharpening methods like SFIM and HPFA, along
-with optional quality assessments, to improve image clarity and detail
-for more precise analysis.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load Landsat 8 TOA reflectance image from GEE</span></span>
-<span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC09/C02/T1_TOA/LC09_047027_20230815"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Apply HPFA panchromatic sharpening to enhance sharpness</span></span>
-<span><span class="va">img_sharp</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_panSharpen</span><span class="op">(</span></span>
-<span>  <span class="va">img</span>, </span>
-<span>  method<span class="op">=</span><span class="st">"HPFA"</span>, </span>
-<span>  qa<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MSE"</span>, <span class="st">"RMSE"</span><span class="op">)</span>, </span>
-<span>  maxPixels<span class="op">=</span><span class="fl">1e13</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Define visualization parameters for displaying the images</span></span>
-<span><span class="va">visParams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  bands <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B4"</span>,<span class="st">"B3"</span>,<span class="st">"B2"</span><span class="op">)</span>,</span>
-<span>  min <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>  max <span class="op">=</span> <span class="fl">0.15</span>, </span>
-<span>  gamma <span class="op">=</span> <span class="fl">1.4</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Display original and HPFA-sharpened images on the map</span></span>
-<span><span class="va">Map</span><span class="op">$</span><span class="fu">setCenter</span><span class="op">(</span>lon <span class="op">=</span> <span class="op">-</span><span class="fl">123.11</span>, lat <span class="op">=</span> <span class="fl">47.307</span>, zoom <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span>
-<span><span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">img</span>, <span class="va">visParams</span>, <span class="st">"Original Image"</span><span class="op">)</span> <span class="op">|</span></span>
-<span>  <span class="va">Map</span><span class="op">$</span><span class="fu">addLayer</span><span class="op">(</span><span class="va">img_sharp</span>, <span class="va">visParams</span>, <span class="st">"Sharpened Image"</span><span class="op">)</span></span></code></pre></div>
-<center>
-<img src="figures/sharp.png" width="80%">
-</center>
-</div>
-<div class="section level3">
 <h3 id="automated-preprocessing">
-<strong>4. Automated Preprocessing</strong><a class="anchor" aria-label="anchor" href="#automated-preprocessing"></a>
+<strong>1. Automated Preprocessing</strong><a class="anchor" aria-label="anchor" href="#automated-preprocessing"></a>
 </h3>
 <p>The <code>ee$ImageCollection$Extra_preprocess</code> function
 streamlines preprocessing of Earth Engine ImageCollections. It
 efficiently performs tasks like cloud masking and pixel value
 decompression, converting integer pixels to float point numbers,
 essential for accurate and clear image analysis.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load and preprocess Sentinel-2 SR image collection.</span></span>
 <span><span class="va">ic</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="va">Dataset</span><span class="op">$</span><span class="va">COPERNICUS_S2_SR</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_preprocess</span><span class="op">(</span><span class="op">)</span></span>
@@ -270,7 +170,7 @@ essential for accurate and clear image analysis.</p>
 </div>
 <div class="section level3">
 <h3 id="retrieve-offset-parameter">
-<strong>5. Retrieve offset parameter</strong><a class="anchor" aria-label="anchor" href="#retrieve-offset-parameter"></a>
+<strong>2. Retrieve offset parameter</strong><a class="anchor" aria-label="anchor" href="#retrieve-offset-parameter"></a>
 </h3>
 <p>The <code>ee$ImageCollection$Extra_getOffsetParams</code> function is
 essential for accessing offset parameters in
@@ -278,7 +178,7 @@ essential for accessing offset parameters in
 Engine’s lossless compression, encapsulated in the equation
 <code>IMG_Float_Values = scale * IMG_Integer_Values + offset</code>.
 This aids in precise data conversion and analysis.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get offset parameters from NASA IMERG V06 image collection.</span></span>
 <span><span class="va">offset_params</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_getOffsetParams</span><span class="op">(</span><span class="op">)</span></span>
@@ -307,7 +207,7 @@ This aids in precise data conversion and analysis.</p>
 </div>
 <div class="section level3">
 <h3 id="retrieve-scale-parameter">
-<strong>6. Retrieve scale parameter</strong><a class="anchor" aria-label="anchor" href="#retrieve-scale-parameter"></a>
+<strong>3. Retrieve scale parameter</strong><a class="anchor" aria-label="anchor" href="#retrieve-scale-parameter"></a>
 </h3>
 <p>The <code>ee$Image$Extra_getScaleParams</code> function in Earth
 Engine is essential for data accuracy, extracting scale parameters for
@@ -316,7 +216,7 @@ values to floating-point numbers, crucial for data integrity. The core
 equation for this process is:
 <code>IMG_Float_Values = scale * IMG_Integer_Values + offset</code>,
 ensuring precise data representation.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve scale parameters for the NASA IMERG V06 collection.</span></span>
 <span><span class="va">scale_params</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_getScaleParams</span><span class="op">(</span><span class="op">)</span></span>
@@ -345,7 +245,7 @@ ensuring precise data representation.</p>
 </div>
 <div class="section level3">
 <h3 id="automatic-decompression">
-<strong>7. Automatic decompression</strong><a class="anchor" aria-label="anchor" href="#automatic-decompression"></a>
+<strong>4. Automatic decompression</strong><a class="anchor" aria-label="anchor" href="#automatic-decompression"></a>
 </h3>
 <p>Earth Engine applies a straightforward lossless compression method:
 Floating-point image values <code>IMG_Float_Values</code> are calculated
@@ -353,21 +253,21 @@ from integer image values (IMG_Integer_Values) using the formula
 <code>IMG_Float_Values = scale * IMG_Integer_Values + offset</code>. The
 <code>ee$Image$Extra_scaleAndOffset</code> method is used to convert
 integer pixel values back to floating-point numbers.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Adjust Sentinel-2 SR images for scale and offset.</span></span>
 <span><span class="va">adjusted_images</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_scaleAndOffset</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="retrieve-stac-metadata">
-<strong>8. Retrieve STAC metadata</strong><a class="anchor" aria-label="anchor" href="#retrieve-stac-metadata"></a>
+<strong>5. Retrieve STAC metadata</strong><a class="anchor" aria-label="anchor" href="#retrieve-stac-metadata"></a>
 </h3>
 <p>The <code>ee$ImageCollection$Extra_getSTAC</code> function is
 designed to access STAC (SpatioTemporal Asset Catalog) metadata from
 <code>ee$ImageCollection</code> objects. This capability is crucial for
 obtaining comprehensive metadata for each band, enhancing data
 understanding and usability in Earth Engine applications.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve STAC metadata from NASA's IMERG V06 image collection.</span></span>
 <span><span class="va">stac_metadata</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_getSTAC</span><span class="op">(</span><span class="op">)</span></span>
@@ -434,24 +334,8 @@ understanding and usability in Earth Engine applications.</p>
 <span><span class="va">stac_metadata</span><span class="op">$</span><span class="va">summaries</span><span class="op">$</span><span class="va">`gee:visualizations`</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="length-of-an-image">
-<strong>9. Length of an Image</strong><a class="anchor" aria-label="anchor" href="#length-of-an-image"></a>
-</h3>
-<p>The <code>length</code> function for <code>ee$ImageCollection</code>
-objects quantifies the number of images within a collection. This
-straightforward method returns a numeric value representing the total
-count of images in an Earth Engine ImageCollection, aiding in dataset
-size assessment and management.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load the first 10 images from the 'COPERNICUS/S2_SR' Image Collection.</span></span>
-<span><span class="va">ic</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Count the number of images in the subset collection.</span></span>
-<span><span class="va">imagesCount</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ic</span><span class="op">)</span> <span class="co"># Expected output: 10</span></span></code></pre></div>
-</div>
-<div class="section level3">
 <h3 id="names-of-properties">
-<strong>10. Names of properties</strong><a class="anchor" aria-label="anchor" href="#names-of-properties"></a>
+<strong>6. Names of properties</strong><a class="anchor" aria-label="anchor" href="#names-of-properties"></a>
 </h3>
 <p>The <code>names</code> function is designed to extract property names
 from an Earth Engine ImageCollection object
@@ -459,7 +343,7 @@ from an Earth Engine ImageCollection object
 identifying and accessing specific properties associated with an image
 collection, thereby enhancing data management and analysis in Earth
 Engine.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Filter Sentinel-2 Surface Reflectance images for Jan 1-2, 1999</span></span>
 <span><span class="va">ic</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">filterDate</span><span class="op">(</span><span class="st">"2018-01-01"</span>, <span class="st">"2019-01-02"</span><span class="op">)</span></span>
@@ -482,13 +366,13 @@ Engine.</p>
 </div>
 <div class="section level3">
 <h3 id="extract-or-replace-parts">
-<strong>11. Extract or replace parts</strong><a class="anchor" aria-label="anchor" href="#extract-or-replace-parts"></a>
+<strong>7. Extract or replace parts</strong><a class="anchor" aria-label="anchor" href="#extract-or-replace-parts"></a>
 </h3>
 <p>The <code>[[</code> method allows for extraction or replacement of
 specific parts within an <code>ee$ImageCollection</code>. This function
 is pivotal for selectively accessing or modifying images based on their
 index in Earth Engine.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load TerraClimate dataset for 2001</span></span>
 <span><span class="va">terraclimate</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"IDAHO_EPSCOR/TERRACLIMATE"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">filterDate</span><span class="op">(</span><span class="st">"2001-01-01"</span>, <span class="st">"2002-01-01"</span><span class="op">)</span></span>
@@ -520,7 +404,7 @@ index in Earth Engine.</p>
 </div>
 <div class="section level3">
 <h3 id="complete-gif-toolkit-for-earth-engine">
-<strong>12. Complete GIF Toolkit for Earth Engine</strong><a class="anchor" aria-label="anchor" href="#complete-gif-toolkit-for-earth-engine"></a>
+<strong>8. Complete GIF Toolkit for Earth Engine</strong><a class="anchor" aria-label="anchor" href="#complete-gif-toolkit-for-earth-engine"></a>
 </h3>
 <div class="section level4">
 <h4 id="create-a-gif">
@@ -556,7 +440,7 @@ image_write from the <code>magick</code> package, efficiently writes a
 format, quality, depth, and more, allowing for detailed customization of
 the output GIF, making it ideal for saving and sharing Earth Engine
 visualizations.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Process the JRC/GSW1_1/YearlyHistory image collection: calculate the yearly image, apply despeckling, and set the 'year' property.</span></span>
 <span><span class="va">col</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"JRC/GSW1_1/YearlyHistory"</span><span class="op">)</span><span class="op">$</span><span class="fu">map</span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">img</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">year</span> <span class="op">&lt;-</span> <span class="va">img</span><span class="op">$</span><span class="fu">date</span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"year"</span><span class="op">)</span></span>
@@ -611,14 +495,14 @@ visualizations.</p>
 </div>
 <div class="section level3">
 <h3 id="citation-in-publications">
-<strong>13. Citation in publications</strong><a class="anchor" aria-label="anchor" href="#citation-in-publications"></a>
+<strong>9. Citation in publications</strong><a class="anchor" aria-label="anchor" href="#citation-in-publications"></a>
 </h3>
 <p>For academic and research purposes,
 <code>ee$ImageCollection$Extra_getCitation</code> retrieves the citation
 information of Earth Engine objects. This function is crucial for
 properly crediting the source of Earth Engine data in publications,
 providing a formatted citation string for reference.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Fetching NASA/GPM_L3/IMERG_V06 image collection and retrieving its citation.</span></span>
 <span><span class="va">citation</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_getCitation</span><span class="op">(</span><span class="op">)</span></span>
@@ -634,14 +518,14 @@ providing a formatted citation string for reference.</p>
 </div>
 <div class="section level3">
 <h3 id="get-the-digital-object-identifier-doi">
-<strong>14. Get the Digital Object Identifier (DOI)</strong><a class="anchor" aria-label="anchor" href="#get-the-digital-object-identifier-doi"></a>
+<strong>10. Get the Digital Object Identifier (DOI)</strong><a class="anchor" aria-label="anchor" href="#get-the-digital-object-identifier-doi"></a>
 </h3>
 <p>The <code>ee$ImageCollection$Extra_getDOI</code> function is designed
 to extract the Digital Object Identifier (DOI) from Earth Engine
 objects. This feature is essential for accessing permanent, unique
 identifiers of Earth Engine datasets, facilitating data traceability and
 sharing in research and publications.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve and print the DOI for the NASA/GPM_L3/IMERG_V06 image collection.</span></span>
 <span><span class="va">doi</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_getDOI</span><span class="op">(</span><span class="op">)</span></span>
@@ -650,14 +534,14 @@ sharing in research and publications.</p>
 </div>
 <div class="section level3">
 <h3 id="get-the-temporal-nearest-image">
-<strong><em>15. Get the temporal nearest image</em></strong><a class="anchor" aria-label="anchor" href="#get-the-temporal-nearest-image"></a>
+<strong><em>11. Get the temporal nearest image</em></strong><a class="anchor" aria-label="anchor" href="#get-the-temporal-nearest-image"></a>
 </h3>
 <p>The <code>ee$ImageCollection$Extra_closest</code> function identifies
 the closest image to a specified date within an Earth Engine
 <code>ee$ImageCollection</code>. It filters the collection within a
 user-defined tolerance range and unit, optimizing the search process,
 especially in collections with dense temporal data</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define ROI with specified longitude and latitude.</span></span>
 <span><span class="va">roi</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">Geometry</span><span class="op">$</span><span class="fu">Point</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">77.232</span>, <span class="op">-</span><span class="fl">9.276</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>

@@ -4,28 +4,29 @@
 \alias{ee_Image_matchHistogram}
 \title{Adjust the image's histogram to match a target image}
 \usage{
-`ee$Image$Extra_matchHistogram()`
+`ee$Image$Extra_matchHistogram(x, ...)`
 }
 \arguments{
-\item{image}{ee$Image to adjust.}
+\item{x}{ee$Image to adjust.}
 
-\item{target}{ee$Image image to match.}
-
-\item{bands}{A dictionary of band names to match, with
-source bands as keys and target bands as values.}
-
-\item{geometry}{ee$Geometry. The region to match histograms in that
-overlaps both images. If none is provided, the geometry of the source
-image will be used.  Defaults is NULL.}
-
-\item{maxBuckets}{Integer. The maximum number of buckets to use when building
-histograms. Will be rounded to the nearest power of 2.  Default to 256.}
+\item{...}{Additional arguments for histogram matching.
+See details for more information.}
 }
 \value{
 The adjusted image containing the matched source bands.
 }
 \description{
-Adjust the image's histogram to match a target image
+Matches the histogram of one image (source) to that of another image (target).
+}
+\details{
+The \code{...} argument can include the following:
+\itemize{
+\item{target}{ee$Image. The target image to match.}
+\item{bands}{Dictionary. Band names to match, with source bands as keys and target bands as values.}
+\item{geometry}{ee$Geometry. The region to match histograms in that overlaps both images. Default is NULL.}
+\item{maxBuckets}{Integer. The maximum number of buckets to use when building histograms. Default 256.}
+}
+These parameters allow for detailed customization of the histogram matching process.
 }
 \examples{
 \dontrun{

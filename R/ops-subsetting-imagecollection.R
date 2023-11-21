@@ -1,6 +1,7 @@
 #' Extract or replace parts of and ee$ImageCollection
 #' @param x ee$ImageCollection or ee$Image.
 #' @param index Integer. Index specifying elements to extract or replace.
+#' @name ee_subsetting
 #' @return An EE.ImageCollection
 #' @examples
 #' \dontrun{
@@ -70,6 +71,7 @@
 #' @param x ee$ImageCollection or ee$Image.
 #' @param index Integer. Index specifying elements to extract or replace.
 #' @param value ee$ImageCollection or ee$Image to replace in.
+#' @name ee_subsetting
 #' @return An EE.ImageCollection
 #' @examples
 #' \dontrun{
@@ -174,6 +176,7 @@
 #' Get the names of the properties of an Earth Engine ImageCollection object.
 #'
 #' @param x an EE ImageCollection object.
+#' @name ee_subsetting
 #' @examples
 #' \dontrun{
 #' library(rgeeExtra)

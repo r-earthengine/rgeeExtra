@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getSTAC}
 \title{Retrieve EE Image or EE ImageCollection STAC metadata}
 \usage{
-`ee$Image$Extra_getSTAC()`
+`ee$Image$Extra_getSTAC(x)`
 
-`ee$ImageCollection$Extra_getSTAC()`
+`ee$ImageCollection$Extra_getSTAC(x)`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}

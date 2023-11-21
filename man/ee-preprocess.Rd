@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_preprocess}
 \title{Automated EE Image or EE ImageCollection preprocessing}
 \usage{
-`ee$Image$Extra_preprocess()`
+`ee$Image$Extra_preprocess(x)`
 
-`ee$ImageCollection$Extra_preprocess()`
+`ee$ImageCollection$Extra_preprocess(x, ...)`
 }
 \arguments{
 \item{x}{An ee$Image or an ee$ImageCollection object.}

@@ -159,32 +159,14 @@ features in Earth Engine for targeted geographic analysis.</p>
 </center>
 </div>
 <div class="section level3">
-<h3 id="length">
-<strong>2. Length</strong><a class="anchor" aria-label="anchor" href="#length"></a>
-</h3>
-<p>The <code>length</code> function for
-<code>ee$FeatureCollection</code> objects quantifies the number of
-features, providing a straightforward method to assess the size of a
-collection in Earth Engine.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Define a rectangular region with specified coordinates.</span></span>
-<span><span class="va">region</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">Geometry</span><span class="op">$</span><span class="fu">Rectangle</span><span class="op">(</span><span class="op">-</span><span class="fl">119.224</span>, <span class="fl">34.669</span>, <span class="op">-</span><span class="fl">99.536</span>, <span class="fl">50.064</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Generate 1000 random points within the defined region.</span></span>
-<span><span class="va">randomPoints</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">FeatureCollection</span><span class="op">$</span><span class="fu">randomPoints</span><span class="op">(</span><span class="va">region</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get the count of random points generated.</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">randomPoints</span><span class="op">)</span> <span class="co"># Expected output: 1000</span></span></code></pre></div>
-</div>
-<div class="section level3">
 <h3 id="names">
-<strong>3. Names</strong><a class="anchor" aria-label="anchor" href="#names"></a>
+<strong>2. Names</strong><a class="anchor" aria-label="anchor" href="#names"></a>
 </h3>
 <p>The <code>names</code> function for <code>ee$FeatureCollection</code>
 retrieves the names of properties, providing a clear overview of
 attributes within Earth Engine’s feature collections for effective data
 management and analysis.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load the 'WRI/GPPD/power_plants' Feature Collection from Earth Engine.</span></span>
 <span><span class="va">fc</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">FeatureCollection</span><span class="op">(</span><span class="st">'WRI/GPPD/power_plants'</span><span class="op">)</span></span>
 <span></span>

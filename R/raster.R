@@ -1,16 +1,26 @@
-#' Minimum and maximum values
+#' Minimum and Maximum Values
 #'
 #' Returns the minimum or maximum value of an ee.Image. The return value will
-#' be an \strong{approximation} if the polygon (are of the ee.Image) contains
+#' be an approximation if the polygon (area of the ee.Image) contains
 #' too many pixels at the native scale.
 #'
-#' @param image ee.Image
-#' @param mode Character. Indicates the geometry over which
-#' to reduce data (max). Two types are supported: "Rectangle" (by default)
-#' which use the Image system:footprint, and "Points" which use points
-#' sampled over the Image system:footprint.
-#' @param sample_size Number of points to created. Ignore if mode is Rectangle.
-#' @return A number
+#' @param x ee$Image to analyze.
+#' @param ... Additional arguments for specifying the mode and sampling.
+#' See details for more information.
+#'
+#' @details
+#' The `...` argument can include the following:
+#' \itemize{
+#'   \item{mode}{Character. Indicates the geometry over which to reduce data. Options: "Rectangle" (default) or "Points".}
+#'   \item{sample_size}{Numeric. Number of points to be created. Relevant only if mode is "Points".}
+#' }
+#' The "Rectangle" mode uses the Image system:footprint, while the "Points" mode samples points over the Image system:footprint.
+#'
+#' @return A number representing the minimum or maximum value.
+#'
+#' @usage
+#' `ee$Image$Extra_maxValue(x, ...)`
+#'
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -21,12 +31,12 @@
 #'
 #' image <- ee$ImageCollection$Dataset$LANDSAT_LC08_C01_T1$first()[["B1"]]
 #' # max values
-#' ee_maxValue(image)
-#' ee_maxValue(image, mode = "Points", sample_size = 2)
+#' ee$Image$Extra_maxValue(image)
+#' ee$Image$Extra_maxValue(image, mode = "Points", sample_size = 2)
 #'
 #' # min values
-#' ee_minValue(image)
-#' ee_minValue(image, mode = "Points")
+#' ee$Image$Extra_minValue(image)
+#' ee$Image$Extra_minValue(image, mode = "Points")
 #' }
 #' @family extremeValues
 #' @name extremeValues
@@ -66,7 +76,9 @@ ee_maxValue <- function(image, mode = "Rectangle", sample_size = 1000) {
   }
 }
 
-#' @rdname extremeValues
+#' @name extremeValues
+#' @usage
+#' `ee$Image$Extra_minValue(x, ...)`
 #' @export
 ee_minValue <- function(image, mode = "Rectangle", sample_size = 1000) {
   # Check the package

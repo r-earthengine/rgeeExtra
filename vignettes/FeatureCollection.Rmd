@@ -44,22 +44,7 @@ Map$addLayer(fc_tiger_subset)
 ```
 <center><img src="figures/sub_fc.png" width="80%"/></center>
 
-### **2. Length**
-
-The `length` function for `ee$FeatureCollection` objects quantifies the number of features, providing a straightforward method to assess the size of a collection in Earth Engine.
-
-```{r}
-# Define a rectangular region with specified coordinates.
-region <- ee$Geometry$Rectangle(-119.224, 34.669, -99.536, 50.064)
-
-# Generate 1000 random points within the defined region.
-randomPoints <- ee$FeatureCollection$randomPoints(region)
-
-# Get the count of random points generated.
-length(randomPoints) # Expected output: 1000
-```
-
-### **3. Names**
+### **2. Names**
 
 The `names` function for `ee$FeatureCollection` retrieves the names of properties, providing a clear overview of attributes within Earth Engine's feature collections for effective data management and analysis.
 

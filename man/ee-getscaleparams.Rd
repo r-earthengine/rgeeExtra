@@ -6,9 +6,9 @@
 \alias{ee_ImageCollection_getScaleParams}
 \title{Retrieve scale parameter from EE Image and EE ImageCollection objects.}
 \usage{
-`ee$Image$Extra_getScaleParams()`
+`ee$Image$Extra_getScaleParams(x)`
 
-`ee$ImageCollection$Extra_getScaleParams()`
+`ee$ImageCollection$Extra_getScaleParams(x)`
 }
 \arguments{
 \item{x}{An ee$Image.or an ee$ImageCollection object.}
