@@ -12,8 +12,8 @@ fc <- ee$FeatureCollection$Dataset$WWF_HydroSHEDS_v1_Basins_hybas_1
 
 test_that("ee_get ImageCollection", {
   expect_error(rgeeExtra::ee_get(ic, -1))
-  # expect_equal(ic$first()$getInfo(), ee_get(ic, 0:1)$first()$getInfo())
-  # expect_equal(ic$first()$getInfo(), ee_get(ic, c(0, 2))$first()$getInfo())
+  expect_equal(ic$first()$getInfo(), ee_get(ic, 0:1)$first()$getInfo())
+  expect_equal(ic$first()$getInfo(), ee_get(ic, c(0, 2))$first()$getInfo())
   expect_error(rgeeExtra::ee_get(1:10, 1))
 })
 

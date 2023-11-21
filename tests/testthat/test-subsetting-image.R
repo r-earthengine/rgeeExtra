@@ -15,7 +15,7 @@ value <- ee$ImageCollection(c(ee$Image(0), ee$Image(1)))$toBands()
 
 test_that("[[.ee.image.Image", {
   expect_equal(img[[c("AVE_DSM", "AVE_MSK")]], img$select(c("AVE_DSM", "AVE_MSK")))
-  # expect_equal(img[[1]]$getInfo(), img$select("AVE_DSM")$getInfo())
+  expect_equal(img[[1]]$getInfo(), img$select("AVE_DSM")$getInfo())
   expect_error(img[[0]])
   expect_error(img[[-1]])
   expect_error(img[[TRUE]])

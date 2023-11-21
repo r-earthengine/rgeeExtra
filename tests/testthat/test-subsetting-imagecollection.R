@@ -17,7 +17,7 @@ test_that("[[.ee.imagecollection.ImageCollection", {
   pallete_dem <- ic_demo[["visualization_0_palette"]]
   expect_type(pallete_dem, "character")
   first_image <- ic_demo[[1]]
-  # expect_equal(first_image$getInfo(), ic_demo$first()$getInfo())
+  expect_equal(first_image$getInfo(), ic_demo$first()$getInfo())
 
   # ee.Image subsetting test
   expect_error(first_image[[0]])
