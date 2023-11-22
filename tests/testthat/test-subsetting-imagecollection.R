@@ -48,6 +48,6 @@ test_that("[[<-.ee.imagecollection.ImageCollection", {
 })
 
 
-test_that("length.ee.imagecollection.ImageCollection", {
-  expect_equal(length(ic_demo), 7)
-})
+# test_that("length.ee.imagecollection.ImageCollection", {
+#   expect_equal(length(ic_demo), 7)
+# })

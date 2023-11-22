@@ -4,78 +4,48 @@
 \alias{ee_Image_maskClouds}
 \title{Masks clouds and shadows}
 \usage{
-ee_Image_maskClouds(
-  image,
-  method = "cloud_prob",
-  prob = 60,
-  maskCirrus = TRUE,
-  maskShadows = TRUE,
-  scaledImage = FALSE,
-  dark = 0.15,
-  cloudDist = 1000,
-  buffer = 250,
-  cdi = NULL
-)
+`ee$Image$Extra_maskClouds(x, ...)`
 }
 \arguments{
-\item{image}{An ee$Image}
+\item{x}{An ee$Image to be processed for cloud and shadow masking.}
 
-\item{method}{The method to mask clouds. Available
-options: "cloud_prob" and "qa".}
-
-\item{prob}{A number between 0 and 100. Cloud probability threshold.
-Valid just for method = 'cloud_prob'. This parameter is ignored for
-Landsat products. Default value is 60.}
-
-\item{maskCirrus}{Logical Whether to mask cirrus clouds.
-Valid just for method = 'qa'. This parameter is ignored for Landsat
-products. Default value is TRUE.}
-
-\item{maskShadows}{Logical. Whether to mask cloud shadows.
-For more info see 'Braaten, J. 2020. Sentinel-2 Cloud Masking
-with s2cloudless. Google Earth Engine, Community Tutorials'. Default value
-is TRUE.}
-
-\item{scaledImage}{Logical. Whether the pixel values are scaled to the
-range <0,1> (reflectance values). This parameter is ignored for Landsat products.
-The default value is FALSE.}
-
-\item{dark}{: Numerical value between <0-1>. NIR threshold. NIR values below
-this threshold are potential cloud shadows. This parameter is ignored for
-Landsat products. Default value is 0.15}
-
-\item{cloudDist}{Numerical value. Maximum distance in meters (m) to look
-for cloud shadows from cloud edges. This parameter is ignored for
-Landsat products. Default value is 1000.}
-
-\item{buffer}{Numerical value. Distance in meters (m) to dilate cloud and
-cloud shadows objects. This parameter is ignored for Landsat products. Default
-value is 250 meters.}
-
-\item{cdi}{Numerical value between <-1, 1>. Cloud Displacement Index threshold.
-Values below this threshold are considered potential clouds. A cdi = None means
-that the index is not used. For more info see 'Frantz, D., HaS, E., Uhl, A.,
-Stoffels, J., Hill, J. 2018. Improvement of the Fmask algorithm for Sentinel-2
-images: Separating clouds from bright surfaces based on parallax effects.
-Remote Sensing of Environment 2015: 471-481'. Default value is NULL.}
+\item{...}{Additional arguments for cloud and shadow masking.
+See details for more information.}
 }
 \value{
-ee.Image with a Cloud-shadow masked image.
+ee$Image with a Cloud-shadow masked image.
 }
 \description{
 Masks clouds and shadows in an ee.Image. Valid just for
 Surface Reflectance products. This function may mask water
-as well as clouds for the Sentinel-3 Radiance product
+as well as clouds for the Sentinel-3 Radiance product.
+}
+\details{
+The \code{...} argument can include the following:
+\itemize{
+\item{method}{Character. The method to mask clouds. Options: "cloud_prob" and "qa".}
+\item{prob}{Numeric. Cloud probability threshold, between 0 and 100. Valid for 'cloud_prob' method. Default 60.}
+\item{maskCirrus}{Logical. Whether to mask cirrus clouds. Valid for 'qa' method. Default TRUE.}
+\item{maskShadows}{Logical. Whether to mask cloud shadows. Default TRUE.}
+\item{scaledImage}{Logical. If TRUE, scale pixel values to <0,1>. Default FALSE.}
+\item{dark}{Numeric. NIR threshold for potential cloud shadows, between 0-1. Default 0.15.}
+\item{cloudDist}{Numeric. Max distance in meters to search for cloud shadows from cloud edges. Default 1000m.}
+\item{buffer}{Numeric. Distance in meters to dilate cloud and shadow objects. Default 250m.}
+\item{cdi}{Numeric. Cloud Displacement Index threshold, between <-1, 1>. Default NULL.}
+}
+For more information on parameters and methods, refer to relevant cloud masking literature and tutorials.
 }
 \examples{
 \dontrun{
+library(rgee)
 library(rgeeExtra)
 
 ee_Initialize()
+extra_Initialize()
 
 img <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$maskClouds(prob = 75,buffer = 300,cdi = -0.5)
+  ee$Image$Extra_maskClouds(prob = 75,buffer = 300,cdi = -0.5)
 
 names(img)
 }

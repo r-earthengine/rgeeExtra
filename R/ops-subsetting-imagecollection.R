@@ -1,7 +1,8 @@
-#' Extract or replace parts of and ee$ImageCollection
-#' @param x ee$ImageCollection or ee$Image.
-#' @param index Integer. Index specifying elements to extract or replace.
-#' @return An EE.ImageCollection
+#' Extract or replace parts of ee$Image and ee$ImageCollection
+#' @param x ee$Image or ee$ImageCollection.
+#' @param index Integer or vector. Index specifying elements to extract or replace.
+#' @name ee-subset
+#' @return  Bands of ee$Image or an ee$Image
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -70,6 +71,7 @@
 #' @param x ee$ImageCollection or ee$Image.
 #' @param index Integer. Index specifying elements to extract or replace.
 #' @param value ee$ImageCollection or ee$Image to replace in.
+#' @name ee-subset
 #' @return An EE.ImageCollection
 #' @examples
 #' \dontrun{
@@ -166,30 +168,7 @@
   rgee::ee$ImageCollection(ic_list)
 }
 
-#' Length of an Earth Engine ImageCollection Object
-#'
-#' Set the length of an Earth Engine Image.
-#'
-#' @param x an EE ImageCollection Object.
-#' @examples
-#' \dontrun{
-#' library(rgeeExtra)
-#' library(rgee)
-#'
-#' ee_Initialize()     # Initialize the Google Earth Engine API connection
-#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
-#'
-#' ic <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
-#'   ee$ImageCollection$filterDate("1999-01-01", "1999-01-02")
-#' length(ic)
-#' }
-#' @return A numeric representing the number of images.
-#' @export
-'length.ee.imagecollection.ImageCollection' <-function(x) {
-  x %>%
-    rgee::ee$ImageCollection$size() %>%
-    rgee::ee$Number$getInfo()
-}
+
 
 
 #' Names of Earth Engine ImagesCollection properties
@@ -197,6 +176,7 @@
 #' Get the names of the properties of an Earth Engine ImageCollection object.
 #'
 #' @param x an EE ImageCollection object.
+#' @name ee_names_imagecollection
 #' @examples
 #' \dontrun{
 #' library(rgeeExtra)

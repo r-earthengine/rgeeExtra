@@ -1,4 +1,4 @@
-#' @name ee_subsetting
+#' @name ee-subset
 #' @export
 '[[.ee.image.Image' <- function(x, index) {
   # 2. Select just an specific band
@@ -26,7 +26,7 @@
   }
 }
 
-#' @name ee_subsetting
+#' @name ee-subset
 #' @export
 '[<-.ee.image.Image' <- function(x, index, value) {
   # 1. check if value is a ee.Image
@@ -47,7 +47,7 @@
 
 }
 
-#' @name ee_subsetting
+#' @name ee-subset
 #' @export
 '[[<-.ee.image.Image' <- function(x, index, value) {
   # 1. check if value is a ee.Image
@@ -92,6 +92,8 @@
 #'
 #' @param x an EE Image object.
 #' @param value a character vector with the same length as x.
+#' @name names(x) <- value
+#' @usage `names(x) <- value`
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -115,6 +117,7 @@
 #'
 #' Get the names of the layers of an Earth Engine Image object.
 #' @param x an EE Image object.
+#' @usage `names(x)`
 #' @examples
 #' \dontrun{
 #' library(rgee)
@@ -157,41 +160,4 @@
 #' @export
 'length.ee.image.Image' <-function(x) {
   x %>% rgee::ee$Image$bandNames() %>% rgee::ee$List$getInfo() %>% length()
-}
-
-
-#' Length of an Earth Engine Image Object
-#'
-#' Get the length of an Earth Engine Image.
-#'
-#' @param x an EE Image Object.
-#' @param  value A non-negative integer which increase or filter the initial lenght of the
-#' ee$Image object.
-#' @examples
-#' \dontrun{
-#' library(rgeeExtra)
-#' library(rgee)
-#'
-#' ee_Initialize()     # Initialize the Google Earth Engine API connection
-#' extra_Initialize()  # Initialize the extended functionalities of rgeeExtra
-#'
-#' ic <- ee$ImageCollection("COPERNICUS/S2_SR")$first()
-#' length(ic) <- 10
-#' }
-#' @return A filter or increase the number of bands in a ee$Image.
-#' @export
-'length<-.ee.image.Image' <-function(x, value) {
-  ee_x_length <- length(x)
-  how_much_add <- value - ee_x_length
-  if(how_much_add < 0) {
-    x[[seq_len(value)]]
-  } else if (how_much_add == 0) {
-    x
-  } else if (how_much_add > 0) {
-    ee_zero_img <- rgee::ee$ImageCollection(
-      lapply(seq_len(how_much_add), function(z) rgee::ee$Image(0))
-    )$toBands()
-    names(ee_zero_img) <- sprintf("rgee_NA_%02d", seq_len(how_much_add))
-    x$addBands(ee_zero_img)
-  }
 }
