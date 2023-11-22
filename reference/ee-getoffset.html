@@ -20,7 +20,7 @@ for each band of an ee$Image."><!-- mathjax --><script src="https://cdnjs.cloudf
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rgeeExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
       </span>
     </div>
 
@@ -43,7 +43,16 @@ for each band of an ee$Image."><!-- mathjax --><script src="https://cdnjs.cloudf
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="../articles/Features.html">Features</a>
+      <a href="../articles/Image.html">Image</a>
+    </li>
+    <li>
+      <a href="../articles/ImageCollection.html">Image Collection</a>
+    </li>
+    <li>
+      <a href="../articles/Feature.html">Feature</a>
+    </li>
+    <li>
+      <a href="../articles/FeatureCollection.html">Feature Collection</a>
     </li>
   </ul></li>
 <li>
@@ -77,7 +86,7 @@ for each band of an ee$Image."><!-- mathjax --><script src="https://cdnjs.cloudf
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Retrieve offset parameter from EE Image and EE ImageCollections objects</h1>
-    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageColletion.R" class="external-link"><code>R/ee_ImageColletion.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageCollection.R" class="external-link"><code>R/ee_ImageCollection.R</code></a></small>
     <div class="hidden name"><code>ee-getoffset.Rd</code></div>
     </div>
 
@@ -89,9 +98,9 @@ for each band of an ee$Image.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ee_Image_getOffsetParams</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">`ee$Image$Extra_getOffsetParams(x)`</span></span>
 <span></span>
-<span><span class="fu">ee_ImageCollection_getOffsetParams</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">`ee$ImageCollection$Extra_getOffsetParams(x)`</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -110,14 +119,25 @@ for each band of an ee$Image.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/rgee/" class="external-link">rgee</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-earthengine/rgeeExtra" class="external-link">rgeeExtra</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="extra_Initialize.html">extra_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">first</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">getOffsetParams</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Retrieve offset parameters from the first image in NASA IMERG V06 collection</span></span></span>
+<span class="r-in"><span><span class="va">offset_params</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_getOffsetParams</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Display offset parameters for each band.</span></span></span>
+<span class="r-in"><span><span class="va">offset_params</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Get offset parameters from NASA IMERG V06 image collection.</span></span></span>
+<span class="r-in"><span><span class="va">offset_params_</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">ImageCollection</span><span class="op">(</span><span class="st">"NASA/GPM_L3/IMERG_V06"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_getOffsetParams</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Display offset parameters for each band.</span></span></span>
+<span class="r-in"><span><span class="va">offset_params_</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

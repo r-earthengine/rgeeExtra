@@ -23,7 +23,7 @@ Decompress: Convert integer pixels to float point numbers.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rgeeExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
       </span>
     </div>
 
@@ -46,7 +46,16 @@ Decompress: Convert integer pixels to float point numbers.
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="../articles/Features.html">Features</a>
+      <a href="../articles/Image.html">Image</a>
+    </li>
+    <li>
+      <a href="../articles/ImageCollection.html">Image Collection</a>
+    </li>
+    <li>
+      <a href="../articles/Feature.html">Feature</a>
+    </li>
+    <li>
+      <a href="../articles/FeatureCollection.html">Feature Collection</a>
     </li>
   </ul></li>
 <li>
@@ -80,7 +89,7 @@ Decompress: Convert integer pixels to float point numbers.
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Automated EE Image or EE ImageCollection preprocessing</h1>
-    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageColletion.R" class="external-link"><code>R/ee_ImageColletion.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_Image.R" class="external-link"><code>R/ee_Image.R</code></a>, <a href="https://github.com/r-earthengine/rgeeExtra/blob/HEAD/R/ee_ImageCollection.R" class="external-link"><code>R/ee_ImageCollection.R</code></a></small>
     <div class="hidden name"><code>ee-preprocess.Rd</code></div>
     </div>
 
@@ -92,9 +101,9 @@ See ee$Image$cloudmask.</p></li>
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ee_Image_preprocess</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">`ee$Image$Extra_preprocess(x, ...)`</span></span>
 <span></span>
-<span><span class="fu">ee_ImageCollection_preprocess</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">`ee$ImageCollection$Extra_preprocess(x, ...)`</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -121,10 +130,15 @@ See ee$Image$cloudmask.</p></li>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-earthengine/rgeeExtra" class="external-link">rgeeExtra</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://r-spatial.github.io/rgee/reference/ee_Initialize.html" class="external-link">ee_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="extra_Initialize.html">extra_Initialize</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="va">Dataset</span><span class="op">$</span><span class="va">COPERNICUS_S2_SR</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">first</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">preprocess</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Load a Sentinel-2 image and apply automated preprocessing.</span></span></span>
+<span class="r-in"><span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"COPERNICUS/S2_SR/20170328T083601_20170328T084228_T35SQA"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">Image</span><span class="op">$</span><span class="fu">Extra_preprocess</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load and preprocess Sentinel-2 SR image collection.</span></span></span>
+<span class="r-in"><span><span class="va">ic</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="va">Dataset</span><span class="op">$</span><span class="va">COPERNICUS_S2_SR</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="va">ee</span><span class="op">$</span><span class="va">ImageCollection</span><span class="op">$</span><span class="fu">Extra_preprocess</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

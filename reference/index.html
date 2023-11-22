@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rgeeExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
       </span>
     </div>
 
@@ -40,7 +40,16 @@
       <a href="../articles/Introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="../articles/Features.html">Features</a>
+      <a href="../articles/Image.html">Image</a>
+    </li>
+    <li>
+      <a href="../articles/ImageCollection.html">Image Collection</a>
+    </li>
+    <li>
+      <a href="../articles/Feature.html">Feature</a>
+    </li>
+    <li>
+      <a href="../articles/FeatureCollection.html">Feature Collection</a>
     </li>
   </ul></li>
 <li>
@@ -81,10 +90,6 @@
           <p class="section-desc"></p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="EEextra_PYTHON_PACKAGE.html">EEextra_PYTHON_PACKAGE</a></code> </p>
-        </td>
-        <td><p>Extra Earth Engine module</p></td>
-      </tr><tr><td>
           <p><code><a href="Math-methods.html">Math(<i>&lt;ee.image.Image&gt;</i>)</a></code> </p>
         </td>
         <td><p>Mathematical functions</p></td>
@@ -97,62 +102,78 @@
         </td>
         <td><p>Summary Methods</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-citation.html">ee_image_getCitation()</a></code> <code><a href="ee-citation.html">ee_ImageCollection_getCitation()</a></code> </p>
+          <p><code><a href="ee-citation.html">`ee$Image$Extra_getCitation(x)`</a></code> <code><a href="ee-citation.html">`ee$ImageCollection$Extra_getCitation(x)`</a></code> </p>
         </td>
         <td><p>Citing EE objects in publications</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-getdoi.html">ee_image_getDOI()</a></code> <code><a href="ee-getdoi.html">ee_ImageCollection_getDOI()</a></code> </p>
+          <p><code><a href="ee-getdoi.html">`ee$Image$Extra_getDOI(x)`</a></code> <code><a href="ee-getdoi.html">`ee$ImageCollection$Extra_getDOI(x)`</a></code> </p>
         </td>
         <td><p>Get the Digital Object Identifier (DOI) of an EE object</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-getoffset.html">ee_Image_getOffsetParams()</a></code> <code><a href="ee-getoffset.html">ee_ImageCollection_getOffsetParams()</a></code> </p>
+          <p><code><a href="ee-getoffset.html">`ee$Image$Extra_getOffsetParams(x)`</a></code> <code><a href="ee-getoffset.html">`ee$ImageCollection$Extra_getOffsetParams(x)`</a></code> </p>
         </td>
         <td><p>Retrieve offset parameter from EE Image and EE ImageCollections objects</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-getscaleparams.html">ee_Image_getScaleParams()</a></code> <code><a href="ee-getscaleparams.html">ee_ImageCollection_getScaleParams()</a></code> </p>
+          <p><code><a href="ee-getscaleparams.html">`ee$Image$Extra_getScaleParams(x)`</a></code> <code><a href="ee-getscaleparams.html">`ee$ImageCollection$Extra_getScaleParams(x)`</a></code> </p>
         </td>
         <td><p>Retrieve scale parameter from EE Image and EE ImageCollection objects.</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-getstac.html">ee_Image_getSTAC()</a></code> <code><a href="ee-getstac.html">ee_ImageCollection_getSTAC()</a></code> </p>
+          <p><code><a href="ee-getstac.html">`ee$Image$Extra_getSTAC(x)`</a></code> <code><a href="ee-getstac.html">`ee$ImageCollection$Extra_getSTAC(x)`</a></code> </p>
         </td>
         <td><p>Retrieve EE Image or EE ImageCollection STAC metadata</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-pansharpen.html">ee_Image_panSharpen()</a></code> <code><a href="ee-pansharpen.html">ee_ImageCollection_panSharpen()</a></code> </p>
+          <p><code><a href="ee-pansharpen.html">`ee$Image$Extra_panSharpen(x, ...)`</a></code> </p>
         </td>
         <td><p>Apply panchromatic sharpening to an ee$Image or an ee$ImageCollection</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-preprocess.html">ee_Image_preprocess()</a></code> <code><a href="ee-preprocess.html">ee_ImageCollection_preprocess()</a></code> </p>
+          <p><code><a href="ee-preprocess.html">`ee$Image$Extra_preprocess(x, ...)`</a></code> <code><a href="ee-preprocess.html">`ee$ImageCollection$Extra_preprocess(x, ...)`</a></code> </p>
         </td>
         <td><p>Automated EE Image or EE ImageCollection preprocessing</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-scaleandoffset.html">ee_Image_scaleAndOffset()</a></code> <code><a href="ee-scaleandoffset.html">ee_ImageCollection_scaleAndOffset()</a></code> </p>
+          <p><code><a href="ee-scaleandoffset.html">`ee$Image$Extra_scaleAndOffset(x)`</a></code> <code><a href="ee-scaleandoffset.html">`ee$ImageCollection$Extra_scaleAndOffset(x)`</a></code> </p>
         </td>
         <td><p>Automatic decompression of EE Image or EE ImageCollection objects</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-spectralindex.html">ee_Image_spectralIndex()</a></code> <code><a href="ee-spectralindex.html">ee_ImageCollection_spectralIndex()</a></code> </p>
+          <p><code><a href="ee-subset.html">`[[`(<i>&lt;ee.image.Image&gt;</i>)</a></code> <code><a href="ee-subset.html">`[&lt;-`(<i>&lt;ee.image.Image&gt;</i>)</a></code> <code><a href="ee-subset.html">`[[&lt;-`(<i>&lt;ee.image.Image&gt;</i>)</a></code> <code><a href="ee-subset.html">`[[`(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> <code><a href="ee-subset.html">`[[&lt;-`(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Spectral Indices Computation</p></td>
+        <td><p>Extract or replace parts of ee$Image and ee$ImageCollection</p></td>
       </tr><tr><td>
-          <p><code><a href="ee-tasseledcap.html">ee_Image_tasseledCap()</a></code> <code><a href="ee-tasseledcap.html">ee_ImageCollection_tasseledCap()</a></code> </p>
+          <p><code><a href="ee-tasseledcap.html">`ee$Image$Extra_tasseledCap(x)`</a></code> </p>
         </td>
         <td><p>Calculates tasseled cap brightness, wetness, and greenness
 components for an EE Image or EE ImageCollection</p></td>
       </tr><tr><td>
-          <p><code><a href="ee_ImageCollection_closest.html">ee_ImageCollection_closest()</a></code> </p>
+          <p><code><a href="ee_ImageCollection_closest.html">`ee$ImageCollection$Extra_closest(x, ...)`</a></code> </p>
         </td>
         <td><p>Get the temporal nearest image</p></td>
       </tr><tr><td>
-          <p><code><a href="ee_Image_maskClouds.html">ee_Image_maskClouds()</a></code> </p>
+          <p><code><a href="ee_Image_maskClouds.html">`ee$Image$Extra_maskClouds(x, ...)`</a></code> </p>
         </td>
         <td><p>Masks clouds and shadows</p></td>
       </tr><tr><td>
-          <p><code><a href="ee_Image_matchHistogram.html">ee_Image_matchHistogram()</a></code> </p>
+          <p><code><a href="ee_Image_matchHistogram.html">`ee$Image$Extra_matchHistogram(x, ...)`</a></code> </p>
         </td>
         <td><p>Adjust the image's histogram to match a target image</p></td>
+      </tr><tr><td>
+          <p><code><a href="ee_Image_spectralIndex.html">`ee$Image$Extra_spectralIndex(x, ...)`</a></code> </p>
+        </td>
+        <td><p>Spectral Indices Computation</p></td>
+      </tr><tr><td>
+          <p><code><a href="ee_extract_featurecollection.html">`[[`(<i>&lt;ee.featurecollection.FeatureCollection&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Extract parts of and EE FeatureCollection</p></td>
       </tr><tr><td>
           <p><code><a href="ee_get.html">ee_get()</a></code> </p>
         </td>
         <td><p>Return the element at a specified position in an Earth Engine Image or ImageCollection</p></td>
+      </tr><tr><td>
+          <p><code><a href="ee_names_feature.html">names(<i>&lt;ee.feature.Feature&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Names of Earth Engine FeatureCollection object</p></td>
+      </tr><tr><td>
+          <p><code><a href="ee_names_imagecollection.html">names(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Names of Earth Engine ImagesCollection properties</p></td>
       </tr><tr><td>
           <p><code><a href="ee_utils_gif_annotate.html">ee_utils_gif_annotate()</a></code> </p>
         </td>
@@ -170,57 +191,25 @@ components for an EE Image or EE ImageCollection</p></td>
         </td>
         <td><p>Load extra functionality for rgee</p></td>
       </tr><tr><td>
-          <p><code><a href="extremeValues.html">ee_maxValue()</a></code> <code><a href="extremeValues.html">ee_minValue()</a></code> </p>
+          <p><code><a href="extremeValues.html">`ee$Image$Extra_maxValue(x, ...)`</a></code> <code><a href="extremeValues.html">`ee$Image$Extra_minValue(x, ...)`</a></code> </p>
         </td>
-        <td><p>Minimum and maximum values</p></td>
-      </tr><tr><td>
-          <p><code><a href="length-set-.ee.image.Image.html">`length&lt;-`(<i>&lt;ee.image.Image&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Length of an Earth Engine Image Object</p></td>
-      </tr><tr><td>
-          <p><code><a href="length.ee.featurecollection.FeatureCollection.html">length(<i>&lt;ee.featurecollection.FeatureCollection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Length of an Earth Engine FeatureCollection Object</p></td>
+        <td><p>Minimum and Maximum Values</p></td>
       </tr><tr><td>
           <p><code><a href="length.ee.image.Image.html">length(<i>&lt;ee.image.Image&gt;</i>)</a></code> </p>
         </td>
         <td><p>Length of an Earth Engine Image Object</p></td>
       </tr><tr><td>
-          <p><code><a href="length.ee.imagecollection.ImageCollection.html">length(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Length of an Earth Engine ImageCollection Object</p></td>
-      </tr><tr><td>
-          <p><code><a href="names-set-.ee.image.Image.html">`names&lt;-`(<i>&lt;ee.image.Image&gt;</i>)</a></code> </p>
+          <p><code><a href="names-open-paren-x-close-paren-set-value.html">`names(x) &lt;- value`</a></code> </p>
         </td>
         <td><p>Rename of Earth Engine Images layers (bands)</p></td>
       </tr><tr><td>
-          <p><code><a href="names.ee.feature.Feature.html">names(<i>&lt;ee.feature.Feature&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Names of Earth Engine FeatureCollection object</p></td>
-      </tr><tr><td>
-          <p><code><a href="names.ee.image.Image.html">names(<i>&lt;ee.image.Image&gt;</i>)</a></code> </p>
+          <p><code><a href="names.ee.image.Image.html">`names(x)`</a></code> </p>
         </td>
         <td><p>Names of Earth Engine Images layers (bands)</p></td>
-      </tr><tr><td>
-          <p><code><a href="names.ee.imagecollection.ImageCollection.html">names(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Names of Earth Engine ImagesCollection properties</p></td>
       </tr><tr><td>
           <p><code><a href="rgeeExtra-package.html">rgeeExtra</a></code> <code><a href="rgeeExtra-package.html">rgeeExtra-package</a></code> </p>
         </td>
         <td><p>rgeeExtra: Extra functionality for rgee</p></td>
-      </tr><tr><td>
-          <p><code><a href="sub-sub-.ee.featurecollection.FeatureCollection.html">`[[`(<i>&lt;ee.featurecollection.FeatureCollection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract parts of and EE FeatureCollection</p></td>
-      </tr><tr><td>
-          <p><code><a href="sub-sub-.ee.imagecollection.ImageCollection.html">`[[`(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract or replace parts of and ee$ImageCollection</p></td>
-      </tr><tr><td>
-          <p><code><a href="sub-subset-.ee.imagecollection.ImageCollection.html">`[[&lt;-`(<i>&lt;ee.imagecollection.ImageCollection&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Extract or replace parts of and ee$ImageCollection</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
