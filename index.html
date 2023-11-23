@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rgeeExtra</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@ Simplifies the interaction with GEE APIs and functions, making it more R-like. P
 <h2 id="why-rgeeextra-is-needed-">
 <strong>Why rgeeExtra is needed?</strong> 🤔<a class="anchor" aria-label="anchor" href="#why-rgeeextra-is-needed-"></a>
 </h2>
-<p>The aim of rgeeExtra is to enhance the ease-of-use ⚡ of Google Earth Engine (GEE) 🌐 for R enthusiasts by streamlining its syntax and enriching the R user experience. While GEE’s primary language is JavaScript, which diverges from R’s structure, rgeeExtra serves as a bridge 🌉, offering R users a suite of tools and functions to navigate GEE’s complexity with ease. This extension elevates R interaction with GEE through high-level 📈 abstractions and tailored functions, all adapted from the JavaScript API.</p>
+<p>The goal of rgeeExtra is to enhance the user experience ⚡ of Google Earth Engine (GEE) 🌐 for R enthusiasts by simplifying its syntax. While GEE’s primary language is JavaScript, which diverges from R’s structure, rgeeExtra serves as a bridge 🌉, offering R users a suite of tools and functions to navigate GEE’s complexity with ease. This extension elevates R interaction with GEE through high-level 📈 abstractions and tailored functions, all adapted from the JavaScript API.</p>
 <table class="table">
 <tr>
 <th style="text-align: center;">
@@ -174,6 +174,7 @@ R (rgee + rgeeExtra)
 <p>You can install rgeeExtra from <a href="https://github.com/r-earthengine/rgeeExtra" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-earthengine/rgeeExtra"</span><span class="op">)</span></span></code></pre></div>
+<p>For additional details on connecting GEE and R, refer to the documentation provided <a href="https://github.com/r-spatial/rgee#installation" class="external-link">here</a>. To set up an account, click <a href="https://earthengine.google.com/signup/" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="how-does-it-work️-">
@@ -187,7 +188,7 @@ R (rgee + rgeeExtra)
 <li><a href="https://developers.google.com/earth-engine/guides/image_overview" class="external-link">ee$Image</a></li>
 <li><a href="https://developers.google.com/earth-engine/guides/ic_creating" class="external-link">ee$ImageCollection</a></li>
 </ul>
-<p>rgeeExtra develops and maintains new methods and constructors that extend the most popular GEE classes (e.g., <code>ee$Feature$Extra\_...</code>). All third-party methods implemented by rgeeExtra start with <code>Extra\_.</code> To learn more about all the functionalities that rgeeExtra offers, please refer to the article [Features] for additional information.</p>
+<p>rgeeExtra develops and maintains new methods and constructors that extend the most popular GEE classes (e.g., <code>ee$Feature$Extra\_...</code>). All third-party methods implemented by rgeeExtra start with <code>Extra\_.</code> To learn more about all the functionalities that rgeeExtra offers, please refer to the article <a href="https://r-earthengine.com/rgeeExtra/articles/" class="external-link">Features</a> for additional information.</p>
 </div>
 <div class="section level2">
 <h2 id="example-">
@@ -227,7 +228,7 @@ R (rgee + rgeeExtra)
 <span><span class="co"># Compute squared NDVI from Landsat 8 image</span></span>
 <span><span class="va">img</span> <span class="op">&lt;-</span> <span class="va">ee</span><span class="op">$</span><span class="fu">Image</span><span class="op">(</span><span class="st">"LANDSAT/LC08/C02/T1_L2/LC08_007067_20140822"</span><span class="op">)</span></span>
 <span><span class="va">ndvi</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"SR_B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">-</span> <span class="va">img</span><span class="op">[[</span><span class="st">"SR_B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">img</span><span class="op">[[</span><span class="st">"SR_B5"</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">img</span><span class="op">[[</span><span class="st">"SR_B4"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">**</span> <span class="fl">2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ndvi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"Squared NDVI"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ndvi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"NDVI"</span></span>
 <span></span>
 <span><span class="co"># Visualize squared NDVI on map</span></span>
 <span><span class="va">Map</span><span class="op">$</span><span class="fu">centerObject</span><span class="op">(</span><span class="va">ndvi</span><span class="op">)</span></span>
@@ -241,7 +242,7 @@ R (rgee + rgeeExtra)
 <span>  name <span class="op">=</span> <span class="st">"Squared NDVI"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <center>
-<img src="reference/figures/ndvi_example.png" width="80%">
+<img src="inst/ndvi_example.png" width="80%">
 </center>
 </div>
 <div class="section level2">
