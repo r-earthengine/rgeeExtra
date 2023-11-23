@@ -12,7 +12,7 @@
 </h1>
 
 <h4 align="center"> 
-  Simplifies the interaction with GEE APIs and functions, making it more R-like. Popular third-party GEE algorithms are made available to R users
+  Simplifies the interaction with GEE API making it more R-like. Popular third-party GEE algorithms are made available to R users
 </h4>
 
 <p align="center">
