@@ -1,5 +1,3 @@
-context("rgee: Operators test")
-# -------------------------------------------------------------------------
 library(rgee)
 library(rgeeExtra)
 

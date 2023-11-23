@@ -52,7 +52,7 @@ extra_Initialize()
 
 s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") \%>\%
   ee$ImageCollection$first() \%>\%
-  ee$Image$preprocess() \%>\%
+  ee$Image$Extra_preprocess() \%>\%
   ee$Image$Extra_spectralIndex(c("NDVI", "SAVI"))
 
 names(s2_indices)

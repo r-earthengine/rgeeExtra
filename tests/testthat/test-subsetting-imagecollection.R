@@ -1,5 +1,3 @@
-context("rgeeExtra: subsetting ee.ImageCollection")
-# -------------------------------------------------------------------------
 library(rgee)
 library(rgeeExtra)
 
@@ -34,7 +32,7 @@ test_that("[[.ee.imagecollection.ImageCollection", {
 
 test_that("[[<-.ee.imagecollection.ImageCollection", {
   x <- ee$ImageCollection$Dataset$AU_GA_AUSTRALIA_5M_DEM
-  expect_is(x[[2:3]], "ee.imagecollection.ImageCollection")
+  expect_s3_class(x[[2:3]], "ee.imagecollection.ImageCollection")
   x[[1]] <- ee$Image(1)
   x[[2:3]] <- ee$ImageCollection(c(ee$Image(2), ee$Image(3)))
   x[[3:7]] <- lapply(3:7, function(x) ee$Image(x))

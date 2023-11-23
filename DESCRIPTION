@@ -1,6 +1,6 @@
 Package: rgeeExtra
 Title: Extensions for 'rgee'
-Version: 0.0.2
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Cesar",
            family = "Aybar",
@@ -55,3 +55,4 @@ VignetteBuilder: knitr
 Language: en-US
 BugReports: https://github.com/r-earthengine/rgeeExtra/issues
 URL: https://github.com/r-earthengine/rgeeExtra
+Config/testthat/edition: 3

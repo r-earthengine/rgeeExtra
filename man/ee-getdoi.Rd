@@ -28,10 +28,10 @@ ee_Initialize()
 extra_Initialize()
 
 # Fetch DOI for first image in NASA IMERG V06 collection
-doi <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] \%>\% 
+doi <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] \%>\%
   ee$Image$Extra_getDOI()
 
-doi 
+doi
 
 # Retrieve and print the DOI for the NASA/GPM_L3/IMERG_V06 image collection.
 doi_ <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") \%>\%

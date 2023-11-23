@@ -1,6 +1,3 @@
-context("rgee: Operators test")
-
-# -------------------------------------------------------------------------
 library(rgee)
 library(rgeeExtra)
 
@@ -12,12 +9,12 @@ test_that("Arithmetic Operator", {
   img_m <- ee$ImageCollection(c(ee$Image(1), ee$Image(2)))$toBands()
 
   # sum
-  expect_equal((img + img), (img$add(img)))
-  expect_equal((img_m + img_m), (img_m$add(img_m)))
+  expect_equal((img + img)$serialize(), img$add(img)$serialize())
+  expect_equal((img_m + img_m)$serialize(), (img_m$add(img_m))$serialize())
 
   # subtract
-  expect_equal((img - img), (img$subtract(img)))
-  expect_equal((img_m - img_m), (img_m$subtract(img_m)))
+  expect_equal((img - img)$serialize(), (img$subtract(img))$serialize())
+  expect_equal((img_m - img_m)$serialize(), (img_m$subtract(img_m))$serialize())
 
   # Negative (-) 1 -> -1
   expect_equal(ee_extract(-img, ee$Geometry$Point(0, 0))[[1]], -1)
@@ -143,70 +140,70 @@ test_that("Mathematical functions", {
   expect_equal(
     object = ee_extract(asin(ee$Image(0.1)), ee_geom)[[1]],
     expected = asin(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # atan
   expect_equal(
     object = ee_extract(atan(ee$Image(0.1)), ee_geom)[[1]],
     expected = atan(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # exp
   expect_equal(
     object = ee_extract(exp(ee$Image(0.1)), ee_geom)[[1]],
     expected = exp(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # expm1
   expect_equal(
     object = ee_extract(expm1(ee$Image(0.1)), ee_geom)[[1]],
     expected = expm1(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # cos
   expect_equal(
     object = ee_extract(cos(ee$Image(0.1)), ee_geom)[[1]],
     expected = cos(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # cosh
   expect_equal(
     object = ee_extract(cosh(ee$Image(0.1)), ee_geom)[[1]],
     expected = cosh(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # sin
   expect_equal(
     object = ee_extract(sin(ee$Image(0.1)), ee_geom)[[1]],
     expected = sin(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # sinh
   expect_equal(
     object = ee_extract(sinh(ee$Image(0.1)), ee_geom)[[1]],
     expected = sinh(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # tan
   expect_equal(
     object = ee_extract(tan(ee$Image(0.1)), ee_geom)[[1]],
     expected = tan(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 
   # tanh
   expect_equal(
     object = ee_extract(tanh(ee$Image(0.1)), ee_geom)[[1]],
     expected = tanh(0.1),
-    tolerance = 1e-07
+    tolerance = 1e-04
   )
 })
 

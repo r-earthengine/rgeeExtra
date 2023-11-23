@@ -56,8 +56,7 @@
 
 ## **Why rgeeExtra is needed?** 🤔
 
-The aim of rgeeExtra is to enhance the ease-of-use ⚡ of Google Earth Engine (GEE) 🌐 for R enthusiasts by streamlining its syntax and enriching the R user experience. While GEE's primary language is JavaScript, which diverges from R's structure, rgeeExtra serves as a bridge 🌉, offering R users a suite of tools and functions to navigate GEE's complexity with ease. This extension elevates R interaction with GEE through high-level 📈 abstractions and tailored functions, all adapted from the JavaScript API.
-
+The goal of rgeeExtra is to enhance the user experience ⚡ of Google Earth Engine (GEE) 🌐 for R enthusiasts by simplifying its syntax. While GEE's primary language is JavaScript, which diverges from R's structure, rgeeExtra serves as a bridge 🌉, offering R users a suite of tools and functions to navigate GEE's complexity with ease. This extension elevates R interaction with GEE through high-level 📈 abstractions and tailored functions, all adapted from the JavaScript API.
 
 <table>
 <tr>
@@ -115,6 +114,8 @@ You can install rgeeExtra from [GitHub](https://github.com/r-earthengine/rgeeExt
 remotes::install_github("r-earthengine/rgeeExtra")
 ```
 
+For additional details on connecting GEE and R, refer to the documentation provided [here](https://github.com/r-spatial/rgee#installation). To set up an account, click [here](https://earthengine.google.com/signup/).
+
 ## **How does it work?️** 🛠
 
 The rgeeExtra extends the following Earth Engine classes:
@@ -125,7 +126,7 @@ The rgeeExtra extends the following Earth Engine classes:
 -   [ee\$Image](https://developers.google.com/earth-engine/guides/image_overview)
 -   [ee\$ImageCollection](https://developers.google.com/earth-engine/guides/ic_creating)
 
-rgeeExtra develops and maintains new methods and constructors that extend the most popular GEE classes (e.g., `ee$Feature$Extra\_...`). All third-party methods implemented by rgeeExtra start with `Extra\_.` To learn more about all the functionalities that rgeeExtra offers, please refer to the article [Features] for additional information.
+rgeeExtra develops and maintains new methods and constructors that extend the most popular GEE classes (e.g., `ee$Feature$Extra\_...`). All third-party methods implemented by rgeeExtra start with `Extra\_.` To learn more about all the functionalities that rgeeExtra offers, please refer to the article [Features](https://r-earthengine.com/rgeeExtra/articles/) for additional information.
 
 ## **Example** 💡
 
@@ -168,7 +169,7 @@ extra_Initialize()
 # Compute squared NDVI from Landsat 8 image
 img <- ee$Image("LANDSAT/LC08/C02/T1_L2/LC08_007067_20140822")
 ndvi <- ((img[["SR_B5"]] - img[["SR_B4"]]) / (img[["SR_B5"]] + img[["SR_B4"]])) ** 2
-names(ndvi) <- "Squared NDVI"
+names(ndvi) <- "NDVI"
 
 # Visualize squared NDVI on map
 Map$centerObject(ndvi)
@@ -183,7 +184,7 @@ Map$addLayer(
   )
 ```
 
-<center><img src="man/figures/ndvi_example.png" width="80%"/></center>
+<center><img src="inst/ndvi_example.png" width="80%"/></center>
 
 ## **Code of Conduct** 📜
 

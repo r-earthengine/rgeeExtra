@@ -1,5 +1,3 @@
-context("rgeeExtra: subsetting ee.Image")
-# -------------------------------------------------------------------------
 library(rgee)
 library(rgeeExtra)
 
@@ -14,7 +12,10 @@ value <- ee$ImageCollection(c(ee$Image(0), ee$Image(1)))$toBands()
 
 
 test_that("[[.ee.image.Image", {
-  expect_equal(img[[c("AVE_DSM", "AVE_MSK")]], img$select(c("AVE_DSM", "AVE_MSK")))
+  c1 <- img$select(c("AVE_DSM", "AVE_MSK"))
+  c2 <- img[[c("AVE_DSM", "AVE_MSK")]]
+
+  expect_equal(c1$serialize(), c2$serialize())
   expect_equal(img[[1]]$getInfo(), img$select("AVE_DSM")$getInfo())
   expect_error(img[[0]])
   expect_error(img[[-1]])
@@ -46,28 +47,8 @@ test_that("[[<-.ee.image.Image", {
   expect_error(imgs[[T]] <- 1)
 })
 
-# test_that("names.ee.image.Image", {
-#   img_length <- length(ee$Image(1))
-#   expect_equal(img_length, 1)
-# })
-
 test_that("names<-.ee.image.Image", {
   imx <- ee$Image(1)
   names(imx) <- "cesar"
   expect_equal(names(imx), "cesar")
 })
-
-# test_that("[[<-.ee.image.Image", {
-#   imgt <- ee$ImageCollection(lapply(1:10, function(x) ee$Image(x)))$toBands()
-#   length(imgt) <- 5L
-#   expect_equal(length(imgt), 5)
-# })
-
-
-# test_that("length<-.ee.image.Image", {
-#   imgt <- ee$ImageCollection(lapply(1:10, function(x) ee$Image(x)))$toBands()
-#   length(imgt) <- 10
-#   expect_equal(length(imgt), 10)
-#   length(imgt) <- 15
-#   expect_equal(length(imgt), 15)
-# })

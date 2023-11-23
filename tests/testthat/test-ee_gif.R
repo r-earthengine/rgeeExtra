@@ -1,7 +1,3 @@
-context("rgee: ee_gif simple test")
-# -------------------------------------------------------------------------
-
-
 library(rgee)
 library(rgeeExtra)
 
@@ -54,5 +50,5 @@ test_that("ee_utils_gif_creator", {
     animation_wtxt
   gc(reset = TRUE)
   ee_utils_gif_save(animation_wtxt, path = paste0(tempfile(), ".gif"))
-  expect_is(animation_wtxt, "magick-image")
+  expect_s3_class(animation_wtxt, "magick-image")
 })

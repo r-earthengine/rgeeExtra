@@ -14,18 +14,18 @@
 #'
 #' ee_Initialize()
 #' extra_Initialize()
-#' 
+#'
 #' # Retrieve citation for the first image in NASA's IMERG V06 collection
-#' citation <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>% 
+#' citation <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>%
 #'   ee$Image$Extra_getCitation()
-#' 
+#'
 #' # Display the citation
 #' citation
-#' 
+#'
 #' # Fetching NASA/GPM_L3/IMERG_V06 image collection and retrieving its citation.
 #' citation_ <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$Extra_getCitation()
-#' 
+#'
 #' # Display the citation
 #' citation_
 #' }
@@ -53,17 +53,17 @@ ee_image_getCitation <- function(x) {
 #'
 #' ee_Initialize()
 #' extra_Initialize()
-#' 
+#'
 #' # Fetch DOI for first image in NASA IMERG V06 collection
-#' doi <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>% 
+#' doi <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>%
 #'   ee$Image$Extra_getDOI()
 #'
-#' doi 
-#' 
+#' doi
+#'
 #' # Retrieve and print the DOI for the NASA/GPM_L3/IMERG_V06 image collection.
 #' doi_ <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$Extra_getDOI()
-#' 
+#'
 #' doi_
 #' }
 ee_image_getDOI <- function(x) {
@@ -95,14 +95,14 @@ ee_image_getDOI <- function(x) {
 #' # Retrieve offset parameters from the first image in NASA IMERG V06 collection
 #' offset_params <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>%
 #'   ee$Image$Extra_getOffsetParams()
-#' 
+#'
 #' # Display offset parameters for each band.
 #' offset_params
 #'
 #' # Get offset parameters from NASA IMERG V06 image collection.
 #' offset_params_ <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$Extra_getOffsetParams()
-#' 
+#'
 #' # Display offset parameters for each band.
 #' offset_params_
 #' }
@@ -130,18 +130,18 @@ ee_Image_getOffsetParams <- function(x) {
 #'
 #' ee_Initialize()
 #' extra_Initialize()
-#' 
+#'
 #' # Retrieve scale parameters from the first image in NASA IMERG V06 collection
 #' scale_params <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>%
 #'   ee$Image$Extra_getScaleParams()
-#' 
+#'
 #' # Display scale parameters for each band in the image.
 #' scale_params
-#' 
+#'
 #' # Retrieve scale parameters for the NASA IMERG V06 collection.
 #' scale_params_ <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$Image$Extra_getScaleParams()
-#' 
+#'
 #' # Display scale parameters for each band in the image.
 #' scale_params_
 #' }
@@ -170,13 +170,13 @@ ee_Image_getScaleParams <- function(x) {
 #' # Retrieve STAC metadata for the first image in NASA's GPM L3 IMERG V06 collection
 #' stac_metadata <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>%
 #'   ee$Image$Extra_getSTAC()
-#' 
+#'
 #' stac_metadata
-#' 
+#'
 #' # Retrieve STAC metadata from NASA's IMERG V06 image collection.
 #' stac_metadata_ <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06") %>%
 #'   ee$ImageCollection$Extra_getSTAC()
-#' 
+#'
 #' stac_metadata_
 #' }
 ee_Image_getSTAC <- function(x) {
@@ -261,7 +261,7 @@ ee_Image_matchHistogram <- function(image, target, bands, geometry=NULL, maxBuck
 #' # Load a Sentinel-2 image and apply automated preprocessing.
 #' img <- ee$Image("COPERNICUS/S2_SR/20170328T083601_20170328T084228_T35SQA") %>%
 #'   ee$Image$Extra_preprocess()
-#' 
+#'
 #' # Load and preprocess Sentinel-2 SR image collection.
 #' ic <- ee$ImageCollection$Dataset$COPERNICUS_S2_SR %>%
 #'   ee$ImageCollection$Extra_preprocess()
@@ -319,7 +319,7 @@ ee_Image_preprocess <- function(x, ...) {
 #'
 #' s2_indices <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
 #'   ee$ImageCollection$first() %>%
-#'   ee$Image$preprocess() %>%
+#'   ee$Image$Extra_preprocess() %>%
 #'   ee$Image$Extra_spectralIndex(c("NDVI", "SAVI"))
 #'
 #' names(s2_indices)
@@ -365,21 +365,21 @@ ee_Image_spectralIndex <- function(
 #' as properties of the sharpened Image.
 #'
 #' @param x An ee$Image object, the image to sharpen.
-#' @param ... Additional arguments including sharpening method, quality 
-#' assessments, and parameters for `ee.Image.reduceRegion()`. 
+#' @param ... Additional arguments including sharpening method, quality
+#' assessments, and parameters for `ee.Image.reduceRegion()`.
 #' See details for more information.
 #'
 #' @details
 #' The `...` argument can include the following:
 #' \itemize{
-#'   \item{method}{Character. The sharpening algorithm to apply. Options include “SFIM”, 
+#'   \item{method}{Character. The sharpening algorithm to apply. Options include “SFIM”,
 #'   “HPFA”, “PCS”, and “SM”. Default is “SFIM”.}
-#'   \item{qa}{Character. One or more quality assessment names to apply after sharpening, 
+#'   \item{qa}{Character. One or more quality assessment names to apply after sharpening,
 #'   such as “MSE”, “RASE”, “UIQI”, etc.}
-#'   \item{geometry, maxPixels, bestEffort, etc.}{Arguments passed to `ee.Image.reduceRegion()` 
+#'   \item{geometry, maxPixels, bestEffort, etc.}{Arguments passed to `ee.Image.reduceRegion()`
 #'   during PCS sharpening and quality assessments.}
 #' }
-#' For the PCS method, additional parameters for `ee.Image.reduceRegion()` can be specified, 
+#' For the PCS method, additional parameters for `ee.Image.reduceRegion()` can be specified,
 #' such as `geometry`, `maxPixels`, `bestEffort`, etc.
 #'
 #' @return The Image with all sharpenable bands sharpened to the
@@ -578,7 +578,7 @@ ee_Image_tasseledCap <- function(x) {
 #' # Adjust first image in NASA IMERG V06 for scale and offset.
 #' adjusted_image <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] %>%
 #'   ee$Image$Extra_scaleAndOffset()
-#' 
+#'
 #' # Adjust Sentinel-2 SR images for scale and offset.
 #' adjusted_images <- ee$ImageCollection("COPERNICUS/S2_SR") %>%
 #'   ee$ImageCollection$Extra_scaleAndOffset()

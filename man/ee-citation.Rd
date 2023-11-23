@@ -28,7 +28,7 @@ ee_Initialize()
 extra_Initialize()
 
 # Retrieve citation for the first image in NASA's IMERG V06 collection
-citation <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] \%>\% 
+citation <- ee$ImageCollection("NASA/GPM_L3/IMERG_V06")[[1]] \%>\%
   ee$Image$Extra_getCitation()
 
 # Display the citation
